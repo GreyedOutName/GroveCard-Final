@@ -52,13 +52,11 @@ export default function LibrariesScreen({ navigation }) {
               </TouchableOpacity>
             </View>
           </View>
-        </View>
-
-            <FlatList style={styles.flatlist} showsVerticalScrollIndicator={false}
+          <FlatList style={styles.flatlist} showsVerticalScrollIndicator={false}
             data={decks.filter((deck) => deck[filter.toLowerCase()] === 'yes')}
             renderItem={renderItem}
             />
-        
+        </View>
       </ScrollView>
     </ImageBackground>
   );

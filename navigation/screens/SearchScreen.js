@@ -77,7 +77,7 @@ const styles = StyleSheet.create({
   l1: {
     fontSize: 12,
     letterSpacing: 1,
-    fontWeight: '30',
+    fontWeight: '700',
     color: '#ece3ce',
     textAlign: 'left',
     width: 295,

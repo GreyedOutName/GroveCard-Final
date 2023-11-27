@@ -20,6 +20,7 @@ import { SLIDER_WIDTH, ITEM_WIDTH } from '../code/carouselCardItem';
 import { decks } from '../code/data';
 import Flashcard from '../code/flashcards';
 import CarouselCards from '../code/carouselCards';
+import ViewScreen from './ViewScreen';
 
 const App = ({ navigation }) => {
   const [selectedDeck, setSelectedDeck] = useState(decks[0]);
@@ -61,7 +62,7 @@ const App = ({ navigation }) => {
                       ref={isCarousel}
                       data={decks.filter((deck) => deck.id === 'choice')}
                       renderItem={({ item }) => (
-                        <TouchableOpacity onPress={() => handleDeckPress(item)}style={styles.deckContainer}>
+                        <TouchableOpacity onPress={() => navigation.replace("View Screen")}style={styles.deckContainer}>
                             <Image style={styles.flash} source={require('../assets/flashcard.png')} />
                             <View style={styles.info}> 
                               <Text style={styles.infotext}>{item.name}</Text>

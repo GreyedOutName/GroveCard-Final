@@ -1,11 +1,14 @@
 import React from 'react';
 import { Image, ImageBackground, SafeAreaView, ScrollView, StyleSheet, Text, View } from 'react-native';
-import { Calendar } from 'react-native-calendars';
+import { Calendar, Agenda} from 'react-native-calendars';
 
 export default function ProfileScreen({ navigation }) {
+  const AgendaItem=()=>{
+    <Text>TEST</Text>
+  }
   return (
     <ImageBackground source={require('../assets/JungleBg.gif')} style={styles.ProfileContainer}>
-      <SafeAreaView style={{ flex: 1 }}>
+      <SafeAreaView style={{ flex: 1 , paddingBottom: 100}}>
         <ScrollView showsVerticalScrollIndicator={false}>
           <View style={styles.ProfileTitleBar}>
             {/* ... */}
@@ -24,10 +27,11 @@ export default function ProfileScreen({ navigation }) {
           </View>
 
           <View style={styles.calendarContainer}>
-            <Calendar
-              markedDates={{
-                '2023-12-06': { selected: true, marked: true, selectedColor: 'blue' },
-              }}
+            <Agenda
+              items={{
+                  '2023-12-06': ['HElLO'],
+                  '2023-12-07': [],
+                }}
             />
           </View>
         </ScrollView>

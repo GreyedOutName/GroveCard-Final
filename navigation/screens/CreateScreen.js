@@ -1,5 +1,6 @@
 import * as React from 'react';
-import { ImageBackground, Picker, ScrollView, StyleSheet, Text, TextInput, TouchableOpacity, View } from 'react-native';
+import { ImageBackground, ScrollView, StyleSheet, Text, TextInput, TouchableOpacity, View } from 'react-native';
+import {Picker} from '@react-native-picker/picker'
 
 export default function Create({ navigation }) {
   const [title, setTitle] = React.useState('');
@@ -39,70 +40,72 @@ export default function Create({ navigation }) {
       source={require('../assets/JungleBg.gif')}
       style={styles.CreateContainer}
     >
-      <Text style={styles.letsGetInto1}>Let’s get into the (wood) work!</Text>
+      <ScrollView contentContainerStyle={styles.scrollContainer} showsVerticalScrollIndicator={false}>
+        <Text style={styles.letsGetInto1}>Let’s get into the (wood) work!</Text>
 
-      <View style={styles.titlecontainer}>
-        <Text style={styles.modalTitle}>Title</Text>
-        <TextInput
-          style={styles.modalInput}
-          placeholder="Enter title"
-          value={title}
-          onChangeText={(text) => setTitle(text)}
-        />
-      </View>
+        <View style={styles.titlecontainer}>
+          <Text style={styles.modalTitle}>Title</Text>
+          <TextInput
+            style={styles.modalInput}
+            placeholder="Enter title"
+            value={title}
+            onChangeText={(text) => setTitle(text)}
+          />
+        </View>
 
-      <View style={styles.titlecontainer}>
-        <Text style={styles.modalTitle}>Subject Code</Text>
-        <TextInput
-          style={styles.modalInput}
-          placeholder="Enter subject code"
-          value={subjectCode}
-          onChangeText={(text) => setSubjectCode(text.replace(/[^a-zA-Z0-9]/g, ''))}
-        />
-      </View>
+        <View style={styles.titlecontainer}>
+          <Text style={styles.modalTitle}>Subject Code</Text>
+          <TextInput
+            style={styles.modalInput}
+            placeholder="Enter subject code"
+            value={subjectCode}
+            onChangeText={(text) => setSubjectCode(text.replace(/[^a-zA-Z0-9]/g, ''))}
+          />
+        </View>
 
-      <View style={styles.titlecontainer}>
-        <Text style={styles.modalTitle}>Course</Text>
-        <Picker
-          style={styles.modalInput}
-          selectedValue={selectedCourse}
-          onValueChange={(itemValue, itemIndex) => setSelectedCourse(itemValue)}
-        >
-          {courses.map((course, index) => (
-            <Picker.Item key={index} label={course} value={course} />
-          ))}
-        </Picker>
-      </View>
+        <View style={styles.titlecontainer}>
+          <Text style={styles.modalTitle}>Course</Text>
+          <Picker
+            style={styles.modalInput}
+            selectedValue={selectedCourse}
+            onValueChange={(itemValue, itemIndex) => setSelectedCourse(itemValue)}
+          >
+            {courses.map((course, index) => (
+              <Picker.Item key={index} label={course} value={course} />
+            ))}
+          </Picker>
+        </View>
 
-      <View style={styles.titlecontainer}>
-        <Text style={styles.modalTitle}>School</Text>
-        <Picker
-          style={styles.modalInput}
-          selectedValue={selectedSchool}
-          onValueChange={(itemValue, itemIndex) => setSelectedSchool(itemValue)}
-        >
-          {schools.map((school, index) => (
-            <Picker.Item key={index} label={school} value={school} />
-          ))}
-        </Picker>
-      </View>
+        <View style={styles.titlecontainer}>
+          <Text style={styles.modalTitle}>School</Text>
+          <Picker
+            style={styles.modalInput}
+            selectedValue={selectedSchool}
+            onValueChange={(itemValue, itemIndex) => setSelectedSchool(itemValue)}
+          >
+            {schools.map((school, index) => (
+              <Picker.Item key={index} label={school} value={school} />
+            ))}
+          </Picker>
+        </View>
 
-      <View style={styles.titlecontainer}>
-        <Text style={styles.modalTitle}>Category</Text>
-        <Picker
-          style={styles.modalInput}
-          selectedValue={selectedCategory}
-          onValueChange={(itemValue, itemIndex) => setSelectedCategory(itemValue)}
-        >
-          {categories.map((category, index) => (
-            <Picker.Item key={index} label={category} value={category} />
-          ))}
-        </Picker>
-      </View>
+        <View style={styles.titlecontainer}>
+          <Text style={styles.modalTitle}>Category</Text>
+          <Picker
+            style={styles.modalInput}
+            selectedValue={selectedCategory}
+            onValueChange={(itemValue, itemIndex) => setSelectedCategory(itemValue)}
+          >
+            {categories.map((category, index) => (
+              <Picker.Item key={index} label={category} value={category} />
+            ))}
+          </Picker>
+        </View>
 
-      <View>
-        <Text style={styles.additionalTitle}>If your school is not listed as an option, please request its addition by contacting the administrators at grovecards@gmail.com.</Text>
-      </View>
+        <View>
+          <Text style={styles.additionalTitle}>If your school is not listed as an option, please request its addition by contacting the administrators at grovecards@gmail.com.</Text>
+        </View>
+      </ScrollView>
     </ImageBackground>
   );
 }
@@ -112,6 +115,12 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: 'flex-start',
     resizeMode: 'cover',
+  },
+  scrollContainer:{
+    flexGrow: 1,
+    backgroundColor: 'rgba(0, 0, 0, 0)', 
+    paddingBottom: 200,
+    paddingHorizontal: 10,
   },
   letsGetInto1: {
     top: 20,
