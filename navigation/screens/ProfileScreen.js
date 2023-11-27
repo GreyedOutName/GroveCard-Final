@@ -1,15 +1,35 @@
-import React from 'react';
-import { Image, ImageBackground, SafeAreaView, ScrollView, StyleSheet, Text, View } from 'react-native';
+import React, { useState } from 'react';
+import { Image, ImageBackground, SafeAreaView, ScrollView, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 import { Calendar, Agenda} from 'react-native-calendars';
 
 export default function ProfileScreen({ navigation }) {
-  const AgendaItem=()=>{
-    <Text>TEST</Text>
+  const [items,setitems]=useState({});
+
+  const AddAgenda=()=>{
+    setTimeout(()=>{
+      const dates={
+      '2023-12-01': [{text:'Test for CS'}],
+      '2023-12-02': [{text:'Test for Engineering'}],
+      '2023-12-03': [{text:'Review Flashcard 2'}]
+      };
+
+      const newItems= {};
+      Object.keys(items).forEach(key => {
+        newItems[key] = items[key];
+      });
+      
+      setitems(dates)
+    },200)
+  }
+
+  const AgendaContent=(item)=>{
+    return(
+      <Text style={styles.AgendaItems}>{item.text}</Text>
+    )
   }
   return (
     <ImageBackground source={require('../assets/JungleBg.gif')} style={styles.ProfileContainer}>
       <SafeAreaView style={{ flex: 1 , paddingBottom: 100}}>
-        <ScrollView showsVerticalScrollIndicator={false}>
           <View style={styles.ProfileTitleBar}>
             {/* ... */}
           </View>
@@ -28,13 +48,12 @@ export default function ProfileScreen({ navigation }) {
 
           <View style={styles.calendarContainer}>
             <Agenda
-              items={{
-                  '2023-12-06': ['HElLO'],
-                  '2023-12-07': [],
-                }}
+              items={items}
+              selected='2023-12-01'
+              renderItem={AgendaContent}
+              loadItemsForMonth={AddAgenda}
             />
           </View>
-        </ScrollView>
       </SafeAreaView>
     </ImageBackground>
   );
@@ -77,7 +96,22 @@ const styles = StyleSheet.create({
         fontFamily: 'monospace',
         fontWeight: 400,
     },
+    Username: {
+        color: "#3A4D39",
+        fontSize: 21,
+        lineHeight: 26,
+        fontFamily: 'monospace',
+        fontWeight: 400,
+    },
+    AgendaItems:{
+      color: "#3A4D39",
+      marginVertical: 40,
+      fontSize: 21,
+      lineHeight: 26,
+      fontFamily: 'monospace',
+    },
     calendarContainer: {
+      flex:1,
       margin: 16,
       backgroundColor: 'white',
       borderRadius: 15,
