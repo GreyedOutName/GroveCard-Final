@@ -20,7 +20,7 @@ import { SLIDER_WIDTH, ITEM_WIDTH } from '../code/carouselCardItem';
 import { decks } from '../code/data';
 import Flashcard from '../code/flashcards';
 import CarouselCards from '../code/carouselCards';
-import ViewScreen from './ViewScreen';
+import ViewScreen from './PreviewScreen';
 
 const App = ({ navigation }) => {
   const [selectedDeck, setSelectedDeck] = useState(decks[0]);
@@ -92,7 +92,7 @@ const App = ({ navigation }) => {
                       ref={isCarousel}
                       data={decks.filter((deck) => deck.id === 'business')}
                       renderItem={({ item }) => (
-                      <TouchableOpacity onPress={() => handleDeckPress(item)}style={styles.deckContainer}>
+                      <TouchableOpacity onPress={()=> navigation.replace("View Screen")}style={styles.deckContainer}>
                         <Image style={styles.flash} source={require('../assets/flashcard.png')} />
                         <View style={styles.info}> 
                           <Text style={styles.infotext}>{item.name}</Text>
@@ -122,7 +122,7 @@ const App = ({ navigation }) => {
                       ref={isCarousel}
                       data={decks.filter((deck) => deck.id === 'communication')}
                       renderItem={({ item }) => (
-                      <TouchableOpacity onPress={() => handleDeckPress(item)}style={styles.deckContainer}>
+                      <TouchableOpacity onPress={() => navigation.replace("View Screen")}style={styles.deckContainer}>
                         <Image style={styles.flash} source={require('../assets/flashcard.png')} />
                         <View style={styles.info}> 
                           <Text style={styles.infotext}>{item.name}</Text>
@@ -152,7 +152,7 @@ const App = ({ navigation }) => {
                       ref={isCarousel}
                       data={decks.filter((deck) => deck.id === 'computer')}
                       renderItem={({ item }) => (
-                      <TouchableOpacity onPress={() => handleDeckPress(item)}style={styles.deckContainer}>
+                      <TouchableOpacity onPress={() => navigation.replace("View Screen")}style={styles.deckContainer}>
                         <Image style={styles.flash} source={require('../assets/flashcard.png')} />
                         <View style={styles.info}> 
                           <Text style={styles.infotext}>{item.name}</Text>
@@ -182,7 +182,7 @@ const App = ({ navigation }) => {
                       ref={isCarousel}
                       data={decks.filter((deck) => deck.id === 'engineering')}
                       renderItem={({ item }) => (
-                      <TouchableOpacity onPress={() => handleDeckPress(item)}style={styles.deckContainer}>
+                      <TouchableOpacity onPress={() => navigation.replace("View Screen")}style={styles.deckContainer}>
                         <Image style={styles.flash} source={require('../assets/flashcard.png')} />
                         <View style={styles.info}> 
                           <Text style={styles.infotext}>{item.name}</Text>
@@ -212,7 +212,7 @@ const App = ({ navigation }) => {
                       ref={isCarousel}
                       data={decks.filter((deck) => deck.id === 'health')}
                       renderItem={({ item }) => (
-                      <TouchableOpacity onPress={() => handleDeckPress(item)}style={styles.deckContainer}>
+                      <TouchableOpacity onPress={() => navigation.replace("View Screen")}style={styles.deckContainer}>
                         <Image style={styles.flash} source={require('../assets/flashcard.png')} />
                         <View style={styles.info}> 
                           <Text style={styles.infotext}>{item.name}</Text>
@@ -242,7 +242,7 @@ const App = ({ navigation }) => {
                       ref={isCarousel}
                       data={decks.filter((deck) => deck.id === 'mathematics')}
                       renderItem={({ item }) => (
-                      <TouchableOpacity onPress={() => handleDeckPress(item)}style={styles.deckContainer}>
+                      <TouchableOpacity onPress={() => navigation.replace("View Screen")}style={styles.deckContainer}>
                         <Image style={styles.flash} source={require('../assets/flashcard.png')} />
                         <View style={styles.info}> 
                           <Text style={styles.infotext}>{item.name}</Text>
@@ -272,7 +272,7 @@ const App = ({ navigation }) => {
                       ref={isCarousel}
                       data={decks.filter((deck) => deck.id === 'natural')}
                       renderItem={({ item }) => (
-                      <TouchableOpacity onPress={() => handleDeckPress(item)}style={styles.deckContainer}>
+                      <TouchableOpacity onPress={() => navigation.replace("View Screen")}style={styles.deckContainer}>
                         <Image style={styles.flash} source={require('../assets/flashcard.png')} />
                         <View style={styles.info}> 
                           <Text style={styles.infotext}>{item.name}</Text>
@@ -302,7 +302,7 @@ const App = ({ navigation }) => {
                       ref={isCarousel}
                       data={decks.filter((deck) => deck.id === 'social')}
                       renderItem={({ item }) => (
-                      <TouchableOpacity onPress={() => handleDeckPress(item)}style={styles.deckContainer}>
+                      <TouchableOpacity onPress={() => navigation.replace("View Screen")}style={styles.deckContainer}>
                         <Image style={styles.flash} source={require('../assets/flashcard.png')} />
                         <View style={styles.info}> 
                           <Text style={styles.infotext}>{item.name}</Text>
@@ -332,7 +332,7 @@ const App = ({ navigation }) => {
                       ref={isCarousel}
                       data={decks.filter((deck) => deck.id === 'others')}
                       renderItem={({ item }) => (
-                      <TouchableOpacity onPress={() => handleDeckPress(item)}style={styles.deckContainer}>
+                      <TouchableOpacity onPress={() => navigation.replace("View Screen")}style={styles.deckContainer}>
                         <Image style={styles.flash} source={require('../assets/flashcard.png')} />
                         <View style={styles.info}> 
                           <Text style={styles.infotext}>{item.name}</Text>

@@ -13,7 +13,9 @@ import CreateScreen from './screens/CreateScreen';
 import SearchScreen from './screens/SearchScreen';
 import SignInScreen from './screens/SignInScreen';
 import AddCardScreen from './screens/AddCardScreen';
-import ViewScreen from './screens/ViewScreen';
+import ViewScreen from './screens/PreviewScreen';
+
+
 
 // Screen Names
 const homeName = "Home";
