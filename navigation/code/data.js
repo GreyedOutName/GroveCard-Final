@@ -1,7 +1,8 @@
 export var decks = [
 
     {
-      id: 'choice',
+      id: 1,
+      category: 'choice',
       name: 'Editor Choice 1',
       items: 21,
       author: '@allen',
@@ -16,7 +17,8 @@ export var decks = [
       ]
     },
     {
-      id: 'choice',
+      id: 2,
+      category: 'choice',
       name: 'Editor Choice 2',
       items: 34,
       author: '@watson',
@@ -31,7 +33,8 @@ export var decks = [
       ]
     },
     {
-      id: 'choice',
+      id: 3,
+      category: 'choice',
       name: 'Editor Choice 3',
       items: 11,
       author: '@vhilly',
@@ -46,7 +49,8 @@ export var decks = [
       ]
     },
     {
-      id: 'choice',
+      id: 4,
+      category: 'choice',
       name: 'Editor Choice 4',
       items: 76,
       author: '@christine',
@@ -62,7 +66,8 @@ export var decks = [
     },
 
     {
-      id: 'business',
+      id: 5,
+      category: 'Business and Economics',
       name: 'Business 1',
       items: 35,
       author: '@angela',
@@ -77,7 +82,8 @@ export var decks = [
       ]
     },
     {
-      id: 'business',
+      id: 6,
+      category: 'Business and Economics',
       name: 'Business 2',
       items: 33,
       author: '@mak',
@@ -92,7 +98,8 @@ export var decks = [
       ]
     },
     {
-      id: 'business',
+      id: 7,
+      category: 'Business and Economics',
       name: 'Business 3',
       items: 99,
       author: '@deyb',
@@ -107,7 +114,8 @@ export var decks = [
       ]
     },
     {
-      id: 'business',
+      id: 8,
+      category: 'Business and Economics',
       name: 'Business 4',
       items: 96,
       author: '@grayedoutname',
@@ -123,7 +131,8 @@ export var decks = [
     },
 
     {
-      id: 'communication',
+      id: 9,
+      category: 'Communications and Media',
       name: 'Communication 1',
       items: 65,
       author: '@yukonseeme',
@@ -138,7 +147,8 @@ export var decks = [
       ]
     },
     {
-      id: 'communication',
+      id: 10,
+      category: 'Communications and Media',
       name: 'Communication 2',
       items: 12,
       author: '@risti',
@@ -153,7 +163,8 @@ export var decks = [
       ]
     },
     {
-      id: 'communication',
+      id: 11,
+      category: 'Communications and Media',
       name: 'Communication 3',
       items: 69,
       author: '@ang4a',
@@ -168,7 +179,8 @@ export var decks = [
       ]
     },
     {
-      id: 'communication',
+      id: 12,
+      category: 'Communications and Media',
       name: 'Communication 4',
       items: 99,
       author: '@makmak',
@@ -182,10 +194,9 @@ export var decks = [
         { frontContent: 'Front1', backContent: 'Back1' },
       ]
     },
-    
-
     {
-      id: 'computer',
+      id: 13,
+      category: 'Computer Science',
       name: 'Computer Science 1',
       items: 34,
       author: '@allen',
@@ -200,7 +211,8 @@ export var decks = [
       ]
     },
     {
-      id: 'computer',
+      id: 14,
+      category: 'Computer Science',
       name: 'Computer Science 2',
       items: 32,
       author: '@watson',
@@ -215,7 +227,8 @@ export var decks = [
       ]
     },
     {
-      id: 'computer',
+      id: 15,
+      category: 'Computer Science',
       name: 'Computer Science 3',
       items: 20,
       author: '@vhilly',
@@ -230,7 +243,8 @@ export var decks = [
       ]
     },
     {
-      id: 'computer',
+      id: 16,
+      category: 'Computer Science',
       name: 'Computer Science 4',
       items: 28,
       author: '@christine',
@@ -244,9 +258,9 @@ export var decks = [
         { frontContent: 'Front1', backContent: 'Back1' },
       ]
     },
-
     {
-      id: 'engineering',
+      id: 17,
+      category: 'Engineering',
       name: 'Engineering 1',
       items: 76,
       author: '@angela',
@@ -261,7 +275,8 @@ export var decks = [
       ]
     },
     {
-      id: 'engineering',
+      id: 18,
+      category: 'Engineering',
       name: 'Engineering 2',
       items: 72,
       author: '@mark',
@@ -276,7 +291,8 @@ export var decks = [
       ]
     },
     {
-      id: 'engineering',
+      id: 19,
+      category: 'Engineering',
       name: 'Engineering 3',
       items: 66,
       author: '@deyb',
@@ -291,7 +307,8 @@ export var decks = [
       ]
     },
     {
-      id: 'engineering',
+      id: 20,
+      category: 'Engineering',
       name: 'Engineering 4',
       items: 91,
       author: '@grayedoutname',
@@ -305,10 +322,9 @@ export var decks = [
         { frontContent: 'Front1', backContent: 'Back1' },
       ]
     },
-    
-
     {
-      id: 'health',
+      id: 21,
+      category: 'Health Sciences',
       name: 'Health Sciences 1',
       items: 14,
       author: '@yukonseeme',
@@ -323,7 +339,8 @@ export var decks = [
       ]
     },
     {
-      id: 'health',
+      id: 22,
+      category: 'Health Sciences',
       name: 'Health Sciences 2',
       items: 99,
       author: '@risti',
@@ -338,7 +355,8 @@ export var decks = [
       ]
     },
     {
-      id: 'health',
+      id: 23,
+      category: 'Health Sciences',
       name: 'Health Sciences 3',
       items: 63,
       author: '@ang4a',
@@ -353,7 +371,8 @@ export var decks = [
       ]
     },
     {
-      id: 'health',
+      id: 24,
+      category: 'Health Sciences',
       name: 'Health Sciences 4',
       items: 48,
       author: '@makmak',
@@ -367,9 +386,9 @@ export var decks = [
         { frontContent: 'Front1', backContent: 'Back1' },
       ]
     },
-
     {
-      id: 'mathematics',
+      id: 25,
+      category: 'Mathematics and Statistics',
       name: 'Mathematics 1',
       items: 77,
       author: '@allen',
@@ -384,7 +403,8 @@ export var decks = [
       ]
     },
     {
-      id: 'mathematics',
+      id: 26,
+      category: 'Mathematics and Statistics',
       name: 'Mathematics 2',
       items: 94,
       author: '@watson',
@@ -399,7 +419,8 @@ export var decks = [
       ]
     },
     {
-      id: 'mathematics',
+      id: 27,
+      category: 'Mathematics and Statistics',
       name: 'Mathematics 3',
       items: 27,
       author: '@vhilly',
@@ -414,7 +435,8 @@ export var decks = [
       ]
     },
     {
-      id: 'mathematics',
+      id: 28,
+      category: 'Mathematics and Statistics',
       name: 'Mathematics 4',
       items: 26,
       author: '@christine',
@@ -428,9 +450,9 @@ export var decks = [
         { frontContent: 'Front1', backContent: 'Back1' },
       ]
     },
-    
     {
-      id: 'natural',
+      id: 29,
+      category: 'Natural Sciences',
       name: 'Natural Sciences 1',
       items: 6,
       author: '@angela',
@@ -445,7 +467,8 @@ export var decks = [
       ]
     },
     {
-      id: 'natural',
+      id: 30,
+      category: 'Natural Sciences',
       name: 'Natural Sciences 2',
       items: 61,
       author: '@mark',
@@ -460,7 +483,8 @@ export var decks = [
       ]
     },
     {
-      id: 'natural',
+      id: 31,
+      category: 'Natural Sciences',
       name: 'Natural Sciences 3',
       items: 98,
       author: '@deyb',
@@ -475,7 +499,8 @@ export var decks = [
       ]
     },
     {
-      id: 'natural',
+      id: 32,
+      category: 'Natural Sciences',
       name: 'Natural Sciences 4',
       items: 39,
       author: '@grayedoutname',
@@ -489,9 +514,9 @@ export var decks = [
         { frontContent: 'Front1', backContent: 'Back1' },
       ]
     },
-
     {
-      id: 'social',
+      id: 33,
+      category: 'Social Sciences',
       name: 'Social Sciences 1',
       items: 27,
       author: '@yukonseeme',
@@ -506,7 +531,8 @@ export var decks = [
       ]
     },
     {
-      id: 'social',
+      id: 34,
+      category: 'Social Sciences',
       name: 'Social Sciences 2',
       items: 42,
       author: '@risti',
@@ -521,7 +547,8 @@ export var decks = [
       ]
     },
     {
-      id: 'social',
+      id: 35,
+      category: 'Social Sciences',
       name: 'Social Sciences 3',
       items: 62,
       author: '@ang4a',
@@ -536,7 +563,8 @@ export var decks = [
       ]
     },
     {
-      id: 'social',
+      id: 36,
+      category: 'Social Sciences',
       name: 'Social Sciences 4',
       items: 17,
       author: '@makmak',
@@ -552,7 +580,8 @@ export var decks = [
     },
     
     {
-      id: 'others',
+      id: 37,
+      category: 'Others',
       name: 'Others 1',
       items: 90,
       author: '@allen',
@@ -567,7 +596,8 @@ export var decks = [
       ]
     },
     {
-      id: 'others',
+      id: 38,
+      category: 'Others',
       name: 'Others 2',
       items: 15,
       author: '@watson',
@@ -582,7 +612,8 @@ export var decks = [
       ]
     },
     {
-      id: 'others',
+      id: 39,
+      category: 'Others',
       name: 'Others 3',
       items: 73,
       author: '@vhilly',
@@ -597,7 +628,8 @@ export var decks = [
       ]
     },
     {
-      id: 'others',
+      id: 40,
+      category: 'Others',
       name: 'Others 4',
       items: 16,
       author: '@christine',
