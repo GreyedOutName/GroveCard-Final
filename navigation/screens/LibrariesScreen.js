@@ -3,6 +3,7 @@ import { FlatList, Image, ImageBackground, ScrollView, StyleSheet, Text, Touchab
 
 import Flashcard from '../code/flashcards';
 import { decks } from '../code/data';
+import { setSelectedDeck } from '../code/data';
 import { SLIDER_WIDTH, ITEM_WIDTH } from '../code/carouselCardItem';
 import CarouselCards from '../code/carouselCards';
 
@@ -10,6 +11,7 @@ export default function LibrariesScreen({ navigation }) {
   const [filter, setFilter] = useState(''); 
   const handleDeckPress = (deck) => {
     setSelectedDeck(deck);
+    navigation.replace("View Screen")
   };
 
   const renderItem = ({ item }) => (

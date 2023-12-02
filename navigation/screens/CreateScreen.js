@@ -1,13 +1,14 @@
 import * as React from 'react';
 import { ImageBackground, ScrollView, StyleSheet, Text, TextInput, TouchableOpacity, View } from 'react-native';
 import {Picker} from '@react-native-picker/picker'
+import { decks } from '../code/data';
 
 export default function Create({ navigation }) {
   const [title, setTitle] = React.useState('');
   const [subjectCode, setSubjectCode] = React.useState('');
-  const [selectedCourse, setSelectedCourse] = React.useState('');
-  const [selectedSchool, setSelectedSchool] = React.useState('');
-  const [selectedCategory, setSelectedCategory] = React.useState('');
+  const [selectedCourse, setSelectedCourse] = React.useState('Actuarial Science');
+  const [selectedSchool, setSelectedSchool] = React.useState('Adamson University');
+  const [selectedCategory, setSelectedCategory] = React.useState('Business and Economics');
 
   // Dummy data, replace with your actual data
   const courses = [
@@ -34,6 +35,31 @@ export default function Create({ navigation }) {
     'Social Sciences',
     'Others'
   ];
+  const AddDeck=()=>{
+    if (!title&&!subjectCode&&!selectedCourse&&!selectedSchool&&!selectedSchool) {
+      alert('Please enter all the required values');
+      return;
+    }
+
+    const newDeck = {
+      id: decks.length+1,
+      category: selectedCategory,
+      name: title,
+      items: 21,
+      author: '@allen',
+      code: subjectCode,
+      course: selectedCourse,
+      school: selectedSchool,
+      created: 'yes',
+      favorite: 'no',
+      added: 'no',
+      flashcards: [],
+    };
+
+    decks.push(newDeck);
+    //setDecks([...decks, newDeck]);
+    alert('Deck successfully added')
+  }
 
   return (
     <ImageBackground
@@ -102,6 +128,10 @@ export default function Create({ navigation }) {
           </Picker>
         </View>
 
+        <TouchableOpacity style={styles.c2l2} onPress={()=>AddDeck()}>
+            <Text style={{ color: '#ECE3CE' }}>Create a study set now!</Text>
+        </TouchableOpacity>
+
         <View>
           <Text style={styles.additionalTitle}>If your school is not listed as an option, please request its addition by contacting the administrators at grovecards@gmail.com.</Text>
         </View>
@@ -135,6 +165,14 @@ const styles = StyleSheet.create({
   titlecontainer: {
     top: 20,
     padding: 10,
+  },
+  c2l2: {
+    backgroundColor: '#4F6F52',
+    paddingHorizontal: 10,
+    paddingVertical: 10,
+    borderRadius: 5,
+    marginTop: 10,
+    alignSelf: 'flex-start',
   },
   modalTitle: {
     fontSize: 20,

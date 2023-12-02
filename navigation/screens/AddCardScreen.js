@@ -1,16 +1,35 @@
-import React from 'react';
+import React, {useState}from 'react';
 import {  View, StyleSheet, TextInput, TouchableOpacity, Text, ImageBackground, Pressable, Image,} from 'react-native';
+import { selectedDeck } from '../code/data';
 
-const AddCardScreen = () => {
+
+const AddCardScreen = ({navigation}) => {
+    const [question, setQuestion] = useState('');
+    const [answer, setAnswer] = useState('');
+
+    handleAddCard=()=>{
+        if (!question || !answer) {
+            alert('Please enter both question and answer');
+            return;
+        }
+      
+        const newFlashcard = {
+            frontContent: question,
+            backContent: answer,
+        };
+      
+        selectedDeck.flashcards.push(newFlashcard)
+    }
+    
     return (
         <ImageBackground
             source={require('../assets/GradientBg.png')}
             style={styles.container}>
 
             <View style={[styles.rectangleView, styles.shadow]}>
-                <Pressable style={styles.back}>
+                <TouchableOpacity style={styles.back} onPress={()=>navigation.replace('Main')}>
                     <Image style={styles.icon} source={require("../assets/back.png")}/>
-                </Pressable>
+                </TouchableOpacity>
                 <Text style={styles.l1}>Add Cards</Text>
             </View>
 
@@ -22,19 +41,21 @@ const AddCardScreen = () => {
                             style={styles.input}
                             placeholder="Question"
                             placeholderTextColor={'rgba(31, 39, 30, 0.4)'}
+                            onChangeText={(text) => setQuestion(text)}
                         />
                     <Text style={styles.l4}>Answer</Text>
                         <TextInput
                             style={styles.input}
                             placeholder="Answer"
                             placeholderTextColor={'rgba(31, 39, 30, 0.4)'}
+                            onChangeText={(text) => setAnswer(text)}
                         />
 
-                    <TouchableOpacity style={[styles.createbtn, styles.shadow]}>
+                    <TouchableOpacity style={[styles.createbtn, styles.shadow]} onPress={()=>handleAddCard()}>
                         <Text style={styles.create}>Create</Text>
                     </TouchableOpacity>
 
-                    <TouchableOpacity style={[styles.createbtn, styles.shadow]}>
+                    <TouchableOpacity style={[styles.createbtn, styles.shadow]} onPress={()=>navigation.replace('Main')}>
                         <Text style={styles.create}>Done</Text>
                     </TouchableOpacity>
 

@@ -18,17 +18,18 @@ import Carousel, { Pagination } from 'react-native-snap-carousel';
 
 import { SLIDER_WIDTH, ITEM_WIDTH } from '../code/carouselCardItem';
 import { decks } from '../code/data';
+import { setSelectedDeck } from '../code/data';
 import Flashcard from '../code/flashcards';
 import CarouselCards from '../code/carouselCards';
 import ViewScreen from './PreviewScreen';
 
 const App = ({ navigation }) => {
-  const [selectedDeck, setSelectedDeck] = useState(decks[0]);
   const [index, setIndex] = React.useState(0);
   const isCarousel = React.useRef(null);
 
   const handleDeckPress = (deck) => {
     setSelectedDeck(deck);
+    navigation.replace("View Screen")
   };
 
   return (
@@ -60,9 +61,9 @@ const App = ({ navigation }) => {
                     <Carousel
                       layout="default"
                       ref={isCarousel}
-                      data={decks.filter((deck) => deck.id === 'choice')}
+                      data={decks.filter((deck) => deck.category === 'choice')}
                       renderItem={({ item }) => (
-                        <TouchableOpacity onPress={() => navigation.replace("View Screen")}style={styles.deckContainer}>
+                        <TouchableOpacity onPress={() => handleDeckPress(item)}style={styles.deckContainer}>
                             <Image style={styles.flash} source={require('../assets/flashcard.png')} />
                             <View style={styles.info}> 
                               <Text style={styles.infotext}>{item.name}</Text>
@@ -84,15 +85,15 @@ const App = ({ navigation }) => {
                   </View>
               </View>
 
-              <View style={styles.flashcardcontainer} id='business'>
-                <Text style={[styles.l3]}>Business and Entrepreneurship</Text>
+              <View style={styles.flashcardcontainer} id='Business and Economics'>
+                <Text style={[styles.l3]}>Business and Economics</Text>
                   <View style={[styles.carouselContainer]}>
                     <Carousel
                       layout="default"
                       ref={isCarousel}
-                      data={decks.filter((deck) => deck.id === 'business')}
+                      data={decks.filter((deck) => deck.category === 'Business and Economics')}
                       renderItem={({ item }) => (
-                      <TouchableOpacity onPress={()=> navigation.replace("View Screen")}style={styles.deckContainer}>
+                      <TouchableOpacity onPress={()=> handleDeckPress(item)}style={styles.deckContainer}>
                         <Image style={styles.flash} source={require('../assets/flashcard.png')} />
                         <View style={styles.info}> 
                           <Text style={styles.infotext}>{item.name}</Text>
@@ -114,15 +115,15 @@ const App = ({ navigation }) => {
                     </View>
                 </View>
 
-              <View style={styles.flashcardcontainer} id='communication'>
+              <View style={styles.flashcardcontainer} id='Communications and Media'>
                 <Text style={[styles.l3]} >Communication and Media</Text>
                   <View style={[styles.carouselContainer]}>
                     <Carousel
                       layout="default"
                       ref={isCarousel}
-                      data={decks.filter((deck) => deck.id === 'communication')}
+                      data={decks.filter((deck) => deck.category === 'Communications and Media')}
                       renderItem={({ item }) => (
-                      <TouchableOpacity onPress={() => navigation.replace("View Screen")}style={styles.deckContainer}>
+                      <TouchableOpacity onPress={() => handleDeckPress(item)}style={styles.deckContainer}>
                         <Image style={styles.flash} source={require('../assets/flashcard.png')} />
                         <View style={styles.info}> 
                           <Text style={styles.infotext}>{item.name}</Text>
@@ -144,15 +145,15 @@ const App = ({ navigation }) => {
                   </View>
               </View>
 
-              <View style={styles.flashcardcontainer} id='computer'>
+              <View style={styles.flashcardcontainer} id='Computer Science'>
                 <Text style={[styles.l3]} >Computer Science</Text>
                   <View style={[styles.carouselContainer]}>
                     <Carousel
                       layout="default"
                       ref={isCarousel}
-                      data={decks.filter((deck) => deck.id === 'computer')}
+                      data={decks.filter((deck) => deck.category === 'Computer Science')}
                       renderItem={({ item }) => (
-                      <TouchableOpacity onPress={() => navigation.replace("View Screen")}style={styles.deckContainer}>
+                      <TouchableOpacity onPress={() => handleDeckPress(item)}style={styles.deckContainer}>
                         <Image style={styles.flash} source={require('../assets/flashcard.png')} />
                         <View style={styles.info}> 
                           <Text style={styles.infotext}>{item.name}</Text>
@@ -174,15 +175,15 @@ const App = ({ navigation }) => {
                   </View>
               </View>
 
-              <View style={styles.flashcardcontainer} id='engineering'>
+              <View style={styles.flashcardcontainer} id='Engineering'>
                 <Text style={[styles.l3]} >Engineering</Text>
                   <View style={[styles.carouselContainer]}>
                     <Carousel
                       layout="default"
                       ref={isCarousel}
-                      data={decks.filter((deck) => deck.id === 'engineering')}
+                      data={decks.filter((deck) => deck.category === 'Engineering')}
                       renderItem={({ item }) => (
-                      <TouchableOpacity onPress={() => navigation.replace("View Screen")}style={styles.deckContainer}>
+                      <TouchableOpacity onPress={() => handleDeckPress(item)}style={styles.deckContainer}>
                         <Image style={styles.flash} source={require('../assets/flashcard.png')} />
                         <View style={styles.info}> 
                           <Text style={styles.infotext}>{item.name}</Text>
@@ -204,15 +205,15 @@ const App = ({ navigation }) => {
                   </View>    
               </View>
 
-              <View style={styles.flashcardcontainer} id='health'>
+              <View style={styles.flashcardcontainer} id='Health Sciences'>
                 <Text style={[styles.l3]} >Health Sciences</Text>
                   <View style={[styles.carouselContainer]}>
                     <Carousel
                       layout="default"
                       ref={isCarousel}
-                      data={decks.filter((deck) => deck.id === 'health')}
+                      data={decks.filter((deck) => deck.category === 'Health Sciences')}
                       renderItem={({ item }) => (
-                      <TouchableOpacity onPress={() => navigation.replace("View Screen")}style={styles.deckContainer}>
+                      <TouchableOpacity onPress={() => handleDeckPress(item)}style={styles.deckContainer}>
                         <Image style={styles.flash} source={require('../assets/flashcard.png')} />
                         <View style={styles.info}> 
                           <Text style={styles.infotext}>{item.name}</Text>
@@ -234,15 +235,15 @@ const App = ({ navigation }) => {
                   </View>
               </View>
 
-              <View style={styles.flashcardcontainer} id='mathematics'>
+              <View style={styles.flashcardcontainer} id='Mathematics and Statistics'>
                 <Text style={[styles.l3]} >Mathematics and Statistics</Text>
                   <View style={[styles.carouselContainer]}>
                     <Carousel
                       layout="default"
                       ref={isCarousel}
-                      data={decks.filter((deck) => deck.id === 'mathematics')}
+                      data={decks.filter((deck) => deck.category === 'Mathematics and Statistics')}
                       renderItem={({ item }) => (
-                      <TouchableOpacity onPress={() => navigation.replace("View Screen")}style={styles.deckContainer}>
+                      <TouchableOpacity onPress={() => handleDeckPress(item)}style={styles.deckContainer}>
                         <Image style={styles.flash} source={require('../assets/flashcard.png')} />
                         <View style={styles.info}> 
                           <Text style={styles.infotext}>{item.name}</Text>
@@ -264,15 +265,15 @@ const App = ({ navigation }) => {
                   </View>
               </View>
 
-              <View style={styles.flashcardcontainer} id='natural'>
+              <View style={styles.flashcardcontainer} id='Natural Sciences'>
                 <Text style={[styles.l3]} >Natural Sciences</Text>
                   <View style={[styles.carouselContainer]}>
                     <Carousel
                       layout="default"
                       ref={isCarousel}
-                      data={decks.filter((deck) => deck.id === 'natural')}
+                      data={decks.filter((deck) => deck.category === 'Natural Sciences')}
                       renderItem={({ item }) => (
-                      <TouchableOpacity onPress={() => navigation.replace("View Screen")}style={styles.deckContainer}>
+                      <TouchableOpacity onPress={() => handleDeckPress(item)}style={styles.deckContainer}>
                         <Image style={styles.flash} source={require('../assets/flashcard.png')} />
                         <View style={styles.info}> 
                           <Text style={styles.infotext}>{item.name}</Text>
@@ -294,15 +295,15 @@ const App = ({ navigation }) => {
                   </View>
               </View>
 
-              <View style={styles.flashcardcontainer} id='social'>
+              <View style={styles.flashcardcontainer} id='Social Sciences'>
                 <Text style={[styles.l3]} >Social Sciences</Text>
                   <View style={[styles.carouselContainer]}>
                     <Carousel
                       layout="default"
                       ref={isCarousel}
-                      data={decks.filter((deck) => deck.id === 'social')}
+                      data={decks.filter((deck) => deck.category === 'Social Sciences')}
                       renderItem={({ item }) => (
-                      <TouchableOpacity onPress={() => navigation.replace("View Screen")}style={styles.deckContainer}>
+                      <TouchableOpacity onPress={() => handleDeckPress(item)}style={styles.deckContainer}>
                         <Image style={styles.flash} source={require('../assets/flashcard.png')} />
                         <View style={styles.info}> 
                           <Text style={styles.infotext}>{item.name}</Text>
@@ -324,15 +325,15 @@ const App = ({ navigation }) => {
                   </View>
               </View>
 
-              <View style={[styles.flashcardcontainer, {marginBottom: 80}]} id='others'>
+              <View style={[styles.flashcardcontainer, {marginBottom: 80}]} id='Others'>
                 <Text style={[styles.l3]} >Others</Text>
                   <View style={[styles.carouselContainer]}>
                     <Carousel
                       layout="default"
                       ref={isCarousel}
-                      data={decks.filter((deck) => deck.id === 'others')}
+                      data={decks.filter((deck) => deck.category === 'Others')}
                       renderItem={({ item }) => (
-                      <TouchableOpacity onPress={() => navigation.replace("View Screen")}style={styles.deckContainer}>
+                      <TouchableOpacity onPress={() => handleDeckPress(item)}style={styles.deckContainer}>
                         <Image style={styles.flash} source={require('../assets/flashcard.png')} />
                         <View style={styles.info}> 
                           <Text style={styles.infotext}>{item.name}</Text>

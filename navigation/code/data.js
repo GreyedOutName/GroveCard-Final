@@ -1,7 +1,14 @@
+export var selectedDeck;
+
+export function setSelectedDeck(param){
+  selectedDeck=param;
+}
+
 export var decks = [
 
     {
-      id: 'choice',
+      id: 1,
+      category: 'choice',
       name: 'Editor Choice 1',
       items: 21,
       author: '@allen',
@@ -12,11 +19,16 @@ export var decks = [
       favorite: 'no',
       added: 'no',
       flashcards: [
-        { frontContent: 'Front1', backContent: 'Back1' },
+        { frontContent: 'A security system that prevents unauthorized access to external networks.', backContent: 'Firewall' },
+        { frontContent: 'A software whose source code is available to the public.', backContent: 'Open-Source Software' },
+        { frontContent: 'The domain name or IP address of the server.', backContent: 'HTTP/s' },
+        { frontContent: 'A web address used to identify resources on the internet.', backContent: 'URL' },
+        { frontContent: 'Main developer of the Android Operating System.', backContent: 'Google' },
       ]
     },
     {
-      id: 'choice',
+      id: 2,
+      category: 'choice',
       name: 'Editor Choice 2',
       items: 34,
       author: '@watson',
@@ -27,11 +39,16 @@ export var decks = [
       favorite: 'no',
       added: 'no',
       flashcards: [
-        { frontContent: 'Front1', backContent: 'Back1' },
+        { frontContent: 'A security system that prevents unauthorized access to external networks.', backContent: 'Firewall' },
+        { frontContent: 'A software whose source code is available to the public.', backContent: 'Open-Source Software' },
+        { frontContent: 'The domain name or IP address of the server.', backContent: 'HTTP/s' },
+        { frontContent: 'A web address used to identify resources on the internet.', backContent: 'URL' },
+        { frontContent: 'Main developer of the Android Operating System.', backContent: 'Google' },
       ]
     },
     {
-      id: 'choice',
+      id: 3,
+      category: 'choice',
       name: 'Editor Choice 3',
       items: 11,
       author: '@vhilly',
@@ -42,11 +59,16 @@ export var decks = [
       favorite: 'no',
       added: 'no',
       flashcards: [
-        { frontContent: 'Front1', backContent: 'Back1' },
+        { frontContent: 'A security system that prevents unauthorized access to external networks.', backContent: 'Firewall' },
+        { frontContent: 'A software whose source code is available to the public.', backContent: 'Open-Source Software' },
+        { frontContent: 'The domain name or IP address of the server.', backContent: 'HTTP/s' },
+        { frontContent: 'A web address used to identify resources on the internet.', backContent: 'URL' },
+        { frontContent: 'Main developer of the Android Operating System.', backContent: 'Google' },
       ]
     },
     {
-      id: 'choice',
+      id: 4,
+      category: 'choice',
       name: 'Editor Choice 4',
       items: 76,
       author: '@christine',
@@ -57,12 +79,17 @@ export var decks = [
       favorite: 'yes',
       added: 'no',
       flashcards: [
-        { frontContent: 'Front1', backContent: 'Back1' },
+        { frontContent: 'A security system that prevents unauthorized access to external networks.', backContent: 'Firewall' },
+        { frontContent: 'A software whose source code is available to the public.', backContent: 'Open-Source Software' },
+        { frontContent: 'The domain name or IP address of the server.', backContent: 'HTTP/s' },
+        { frontContent: 'A web address used to identify resources on the internet.', backContent: 'URL' },
+        { frontContent: 'Main developer of the Android Operating System.', backContent: 'Google' },
       ]
     },
 
     {
-      id: 'business',
+      id: 5,
+      category: 'Business and Economics',
       name: 'Business 1',
       items: 35,
       author: '@angela',
@@ -73,11 +100,16 @@ export var decks = [
       favorite: 'no',
       added: 'no',
       flashcards: [
-        { frontContent: 'Front1', backContent: 'Back1' },
+        { frontContent: 'He is the father of accounting.', backContent: 'Luca Pacioli' },
+        { frontContent: 'The Big Four accounting firms.', backContent: 'Deloitte, KPMG, EY, and PwC' },
+        { frontContent: 'The most basic accounting equation.', backContent: 'Assets = Liabilities + Equity' },
+        { frontContent: 'The systematic allocation of the cost of a long-term asset over its life.', backContent: 'Depreciation' },
+        { frontContent: "Responsible to examine a company's financial statements and records.", backContent: 'Auditor' },
       ]
     },
     {
-      id: 'business',
+      id: 6,
+      category: 'Business and Economics',
       name: 'Business 2',
       items: 33,
       author: '@mak',
@@ -88,11 +120,16 @@ export var decks = [
       favorite: 'no',
       added: 'no',
       flashcards: [
-        { frontContent: 'Front1', backContent: 'Back1' },
+        { frontContent: 'He is the father of accounting.', backContent: 'Luca Pacioli' },
+        { frontContent: 'The Big Four accounting firms.', backContent: 'Deloitte, KPMG, EY, and PwC' },
+        { frontContent: 'The most basic accounting equation.', backContent: 'Assets = Liabilities + Equity' },
+        { frontContent: 'The systematic allocation of the cost of a long-term asset over its life.', backContent: 'Depreciation' },
+        { frontContent: "Responsible to examine a company's financial statements and records.", backContent: 'Auditor' },
       ]
     },
     {
-      id: 'business',
+      id: 7,
+      category: 'Business and Economics',
       name: 'Business 3',
       items: 99,
       author: '@deyb',
@@ -103,11 +140,16 @@ export var decks = [
       favorite: 'no',
       added: 'no',
       flashcards: [
-        { frontContent: 'Front1', backContent: 'Back1' },
+        { frontContent: 'He is the father of accounting.', backContent: 'Luca Pacioli' },
+        { frontContent: 'The Big Four accounting firms.', backContent: 'Deloitte, KPMG, EY, and PwC' },
+        { frontContent: 'The most basic accounting equation.', backContent: 'Assets = Liabilities + Equity' },
+        { frontContent: 'The systematic allocation of the cost of a long-term asset over its life.', backContent: 'Depreciation' },
+        { frontContent: "Responsible to examine a company's financial statements and records.", backContent: 'Auditor' },
       ]
     },
     {
-      id: 'business',
+      id: 8,
+      category: 'Business and Economics',
       name: 'Business 4',
       items: 96,
       author: '@grayedoutname',
@@ -118,12 +160,17 @@ export var decks = [
       favorite: 'no',
       added: 'no',
       flashcards: [
-        { frontContent: 'Front1', backContent: 'Back1' },
+        { frontContent: 'He is the father of accounting.', backContent: 'Luca Pacioli' },
+        { frontContent: 'The Big Four accounting firms.', backContent: 'Deloitte, KPMG, EY, and PwC' },
+        { frontContent: 'The most basic accounting equation.', backContent: 'Assets = Liabilities + Equity' },
+        { frontContent: 'The systematic allocation of the cost of a long-term asset over its life.', backContent: 'Depreciation' },
+        { frontContent: "Responsible to examine a company's financial statements and records.", backContent: 'Auditor' },
       ]
     },
 
     {
-      id: 'communication',
+      id: 9,
+      category: 'Communications and Media',
       name: 'Communication 1',
       items: 65,
       author: '@yukonseeme',
@@ -134,11 +181,16 @@ export var decks = [
       favorite: 'no',
       added: 'no',
       flashcards: [
-        { frontContent: 'Front1', backContent: 'Back1' },
+        { frontContent: 'The52nd Best Picture Winner presented by the AMPAS.', backContent: 'Kramer vs Kramer' },
+        { frontContent: 'A director known for his teen-oriented films like "The Breakfast Club" (1985).', backContent: 'John Hughes' },
+        { frontContent: 'A known collaboration between Steven Spielberg and George Lucas.', backContent: 'Indiana Jones' },
+        { frontContent: 'An application of computer graphics which was popularized in the 1980s.', backContent: 'CGI' },
+        { frontContent: 'A movie with two sequels influencing the time travel theme in cinema.', backContent: 'Back to the Future' },
       ]
     },
     {
-      id: 'communication',
+      id: 10,
+      category: 'Communications and Media',
       name: 'Communication 2',
       items: 12,
       author: '@risti',
@@ -149,11 +201,16 @@ export var decks = [
       favorite: 'yes',
       added: 'no',
       flashcards: [
-        { frontContent: 'Front1', backContent: 'Back1' },
+        { frontContent: 'The52nd Best Picture Winner presented by the AMPAS.', backContent: 'Kramer vs Kramer' },
+        { frontContent: 'A director known for his teen-oriented films like "The Breakfast Club" (1985).', backContent: 'John Hughes' },
+        { frontContent: 'A known collaboration between Steven Spielberg and George Lucas.', backContent: 'Indiana Jones' },
+        { frontContent: 'An application of computer graphics which was popularized in the 1980s.', backContent: 'CGI' },
+        { frontContent: 'A movie with two sequels influencing the time travel theme in cinema.', backContent: 'Back to the Future' },
       ]
     },
     {
-      id: 'communication',
+      id: 11,
+      category: 'Communications and Media',
       name: 'Communication 3',
       items: 69,
       author: '@ang4a',
@@ -164,11 +221,16 @@ export var decks = [
       favorite: 'no',
       added: 'no',
       flashcards: [
-        { frontContent: 'Front1', backContent: 'Back1' },
+        { frontContent: 'The52nd Best Picture Winner presented by the AMPAS.', backContent: 'Kramer vs Kramer' },
+        { frontContent: 'A director known for his teen-oriented films like "The Breakfast Club" (1985).', backContent: 'John Hughes' },
+        { frontContent: 'A known collaboration between Steven Spielberg and George Lucas.', backContent: 'Indiana Jones' },
+        { frontContent: 'An application of computer graphics which was popularized in the 1980s.', backContent: 'CGI' },
+        { frontContent: 'A movie with two sequels influencing the time travel theme in cinema.', backContent: 'Back to the Future' },
       ]
     },
     {
-      id: 'communication',
+      id: 12,
+      category: 'Communications and Media',
       name: 'Communication 4',
       items: 99,
       author: '@makmak',
@@ -179,13 +241,16 @@ export var decks = [
       favorite: 'no',
       added: 'no',
       flashcards: [
-        { frontContent: 'Front1', backContent: 'Back1' },
+        { frontContent: 'The52nd Best Picture Winner presented by the AMPAS.', backContent: 'Kramer vs Kramer' },
+        { frontContent: 'A director known for his teen-oriented films like "The Breakfast Club" (1985).', backContent: 'John Hughes' },
+        { frontContent: 'A known collaboration between Steven Spielberg and George Lucas.', backContent: 'Indiana Jones' },
+        { frontContent: 'An application of computer graphics which was popularized in the 1980s.', backContent: 'CGI' },
+        { frontContent: 'A movie with two sequels influencing the time travel theme in cinema.', backContent: 'Back to the Future' },
       ]
     },
-    
-
     {
-      id: 'computer',
+      id: 13,
+      category: 'Computer Science',
       name: 'Computer Science 1',
       items: 34,
       author: '@allen',
@@ -196,11 +261,16 @@ export var decks = [
       favorite: 'no',
       added: 'no',
       flashcards: [
-        { frontContent: 'Front1', backContent: 'Back1' },
+        { frontContent: 'A set of tools built around React Native to streamline the development process.', backContent: 'Expo' },
+        { frontContent: 'An updateable structure used to contain data about components.', backContent: 'State' },
+        { frontContent: 'A read-only object which allows passing data between components.', backContent: 'Props' },
+        { frontContent: 'A component used to display texts in the screen.', backContent: '<Text></Text>' },
+        { frontContent: 'Useful for accessing and interacting with underlying native components.', backContent: 'Ref' },
       ]
     },
     {
-      id: 'computer',
+      id: 14,
+      category: 'Computer Science',
       name: 'Computer Science 2',
       items: 32,
       author: '@watson',
@@ -211,11 +281,16 @@ export var decks = [
       favorite: 'no',
       added: 'no',
       flashcards: [
-        { frontContent: 'Front1', backContent: 'Back1' },
+        { frontContent: 'A set of tools built around React Native to streamline the development process.', backContent: 'Expo' },
+        { frontContent: 'An updateable structure used to contain data about components.', backContent: 'State' },
+        { frontContent: 'A read-only object which allows passing data between components.', backContent: 'Props' },
+        { frontContent: 'A component used to display texts in the screen.', backContent: '<Text></Text>' },
+        { frontContent: 'Useful for accessing and interacting with underlying native components.', backContent: 'Ref' },
       ]
     },
     {
-      id: 'computer',
+      id: 15,
+      category: 'Computer Science',
       name: 'Computer Science 3',
       items: 20,
       author: '@vhilly',
@@ -226,11 +301,16 @@ export var decks = [
       favorite: 'no',
       added: 'no',
       flashcards: [
-        { frontContent: 'Front1', backContent: 'Back1' },
+        { frontContent: 'A set of tools built around React Native to streamline the development process.', backContent: 'Expo' },
+        { frontContent: 'An updateable structure used to contain data about components.', backContent: 'State' },
+        { frontContent: 'A read-only object which allows passing data between components.', backContent: 'Props' },
+        { frontContent: 'A component used to display texts in the screen.', backContent: '<Text></Text>' },
+        { frontContent: 'Useful for accessing and interacting with underlying native components.', backContent: 'Ref' },
       ]
     },
     {
-      id: 'computer',
+      id: 16,
+      category: 'Computer Science',
       name: 'Computer Science 4',
       items: 28,
       author: '@christine',
@@ -241,12 +321,16 @@ export var decks = [
       favorite: 'yes',
       added: 'no',
       flashcards: [
-        { frontContent: 'Front1', backContent: 'Back1' },
+        { frontContent: 'A set of tools built around React Native to streamline the development process.', backContent: 'Expo' },
+        { frontContent: 'An updateable structure used to contain data about components.', backContent: 'State' },
+        { frontContent: 'A read-only object which allows passing data between components.', backContent: 'Props' },
+        { frontContent: 'A component used to display texts in the screen.', backContent: '<Text></Text>' },
+        { frontContent: 'Useful for accessing and interacting with underlying native components.', backContent: 'Ref' },
       ]
     },
-
     {
-      id: 'engineering',
+      id: 17,
+      category: 'Engineering',
       name: 'Engineering 1',
       items: 76,
       author: '@angela',
@@ -257,11 +341,16 @@ export var decks = [
       favorite: 'no',
       added: 'no',
       flashcards: [
-        { frontContent: 'Front1', backContent: 'Back1' },
+        { frontContent: 'Refers to the minimization of environmental impact and promotion of energy efficiency.', backContent: 'Sustainability' },
+        { frontContent: 'Cities that include intelligent transportation systems and use of data for planning.', backContent: 'Smart Cities' },
+        { frontContent: 'An innovative approach for constructing buildings.', backContent: '3D Printing' },
+        { frontContent: 'Major Civil Engineering proposals beyond Earth.', backContent: 'Moon and Mars structure constructions' },
+        { frontContent: 'The tallest building completed in 2004.', backContent: 'Taipei 101' },
       ]
     },
     {
-      id: 'engineering',
+      id: 18,
+      category: 'Engineering',
       name: 'Engineering 2',
       items: 72,
       author: '@mark',
@@ -272,11 +361,16 @@ export var decks = [
       favorite: 'no',
       added: 'no',
       flashcards: [
-        { frontContent: 'Front1', backContent: 'Back1' },
+        { frontContent: 'Refers to the minimization of environmental impact and promotion of energy efficiency.', backContent: 'Sustainability' },
+        { frontContent: 'Cities that include intelligent transportation systems and use of data for planning.', backContent: 'Smart Cities' },
+        { frontContent: 'An innovative approach for constructing buildings.', backContent: '3D Printing' },
+        { frontContent: 'Major Civil Engineering proposals beyond Earth.', backContent: 'Moon and Mars structure constructions' },
+        { frontContent: 'The tallest building completed in 2004.', backContent: 'Taipei 101' },
       ]
     },
     {
-      id: 'engineering',
+      id: 19,
+      category: 'Engineering',
       name: 'Engineering 3',
       items: 66,
       author: '@deyb',
@@ -287,11 +381,16 @@ export var decks = [
       favorite: 'no',
       added: 'no',
       flashcards: [
-        { frontContent: 'Front1', backContent: 'Back1' },
+        { frontContent: 'Refers to the minimization of environmental impact and promotion of energy efficiency.', backContent: 'Sustainability' },
+        { frontContent: 'Cities that include intelligent transportation systems and use of data for planning.', backContent: 'Smart Cities' },
+        { frontContent: 'An innovative approach for constructing buildings.', backContent: '3D Printing' },
+        { frontContent: 'Major Civil Engineering proposals beyond Earth.', backContent: 'Moon and Mars structure constructions' },
+        { frontContent: 'The tallest building completed in 2004.', backContent: 'Taipei 101' },
       ]
     },
     {
-      id: 'engineering',
+      id: 20,
+      category: 'Engineering',
       name: 'Engineering 4',
       items: 91,
       author: '@grayedoutname',
@@ -302,13 +401,16 @@ export var decks = [
       favorite: 'no',
       added: 'no',
       flashcards: [
-        { frontContent: 'Front1', backContent: 'Back1' },
+        { frontContent: 'Refers to the minimization of environmental impact and promotion of energy efficiency.', backContent: 'Sustainability' },
+        { frontContent: 'Cities that include intelligent transportation systems and use of data for planning.', backContent: 'Smart Cities' },
+        { frontContent: 'An innovative approach for constructing buildings.', backContent: '3D Printing' },
+        { frontContent: 'Major Civil Engineering proposals beyond Earth.', backContent: 'Moon and Mars structure constructions' },
+        { frontContent: 'The tallest building completed in 2004.', backContent: 'Taipei 101' },
       ]
     },
-    
-
     {
-      id: 'health',
+      id: 21,
+      category: 'Health Sciences',
       name: 'Health Sciences 1',
       items: 14,
       author: '@yukonseeme',
@@ -319,11 +421,15 @@ export var decks = [
       favorite: 'no',
       added: 'no',
       flashcards: [
-        { frontContent: 'Front1', backContent: 'Back1' },
+        { frontContent: 'The largest bone in the human body.', backContent: 'Femur' },
+        { frontContent: 'The location of the Hyboid Bone in the body.', backContent: 'The neck' },
+        { frontContent: 'A part of human skeleton that consists of limbs and girdles.', backContent: 'Appendicular Skeleton' },
+        { frontContent: 'The number of bones in the human foot.', backContent: '26 bones' },
       ]
     },
     {
-      id: 'health',
+      id: 22,
+      category: 'Health Sciences',
       name: 'Health Sciences 2',
       items: 99,
       author: '@risti',
@@ -334,11 +440,15 @@ export var decks = [
       favorite: 'yes',
       added: 'no',
       flashcards: [
-        { frontContent: 'Front1', backContent: 'Back1' },
+        { frontContent: 'The largest bone in the human body.', backContent: 'Femur' },
+        { frontContent: 'The location of the Hyboid Bone in the body.', backContent: 'The neck' },
+        { frontContent: 'A part of human skeleton that consists of limbs and girdles.', backContent: 'Appendicular Skeleton' },
+        { frontContent: 'The number of bones in the human foot.', backContent: '26 bones' },
       ]
     },
     {
-      id: 'health',
+      id: 23,
+      category: 'Health Sciences',
       name: 'Health Sciences 3',
       items: 63,
       author: '@ang4a',
@@ -349,11 +459,15 @@ export var decks = [
       favorite: 'no',
       added: 'no',
       flashcards: [
-        { frontContent: 'Front1', backContent: 'Back1' },
+        { frontContent: 'The largest bone in the human body.', backContent: 'Femur' },
+        { frontContent: 'The location of the Hyboid Bone in the body.', backContent: 'The neck' },
+        { frontContent: 'A part of human skeleton that consists of limbs and girdles.', backContent: 'Appendicular Skeleton' },
+        { frontContent: 'The number of bones in the human foot.', backContent: '26 bones' },
       ]
     },
     {
-      id: 'health',
+      id: 24,
+      category: 'Health Sciences',
       name: 'Health Sciences 4',
       items: 48,
       author: '@makmak',
@@ -364,12 +478,15 @@ export var decks = [
       favorite: 'no',
       added: 'no',
       flashcards: [
-        { frontContent: 'Front1', backContent: 'Back1' },
+        { frontContent: 'The largest bone in the human body.', backContent: 'Femur' },
+        { frontContent: 'The location of the Hyboid Bone in the body.', backContent: 'The neck' },
+        { frontContent: 'A part of human skeleton that consists of limbs and girdles.', backContent: 'Appendicular Skeleton' },
+        { frontContent: 'The number of bones in the human foot.', backContent: '26 bones' },
       ]
     },
-
     {
-      id: 'mathematics',
+      id: 25,
+      category: 'Mathematics and Statistics',
       name: 'Mathematics 1',
       items: 77,
       author: '@allen',
@@ -380,11 +497,16 @@ export var decks = [
       favorite: 'no',
       added: 'no',
       flashcards: [
-        { frontContent: 'Front1', backContent: 'Back1' },
+        { frontContent: 'The transformation of data to have a mean of 0.', backContent: 'Standardization' },
+        { frontContent: 'An area composed of polynomial features, one-hot encoding, and scaling.', backContent: 'Feature Engineering' },
+        { frontContent: 'The evaluation of performances of regression models.', backContent: 'Mean Squared Error' },
+        { frontContent: 'A function used in neural networks.', backContent: 'Sigmoid Function' },
+        { frontContent: 'Foundational mathematical concept in machine learning.', backContent: 'Linear Algebra' },
       ]
     },
     {
-      id: 'mathematics',
+      id: 26,
+      category: 'Mathematics and Statistics',
       name: 'Mathematics 2',
       items: 94,
       author: '@watson',
@@ -395,11 +517,16 @@ export var decks = [
       favorite: 'no',
       added: 'no',
       flashcards: [
-        { frontContent: 'Front1', backContent: 'Back1' },
+        { frontContent: 'The transformation of data to have a mean of 0.', backContent: 'Standardization' },
+        { frontContent: 'An area composed of polynomial features, one-hot encoding, and scaling.', backContent: 'Feature Engineering' },
+        { frontContent: 'The evaluation of performances of regression models.', backContent: 'Mean Squared Error' },
+        { frontContent: 'A function used in neural networks.', backContent: 'Sigmoid Function' },
+        { frontContent: 'Foundational mathematical concept in machine learning.', backContent: 'Linear Algebra' },
       ]
     },
     {
-      id: 'mathematics',
+      id: 27,
+      category: 'Mathematics and Statistics',
       name: 'Mathematics 3',
       items: 27,
       author: '@vhilly',
@@ -410,11 +537,16 @@ export var decks = [
       favorite: 'no',
       added: 'no',
       flashcards: [
-        { frontContent: 'Front1', backContent: 'Back1' },
+        { frontContent: 'The transformation of data to have a mean of 0.', backContent: 'Standardization' },
+        { frontContent: 'An area composed of polynomial features, one-hot encoding, and scaling.', backContent: 'Feature Engineering' },
+        { frontContent: 'The evaluation of performances of regression models.', backContent: 'Mean Squared Error' },
+        { frontContent: 'A function used in neural networks.', backContent: 'Sigmoid Function' },
+        { frontContent: 'Foundational mathematical concept in machine learning.', backContent: 'Linear Algebra' },
       ]
     },
     {
-      id: 'mathematics',
+      id: 28,
+      category: 'Mathematics and Statistics',
       name: 'Mathematics 4',
       items: 26,
       author: '@christine',
@@ -425,12 +557,16 @@ export var decks = [
       favorite: 'yes',
       added: 'no',
       flashcards: [
-        { frontContent: 'Front1', backContent: 'Back1' },
+        { frontContent: 'The transformation of data to have a mean of 0.', backContent: 'Standardization' },
+        { frontContent: 'An area composed of polynomial features, one-hot encoding, and scaling.', backContent: 'Feature Engineering' },
+        { frontContent: 'The evaluation of performances of regression models.', backContent: 'Mean Squared Error' },
+        { frontContent: 'A function used in neural networks.', backContent: 'Sigmoid Function' },
+        { frontContent: 'Foundational mathematical concept in machine learning.', backContent: 'Linear Algebra' },
       ]
     },
-    
     {
-      id: 'natural',
+      id: 29,
+      category: 'Natural Sciences',
       name: 'Natural Sciences 1',
       items: 6,
       author: '@angela',
@@ -441,11 +577,16 @@ export var decks = [
       favorite: 'no',
       added: 'no',
       flashcards: [
-        { frontContent: 'Front1', backContent: 'Back1' },
+        { frontContent: 'The oldest known star in the universe.', backContent: 'Methuselah' },
+        { frontContent: 'The closest planet to Earth.', backContent: 'Venus' },
+        { frontContent: 'A planet orbiting in a habitable sone where liquid could exist.', backContent: 'Kepler-22b' },
+        { frontContent: 'A short-period comet visible from Earth every 75-79 years.', backContent: "Haley's Comet"},
+        { frontContent: 'A luminous explosion during the last stage of a massive star.', backContent: 'Supernova' },
       ]
     },
     {
-      id: 'natural',
+      id: 30,
+      category: 'Natural Sciences',
       name: 'Natural Sciences 2',
       items: 61,
       author: '@mark',
@@ -456,11 +597,16 @@ export var decks = [
       favorite: 'no',
       added: 'no',
       flashcards: [
-        { frontContent: 'Front1', backContent: 'Back1' },
+        { frontContent: 'The oldest known star in the universe.', backContent: 'Methuselah' },
+        { frontContent: 'The closest planet to Earth.', backContent: 'Venus' },
+        { frontContent: 'A planet orbiting in a habitable sone where liquid could exist.', backContent: 'Kepler-22b' },
+        { frontContent: 'A short-period comet visible from Earth every 75-79 years.', backContent: "Haley's Comet"},
+        { frontContent: 'A luminous explosion during the last stage of a massive star.', backContent: 'Supernova' },
       ]
     },
     {
-      id: 'natural',
+      id: 31,
+      category: 'Natural Sciences',
       name: 'Natural Sciences 3',
       items: 98,
       author: '@deyb',
@@ -471,11 +617,16 @@ export var decks = [
       favorite: 'no',
       added: 'no',
       flashcards: [
-        { frontContent: 'Front1', backContent: 'Back1' },
+        { frontContent: 'The oldest known star in the universe.', backContent: 'Methuselah' },
+        { frontContent: 'The closest planet to Earth.', backContent: 'Venus' },
+        { frontContent: 'A planet orbiting in a habitable sone where liquid could exist.', backContent: 'Kepler-22b' },
+        { frontContent: 'A short-period comet visible from Earth every 75-79 years.', backContent: "Haley's Comet"},
+        { frontContent: 'A luminous explosion during the last stage of a massive star.', backContent: 'Supernova' },
       ]
     },
     {
-      id: 'natural',
+      id: 32,
+      category: 'Natural Sciences',
       name: 'Natural Sciences 4',
       items: 39,
       author: '@grayedoutname',
@@ -486,12 +637,16 @@ export var decks = [
       favorite: 'no',
       added: 'no',
       flashcards: [
-        { frontContent: 'Front1', backContent: 'Back1' },
+        { frontContent: 'The oldest known star in the universe.', backContent: 'Methuselah' },
+        { frontContent: 'The closest planet to Earth.', backContent: 'Venus' },
+        { frontContent: 'A planet orbiting in a habitable sone where liquid could exist.', backContent: 'Kepler-22b' },
+        { frontContent: 'A short-period comet visible from Earth every 75-79 years.', backContent: "Haley's Comet"},
+        { frontContent: 'A luminous explosion during the last stage of a massive star.', backContent: 'Supernova' },
       ]
     },
-
     {
-      id: 'social',
+      id: 33,
+      category: 'Social Sciences',
       name: 'Social Sciences 1',
       items: 27,
       author: '@yukonseeme',
@@ -502,11 +657,16 @@ export var decks = [
       favorite: 'no',
       added: 'no',
       flashcards: [
-        { frontContent: 'Front1', backContent: 'Back1' },
+        { frontContent: 'The Section 3 of the RA 10354.', backContent: 'Guiding Principles for Implementation' },
+        { frontContent: 'States the Procurement and Distribution of Family Planning Supplies.', backContent: 'Section 10' },
+        { frontContent: 'The hours encouraged for pro bono services.', backContent: '48 hours' },
+        { frontContent: "The Section 20 of the RH Law's reference in counseling methods.', backContent: 'Section 4" },
+        { frontContent: 'Composed of 5 member from the Senate to monitor the RH Act.', backContent: 'COC' },
       ]
     },
     {
-      id: 'social',
+      id: 34,
+      category: 'Social Sciences',
       name: 'Social Sciences 2',
       items: 42,
       author: '@risti',
@@ -517,11 +677,16 @@ export var decks = [
       favorite: 'yes',
       added: 'no',
       flashcards: [
-        { frontContent: 'Front1', backContent: 'Back1' },
+        { frontContent: 'The Section 3 of the RA 10354.', backContent: 'Guiding Principles for Implementation' },
+        { frontContent: 'States the Procurement and Distribution of Family Planning Supplies.', backContent: 'Section 10' },
+        { frontContent: 'The hours encouraged for pro bono services.', backContent: '48 hours' },
+        { frontContent: "The Section 20 of the RH Law's reference in counseling methods.', backContent: 'Section 4" },
+        { frontContent: 'Composed of 5 member from the Senate to monitor the RH Act.', backContent: 'COC' },
       ]
     },
     {
-      id: 'social',
+      id: 35,
+      category: 'Social Sciences',
       name: 'Social Sciences 3',
       items: 62,
       author: '@ang4a',
@@ -532,11 +697,16 @@ export var decks = [
       favorite: 'no',
       added: 'no',
       flashcards: [
-        { frontContent: 'Front1', backContent: 'Back1' },
+        { frontContent: 'The Section 3 of the RA 10354.', backContent: 'Guiding Principles for Implementation' },
+        { frontContent: 'States the Procurement and Distribution of Family Planning Supplies.', backContent: 'Section 10' },
+        { frontContent: 'The hours encouraged for pro bono services.', backContent: '48 hours' },
+        { frontContent: "The Section 20 of the RH Law's reference in counseling methods.', backContent: 'Section 4" },
+        { frontContent: 'Composed of 5 member from the Senate to monitor the RH Act.', backContent: 'COC' },
       ]
     },
     {
-      id: 'social',
+      id: 36,
+      category: 'Social Sciences',
       name: 'Social Sciences 4',
       items: 17,
       author: '@makmak',
@@ -547,12 +717,17 @@ export var decks = [
       favorite: 'no',
       added: 'no',
       flashcards: [
-        { frontContent: 'Front1', backContent: 'Back1' },
+        { frontContent: 'The Section 3 of the RA 10354.', backContent: 'Guiding Principles for Implementation' },
+        { frontContent: 'States the Procurement and Distribution of Family Planning Supplies.', backContent: 'Section 10' },
+        { frontContent: 'The hours encouraged for pro bono services.', backContent: '48 hours' },
+        { frontContent: "The Section 20 of the RH Law's reference in counseling methods.', backContent: 'Section 4" },
+        { frontContent: 'Composed of 5 member from the Senate to monitor the RH Act.', backContent: 'COC' },
       ]
     },
     
     {
-      id: 'others',
+      id: 37,
+      category: 'Others',
       name: 'Others 1',
       items: 90,
       author: '@allen',
@@ -563,11 +738,16 @@ export var decks = [
       favorite: 'no',
       added: 'no',
       flashcards: [
-        { frontContent: 'Front1', backContent: 'Back1' },
+        { frontContent: 'Also known as color therapy and used as medicine to promote healing.', backContent: 'Chromotherapy' },
+        { frontContent: 'Meaning of the color red in Eastern culture.', backContent: 'Prosperity' },
+        { frontContent: 'Examples include red-orange, yellow-green, and blue-violet.', backContent: 'Tertiary Colors' },
+        { frontContent: 'Colors that evoke a sense of calmness and tranquility.', backContent: 'Blue, green, purple' },
+        { frontContent: 'Relationship between pairs of colors that cancel each other out.', backContent: 'Complementary' },
       ]
     },
     {
-      id: 'others',
+      id: 38,
+      category: 'Others',
       name: 'Others 2',
       items: 15,
       author: '@watson',
@@ -578,11 +758,16 @@ export var decks = [
       favorite: 'no',
       added: 'no',
       flashcards: [
-        { frontContent: 'Front1', backContent: 'Back1' },
+        { frontContent: 'Also known as color therapy and used as medicine to promote healing.', backContent: 'Chromotherapy' },
+        { frontContent: 'Meaning of the color red in Eastern culture.', backContent: 'Prosperity' },
+        { frontContent: 'Examples include red-orange, yellow-green, and blue-violet.', backContent: 'Tertiary Colors' },
+        { frontContent: 'Colors that evoke a sense of calmness and tranquility.', backContent: 'Blue, green, purple' },
+        { frontContent: 'Relationship between pairs of colors that cancel each other out.', backContent: 'Complementary' },
       ]
     },
     {
-      id: 'others',
+      id: 39,
+      category: 'Others',
       name: 'Others 3',
       items: 73,
       author: '@vhilly',
@@ -593,11 +778,16 @@ export var decks = [
       favorite: 'no',
       added: 'no',
       flashcards: [
-        { frontContent: 'Front1', backContent: 'Back1' },
+        { frontContent: 'Also known as color therapy and used as medicine to promote healing.', backContent: 'Chromotherapy' },
+        { frontContent: 'Meaning of the color red in Eastern culture.', backContent: 'Prosperity' },
+        { frontContent: 'Examples include red-orange, yellow-green, and blue-violet.', backContent: 'Tertiary Colors' },
+        { frontContent: 'Colors that evoke a sense of calmness and tranquility.', backContent: 'Blue, green, purple' },
+        { frontContent: 'Relationship between pairs of colors that cancel each other out.', backContent: 'Complementary' },
       ]
     },
     {
-      id: 'others',
+      id: 40,
+      category: 'Others',
       name: 'Others 4',
       items: 16,
       author: '@christine',
@@ -608,7 +798,11 @@ export var decks = [
       favorite: 'yes',
       added: 'no',
       flashcards: [
-        { frontContent: 'Front1', backContent: 'Back1' },
+        { frontContent: 'Also known as color therapy and used as medicine to promote healing.', backContent: 'Chromotherapy' },
+        { frontContent: 'Meaning of the color red in Eastern culture.', backContent: 'Prosperity' },
+        { frontContent: 'Examples include red-orange, yellow-green, and blue-violet.', backContent: 'Tertiary Colors' },
+        { frontContent: 'Colors that evoke a sense of calmness and tranquility.', backContent: 'Blue, green, purple' },
+        { frontContent: 'Relationship between pairs of colors that cancel each other out.', backContent: 'Complementary' },
       ]
     },
     
