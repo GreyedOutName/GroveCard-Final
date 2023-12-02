@@ -1,24 +1,38 @@
 import * as React from 'react';
-import {  FlatList, Image, View, StyleSheet, Text, TouchableOpacity, ScrollView, Dimensions} from 'react-native';
+import {  FlatList, Image, View, StyleSheet, Text, TouchableOpacity, ScrollView, Dimensions,Modal,TextInput} from 'react-native';
 import { decks } from '../code/data';
+import { selectedDeck } from '../code/data';
 import { ITEM_WIDTH } from '../code/carouselCardItem';
 
 export const getWidth = Dimensions.get('window').width + 8
 export const iwidth = Math.round(getWidth*0.7)
 
 export default function PreviewScreen({navigation}){
+  const [selectedCard,setSelectedCard]=React.useState();
+  const [newQuestion,setNewQuestion]=React.useState();
+  const [newAnswer,setNewAnswer]=React.useState();
+  const [isModalVisibleFlashcard, setIsModalVisibleFlashcard] = React.useState(false);
+
+  const handleDeleteCard=()=>{
+    index=selectedDeck.flashcards.indexOf(selectedCard);
+    selectedDeck.flashcards.splice(index,1);
+  }
+  const handleEditCard=()=>{
+    selectedCard.frontContent=newQuestion;
+    selectedCard.backContent=newAnswer;
+    toggleModalFlashcard();
+  }
+  const toggleModalFlashcard = () => {
+    setIsModalVisibleFlashcard(!isModalVisibleFlashcard);
+  };
 
   const renderQuestion = ({ item }) => ( //for question data
     <View style={styles.viewPadding}>
-        <TouchableOpacity style={styles.deckContainer}>
+        <TouchableOpacity style={styles.deckContainer} onPress={()=>setSelectedCard(item)}>
             <View style={styles.info}> 
-                <Text style={styles.infotext}>{item.name}</Text>
+                <Text style={styles.infotext}>{selectedDeck.name}</Text>
                 <View style={styles.info2}>
-                    <Text style={styles.infotext2}>{item.items} items</Text>
-                    <Text style={styles.infotext2}>{item.author}</Text>
-                    <Text style={styles.infotext2}>{item.code}</Text>
-                    <Text style={styles.infotext2}>{item.course}</Text>
-                    <Text style={styles.infotext2}>{item.school}</Text>
+                    <Text style={styles.infotext2}>{item.frontContent}</Text>
                 </View>
             </View>
         </TouchableOpacity>
@@ -27,15 +41,11 @@ export default function PreviewScreen({navigation}){
 
   const renderAnswer = ({ item }) => ( //for answer data
     <View style={styles.viewPadding}>
-        <TouchableOpacity style={styles.deckContainer}>
+        <TouchableOpacity style={styles.deckContainer} onPress={()=>setSelectedCard(item)}>
             <View style={styles.info}> 
-                <Text style={styles.infotext}>{item.name}</Text>
+                <Text style={styles.infotext}>{selectedDeck.name}</Text>
                 <View style={styles.info2}>
-                    <Text style={styles.infotext2}>{item.items} items</Text>
-                    <Text style={styles.infotext2}>{item.author}</Text>
-                    <Text style={styles.infotext2}>{item.code}</Text>
-                    <Text style={styles.infotext2}>{item.course}</Text>
-                    <Text style={styles.infotext2}>{item.school}</Text>
+                    <Text style={styles.infotext2}>{item.backContent}</Text>
                 </View>
             </View>
         </TouchableOpacity>
@@ -45,8 +55,8 @@ export default function PreviewScreen({navigation}){
     return(
       <ScrollView contentContainerStyle = {styles.scrollContainer} showsVerticalScrollIndicator={false}>
         <View style={styles.container}>
-          <Text style={styles.subtext}>Subject</Text> 
-          <Text style={styles.titletext}>Title</Text>
+          <Text style={styles.subtext}>{selectedDeck.course}</Text> 
+          <Text style={styles.titletext}>{selectedDeck.name}</Text>
           <Text style={styles.subtext2}>Flashcard</Text>
           <TouchableOpacity>
              <Text style={styles.buttonText}>Mark as Favorite</Text>
@@ -54,20 +64,62 @@ export default function PreviewScreen({navigation}){
         </View>
 
         <View style={styles.alignedContainer}>
-              <TouchableOpacity style={styles.minibutton}>
+              <TouchableOpacity style={styles.minibutton} onPress={()=>navigation.navigate('Add Card')}>
               <Text style={styles.buttonText2}>Add</Text>
               </TouchableOpacity>
 
-              <TouchableOpacity style={styles.minibutton}>
+              <TouchableOpacity style={styles.minibutton} onPress={()=>toggleModalFlashcard()}>
               <Text style={styles.buttonText2}>Edit</Text>
               </TouchableOpacity>
+              <Modal
+                animationType="slide"
+                transparent={true}
+                visible={isModalVisibleFlashcard}
+                onRequestClose={() => {
+                  toggleModalFlashcard();
+                }}
+              >
+                <View style={styles.modalContainer}>
+                  <View style={styles.modalContent}>
+                    <Text style={styles.modalTitle}>Edit Flashcard</Text>
+                    <TextInput
+                      style={styles.modalInput}
+                      placeholder="Question"
+                      value={newQuestion}
+                      onChangeText={(text) => setNewQuestion(text)}
+                    />
+                    <TextInput
+                      style={styles.modalInput}
+                      placeholder="Answer"
+                      value={newAnswer}
+                      onChangeText={(text) => setNewAnswer(text)}
+                    />
+                    <TouchableOpacity
+                      style={styles.modalButton}
+                      onPress={()=>handleEditCard()}
+                    >
+                      <Text style={styles.modalButtonText}>Edit Flashcard</Text>
+                    </TouchableOpacity>
+                    <TouchableOpacity
+                      style={styles.modalButton}
+                      onPress={toggleModalFlashcard}
+                    >
+                      <Text style={styles.modalButtonText}>Cancel</Text>
+                    </TouchableOpacity>
+                  </View>
+                </View>
+              </Modal>
 
-              <TouchableOpacity style={styles.minibutton}>
+              <TouchableOpacity style={styles.minibutton} onPress={()=>handleDeleteCard()}>
               <Text style={styles.buttonText2}>Delete</Text>
               </TouchableOpacity>
 
               <TouchableOpacity style={styles.minibutton}>
               <Text style={styles.buttonText2}>Play</Text>
+              </TouchableOpacity>
+
+              <TouchableOpacity style={styles.minibutton} onPress={()=>navigation.navigate('Main')}>
+              <Text style={styles.buttonText2}>Back</Text>
               </TouchableOpacity>
         </View> 
 
@@ -75,13 +127,15 @@ export default function PreviewScreen({navigation}){
            <FlatList 
            style={styles.flatlist} 
            showsVerticalScrollIndicator={false}
-           data={decks}
+           data={selectedDeck.flashcards}
+           scrollEnabled={false}
             renderItem={renderQuestion} //note: idk if there's an existing deck of cards but just replace the contents with em on 
             />
             <FlatList 
            style={styles.flatlist} 
            showsVerticalScrollIndicator={false}
-           data={decks}
+           scrollEnabled={false}
+           data={selectedDeck.flashcards}
             renderItem={renderAnswer} //note: idk if there's an existing deck of cards but just replace the contents with em on 
             />
         </View>
@@ -187,6 +241,41 @@ const styles = StyleSheet.create({
       flexDirection: 'row', 
       alignContent: 'flex-end',
       justifyContent: 'flex-end',
+    },
+    modalContainer: {
+      flex: 1,
+      justifyContent: 'center',
+      alignItems: 'center',
+      backgroundColor: 'rgba(0, 0, 0, 0.5)',
+    },
+    modalContent: {
+      backgroundColor: 'white',
+      padding: 20,
+      borderRadius: 10,
+      width: '80%',
+    },
+    modalTitle: {
+      fontSize: 20,
+      fontWeight: 'bold',
+      marginBottom: 10,
+    },
+    modalInput: {
+      height: 40,
+      borderColor: 'gray',
+      borderWidth: 1,
+      marginBottom: 10,
+      paddingLeft: 10,
+    },
+    modalButton: {
+      backgroundColor: 'green',
+      padding: 10,
+      borderRadius: 5,
+      marginTop: 10,
+      alignItems: 'center',
+    },
+    modalButtonText: {
+      color: 'white',
+      fontSize: 16,
     },
 })
 

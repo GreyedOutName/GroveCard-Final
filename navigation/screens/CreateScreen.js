@@ -6,9 +6,9 @@ import { decks } from '../code/data';
 export default function Create({ navigation }) {
   const [title, setTitle] = React.useState('');
   const [subjectCode, setSubjectCode] = React.useState('');
-  const [selectedCourse, setSelectedCourse] = React.useState('');
-  const [selectedSchool, setSelectedSchool] = React.useState('');
-  const [selectedCategory, setSelectedCategory] = React.useState('');
+  const [selectedCourse, setSelectedCourse] = React.useState('Actuarial Science');
+  const [selectedSchool, setSelectedSchool] = React.useState('Adamson University');
+  const [selectedCategory, setSelectedCategory] = React.useState('Business and Economics');
 
   // Dummy data, replace with your actual data
   const courses = [
@@ -37,19 +37,20 @@ export default function Create({ navigation }) {
   ];
   const AddDeck=()=>{
     if (!title&&!subjectCode&&!selectedCourse&&!selectedSchool&&!selectedSchool) {
-      alert('Please enter a valid deck name');
+      alert('Please enter all the required values');
       return;
     }
 
     const newDeck = {
-      id: selectedCategory,
+      id: decks.length+1,
+      category: selectedCategory,
       name: title,
       items: 21,
       author: '@allen',
       code: subjectCode,
       course: selectedCourse,
       school: selectedSchool,
-      created: 'no',
+      created: 'yes',
       favorite: 'no',
       added: 'no',
       flashcards: [],
@@ -57,6 +58,7 @@ export default function Create({ navigation }) {
 
     decks.push(newDeck);
     //setDecks([...decks, newDeck]);
+    alert('Deck successfully added')
   }
 
   return (
@@ -126,7 +128,7 @@ export default function Create({ navigation }) {
           </Picker>
         </View>
 
-        <TouchableOpacity style={styles.c2l2} onPress={AddDeck}>
+        <TouchableOpacity style={styles.c2l2} onPress={()=>AddDeck()}>
             <Text style={{ color: '#ECE3CE' }}>Create a study set now!</Text>
         </TouchableOpacity>
 
