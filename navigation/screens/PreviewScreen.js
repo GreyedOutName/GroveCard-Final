@@ -2,9 +2,10 @@ import * as React from 'react';
 import {  FlatList, Image, View, StyleSheet, Text, TouchableOpacity, ScrollView, Dimensions,Modal,TextInput} from 'react-native';
 import { decks } from '../code/data';
 import { selectedDeck } from '../code/data';
-import { ITEM_WIDTH } from '../code/carouselCardItem';
+
 
 export const getWidth = Dimensions.get('window').width + 8
+export const getHeight = Dimensions.get('window').height + 60
 export const iwidth = Math.round(getWidth*0.7)
 
 export default function PreviewScreen({navigation}){
@@ -30,7 +31,6 @@ export default function PreviewScreen({navigation}){
     <View style={styles.viewPadding}>
         <TouchableOpacity style={styles.deckContainer} onPress={()=>setSelectedCard(item)}>
             <View style={styles.info}> 
-                <Text style={styles.infotext}>{selectedDeck.name}</Text>
                 <View style={styles.info2}>
                     <Text style={styles.infotext2}>{item.frontContent}</Text>
                 </View>
@@ -43,7 +43,6 @@ export default function PreviewScreen({navigation}){
     <View style={styles.viewPadding}>
         <TouchableOpacity style={styles.deckContainer} onPress={()=>setSelectedCard(item)}>
             <View style={styles.info}> 
-                <Text style={styles.infotext}>{selectedDeck.name}</Text>
                 <View style={styles.info2}>
                     <Text style={styles.infotext2}>{item.backContent}</Text>
                 </View>
@@ -114,7 +113,7 @@ export default function PreviewScreen({navigation}){
               <Text style={styles.buttonText2}>Delete</Text>
               </TouchableOpacity>
 
-              <TouchableOpacity style={styles.minibutton}>
+              <TouchableOpacity style={styles.minibutton} onPress={()=>navigation.navigate('Play Screen')}>
               <Text style={styles.buttonText2}>Play</Text>
               </TouchableOpacity>
 
@@ -149,6 +148,7 @@ const styles = StyleSheet.create({
     scrollContainer:{
         backgroundColor: '#ECE3CE',
         paddingTop: 20,
+        height: getHeight
     },
     container: {
         justifyContent: 'space-evenly',
@@ -216,7 +216,9 @@ const styles = StyleSheet.create({
       color: '#4F6F52',
     },
     infotext2: {
-      fontSize: 10,
+  
+      fontWeight: 'bold',
+      fontSize: 16,
       color: '#4F6F52',
     },
     subtext: {

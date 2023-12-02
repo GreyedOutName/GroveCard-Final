@@ -27,7 +27,7 @@ const AddCardScreen = ({navigation}) => {
             style={styles.container}>
 
             <View style={[styles.rectangleView, styles.shadow]}>
-                <TouchableOpacity style={styles.back} onPress={()=>navigation.replace('Main')}>
+                <TouchableOpacity style={styles.back} onPress={()=>navigation.goBack()}>
                     <Image style={styles.icon} source={require("../assets/back.png")}/>
                 </TouchableOpacity>
                 <Text style={styles.l1}>Add Cards</Text>
