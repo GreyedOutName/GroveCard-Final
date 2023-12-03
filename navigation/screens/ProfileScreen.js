@@ -3,6 +3,33 @@ import { Image, ImageBackground, SafeAreaView, ScrollView, StyleSheet, Text, Tou
 import { Agenda } from 'react-native-calendars';
 import { currentUser } from '../code/creatorData';
 
+export function imageHandler(uname){
+  switch(uname){
+    case 'angela':
+      imagesrc=require('../assets/angela.jpg');
+      break;
+    case 'allen':
+      imagesrc=require('../assets/allen.jpg');
+      break;
+    case 'christine':
+      imagesrc=require('../assets/christine.jpg');
+      break;
+    case 'mark':
+      imagesrc=require('../assets/mark.jpg');
+      break;
+    case 'watson':
+      imagesrc=require('../assets/watson.jpg');
+      break;
+    case 'vhilly':
+      imagesrc=require('../assets/vhilly.jpg');
+      break;
+    default:
+      imagesrc=require('../assets/allen.jpg');
+  }
+    
+}
+var imagesrc=require('../assets/angela.jpg');
+
 export default function ProfileScreen({ navigation }) {
   const [items, setItems] = useState({
     '2023-12-01': [{ text: 'Test for CS' }],
@@ -21,7 +48,7 @@ export default function ProfileScreen({ navigation }) {
 
           <View style={styles.c1}>
             <View style={styles.profileImage}>
-              <Image source={require('../assets/vhilly.jpg')} style={styles.image} resizeMode="center" />
+              <Image source={imagesrc} style={styles.image} resizeMode="cover" />
             </View>
             <Image source={require('../assets/Logo.png')} style={styles.logo} resizeMode="center" />
             <View style={styles.profileInfo}>

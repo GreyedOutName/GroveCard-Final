@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { View, Text, TextInput, TouchableOpacity, StyleSheet, ImageBackground, Image } from 'react-native';
 import { setCurrentUser, users} from '../code/creatorData';
+import { imageHandler } from './ProfileScreen';
 
 const SignInScreen = ({ navigation }) => {
   const [username, setUsername] = useState('');
@@ -14,6 +15,7 @@ const SignInScreen = ({ navigation }) => {
       }
       else{
         navigation.replace('Main');
+        imageHandler(temp[0].uname);
         setCurrentUser(temp[0]);
       }
     }

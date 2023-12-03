@@ -1,26 +1,26 @@
 export var users=[
     {
-        uname:'@angela',
+        uname:'angela',
         password:'kimi',
     },
     {
-        uname:'@allen',
+        uname:'allen',
         password:'deyb',
     },
     {
-        uname:'@christine',
+        uname:'christine',
         password:'cuti',
     },
     {
-        uname:'@watson',
+        uname:'watson',
         password:'0451',
     },
     {
-        uname:'@mark',
+        uname:'mark',
         password:'bonet',
     },
     {
-        uname:'@vhilly',
+        uname:'vhilly',
         password:'pogi',
     },
 ]
