@@ -47,7 +47,7 @@ const App = ({ navigation }) => {
             </Text>
 
             <TouchableOpacity style={styles.c2l2} onPress={() => navigation.navigate('Create')}>
-            <Text style={{ color: '#ECE3CE' }}>Create a study set now!</Text>
+            <Text style={{ color: '#ECE3CE', fontWeight: 'bold' }}>Create a study set now!</Text>
             </TouchableOpacity>
 
 
@@ -382,42 +382,60 @@ const styles = StyleSheet.create({
     alignItems: 'flex-start',
     justifyContent: 'flex-start',
     padding: 20,
+
   },
   l1: {
     fontSize: 20,
-    color: '#FFFFFF',
+    color: '#ECE3CE',
     marginBottom: 5,
+    textShadowColor: 'rgba(0, 0, 0, 0.75)',
+    textShadowOffset: {width: -1, height: 1},
+    textShadowRadius: 10
   },
   l2: {
     fontSize: 12,
     marginBottom: 15,
-    color: '#FFFFFF',
+    color: '#ECE3CE',
+    textShadowColor: 'rgba(0, 0, 0, 0.75)',
+    textShadowOffset: {width: -1, height: 1},
+    textShadowRadius: 10
   },
   l3:{
     fontSize: 16,
     color: '#ECE3CE',
     marginLeft: -20,
     marginBottom: 5,
-
+    textShadowColor: 'rgba(0, 0, 0, 0.75)',
+    textShadowOffset: {width: -1, height: 1},
+    textShadowRadius: 10
   },
   c2: {
-    backgroundColor: '#ECE3CE',
+    backgroundColor: "rgba(236, 227, 206, 0.7)",
     flexDirection: 'column',
     alignItems: 'center',
     justifyContent: 'center',
     marginTop: 10,
     padding: 20,
     position: 'relative',
+    borderRadius: 20,
+    width: '100%'
   },
   c2l1: {
-    fontSize: 16,
-    marginRight: 140,
+  	fontSize: 14,
+    letterSpacing: 0.8,
+    lineHeight: 20,
+    fontWeight: "700",
+    color: "#4f6f52",
+    textAlign: "left",
+    alignSelf: 'center',
+    width: 295,
+    height: 40
   },
   c2l2: {
-    backgroundColor: '#4F6F52',
+    backgroundColor: '#3A4D39',
     paddingHorizontal: 10,
     paddingVertical: 10,
-    borderRadius: 5,
+    borderRadius: 25,
     marginTop: 10,
     alignSelf: 'flex-start',
   },
@@ -425,8 +443,8 @@ const styles = StyleSheet.create({
     width: 200,
     height: 220,
     position: 'absolute',
-    top: -88,
-    left: 168,
+    bottom: 0,
+    right: -30,
   },
   flashcardcontainer :{
     flex: 1,
