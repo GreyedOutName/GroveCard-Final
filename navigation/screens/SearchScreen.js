@@ -1,65 +1,129 @@
 import * as React from 'react';
-import { ImageBackground, ScrollView, StyleSheet, Text, TextInput, TouchableOpacity, View } from 'react-native';
+import { ImageBackground, StyleSheet, Text, TextInput, TouchableOpacity, View, FlatList } from 'react-native';
 import Icon from 'react-native-vector-icons/Ionicons';
 
 import { SLIDER_WIDTH, ITEM_WIDTH } from '../code/carouselCardItem';
 import { decks } from '../code/data';
 import Flashcard from '../code/flashcards';
 import CarouselCards from '../code/carouselCards';
+import { useNavigation } from '@react-navigation/native';  
+import PreviewScreen from './PreviewScreen'; 
 
-export default function Search({ navigation }) {
+
+
+export default function Search() {
   const [searchText, setSearchText] = React.useState('');
+  const [searchResults, setSearchResults] = React.useState([]);
+  const [selectedDeck, setSelectedDeck] = React.useState(null);  
+  const navigation = useNavigation();  
 
   const handleClear = () => {
     setSearchText('');
+    setSearchResults([]);
+  };
+
+  const handleSearch = (query) => {
+    setSearchText(query);
+    filterDecks(query);
+  };
+
+  const filterDecks = (query) => {
+    const filteredDecks = decks.filter((deck) =>
+      deck.name.toLowerCase().includes(query.toLowerCase())
+    );
+    setSearchResults(filteredDecks);
+  };
+
+  const renderResultItem = ({ item }) => (
+    <TouchableOpacity style={styles.resultItem} onPress={() => handleResultPress(item)}>
+      <Text style={styles.resultItemText}>{item.name}</Text>
+    </TouchableOpacity>
+  );
+
+  const handleResultPress = (item) => {
+    setSelectedDeck({...item});  
+    navigation.navigate('View Screen', { selectedDeck: { ...item } });  
   };
 
   return (
     <ImageBackground
-    source={require('../assets/JungleBg.gif')}
-    style={styles.SearchContainer}>
-      <View style={styles.SearchBar}>
-        <Icon name='search-outline' style={styles.searchIcon} />
-        <TextInput
-          style={{ flex: 1, margin: 10, marginLeft: 5, fontSize: 16 }}
-          placeholder='Search'
-          value={searchText}
-          onChangeText={(text) => setSearchText(text)}
-        />
-        {searchText ? (
-          <TouchableOpacity onPress={handleClear} style={styles.closeIconContainer}>
-            <Icon name='close-outline' style={styles.closeIcon} />
-          </TouchableOpacity>
-        ) : null}
+      source={require('../assets/JungleBg.gif')}
+      style={styles.container}
+    >
+      <View style={styles.searchContainer}>
+        <View style={styles.SearchBar}>
+          <Icon name='search-outline' style={styles.searchIcon} />
+          <TextInput
+            style={{ flex: 1, margin: 10, marginLeft: 5, fontSize: 16 }}
+            placeholder='Search'
+            value={searchText}
+            onChangeText={(text) => handleSearch(text)}
+          />
+          {searchText ? (
+            <TouchableOpacity onPress={handleClear} style={styles.closeIconContainer}>
+              <Icon name='close-outline' style={styles.closeIcon} />
+            </TouchableOpacity>
+          ) : null}
+        </View>
       </View>
-      <View>
+
+      {searchText === '' ? (
         <Text style={styles.l1}>Try searching your school!</Text>
-      </View>
-      <View>
-        
-      </View>
+      ) : (
+        <View style={styles.resultContainer}>
+          <FlatList
+            data={searchResults}
+            renderItem={renderResultItem}
+            keyExtractor={(item, index) => index.toString()}
+          />
+        </View>
+      )}
+
+      {selectedDeck && (
+        <PreviewScreen route={{ params: { selectedDeck } }} navigation={navigation} />
+      )}
     </ImageBackground>
   );
 }
-
 const styles = StyleSheet.create({
-  SearchContainer: {
+  container: {
     flex: 1,
     alignItems: 'center',
-    justifyContent: 'center',
+    justifyContent: 'flex-start',
+    paddingTop: 60,
+    paddingBottom: 10
+  },
+  searchContainer: {
+    width: '80%',
+    position: 'absolute',
+    top: '10%',
+    left: '50%',
+    transform: [{ translateX: '-50%' }],
   },
   SearchBar: {
-    margin: 10,
     height: 50,
-    width: '80%',
-    top: -335,
     backgroundColor: '#ece3ce',
     borderRadius: 50,
     flexDirection: 'row',
     borderColor: '#000',
     borderWidth: 1,
-    alignItems: 'center', 
-    justifyContent: 'center'
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+  resultContainer: {
+    flex: 1,
+    marginTop: 70, 
+    width: '80%',
+  },
+  resultItem: {
+    marginVertical: 10,
+    padding: 10,
+    borderBottomWidth: 1,
+    borderBottomColor: '#ccc',
+  },
+  resultItemText: {
+    fontSize: 16,
+    color: '#fff',
   },
   searchIcon: {
     marginLeft: 10,
@@ -79,12 +143,10 @@ const styles = StyleSheet.create({
     letterSpacing: 1,
     fontWeight: '700',
     color: '#ece3ce',
-    textAlign: 'left',
+    textAlign: 'center',
     width: 295,
     height: 23,
-    left: 20,
-    margin: 10,
-    top: -330,
-    left: -25
+    margin: 85,
+    left: -25,
   },
 });
