@@ -1,17 +1,25 @@
-import * as React from 'react';
-import {  FlatList, Image, View, StyleSheet, Text, TouchableOpacity, ScrollView, Dimensions,Modal,TextInput} from 'react-native';
+import React, { useEffect } from 'react';
+import { FlatList, Image, View, StyleSheet, Text, TouchableOpacity, ScrollView, Dimensions, Modal, TextInput } from 'react-native';
 import { decks } from '../code/data';
 import { selectedDeck } from '../code/data';
 import { ITEM_WIDTH } from '../code/carouselCardItem';
 
+
 export const getWidth = Dimensions.get('window').width + 8
 export const iwidth = Math.round(getWidth*0.7)
 
-export default function PreviewScreen({navigation}){
+export default function PreviewScreen({ navigation }) {
+
   const [selectedCard,setSelectedCard]=React.useState();
   const [newQuestion,setNewQuestion]=React.useState();
   const [newAnswer,setNewAnswer]=React.useState();
   const [isModalVisibleFlashcard, setIsModalVisibleFlashcard] = React.useState(false);
+
+  useEffect(() => {
+    if (selectedDeck && selectedDeck.flashcards && selectedDeck.flashcards.length > 0) {
+      setSelectedCard(selectedDeck.flashcards[0]);
+    }
+  }, [selectedDeck]);
 
   const handleDeleteCard=()=>{
     index=selectedDeck.flashcards.indexOf(selectedCard);
@@ -25,30 +33,31 @@ export default function PreviewScreen({navigation}){
   const toggleModalFlashcard = () => {
     setIsModalVisibleFlashcard(!isModalVisibleFlashcard);
   };
+  
 
-  const renderQuestion = ({ item }) => ( //for question data
+  const renderQuestion = ({ item }) => (
     <View style={styles.viewPadding}>
-        <TouchableOpacity style={styles.deckContainer} onPress={()=>setSelectedCard(item)}>
-            <View style={styles.info}> 
-                <Text style={styles.infotext}>{selectedDeck.name}</Text>
-                <View style={styles.info2}>
-                    <Text style={styles.infotext2}>{item.frontContent}</Text>
-                </View>
-            </View>
-        </TouchableOpacity>
+      <TouchableOpacity style={styles.deckContainer} onPress={() => setSelectedCard(item)}>
+        <View style={styles.info}>
+          <Text style={styles.infotext}>{selectedDeck.name}</Text>
+          <View style={styles.info2}>
+            <Text style={styles.infotext2}>{item.frontContent}</Text>
+          </View>
+        </View>
+      </TouchableOpacity>
     </View>
   );
-
-  const renderAnswer = ({ item }) => ( //for answer data
+  
+  const renderAnswer = ({ item }) => (
     <View style={styles.viewPadding}>
-        <TouchableOpacity style={styles.deckContainer} onPress={()=>setSelectedCard(item)}>
-            <View style={styles.info}> 
-                <Text style={styles.infotext}>{selectedDeck.name}</Text>
-                <View style={styles.info2}>
-                    <Text style={styles.infotext2}>{item.backContent}</Text>
-                </View>
-            </View>
-        </TouchableOpacity>
+      <TouchableOpacity style={styles.deckContainer} onPress={() => setSelectedCard(item)}>
+        <View style={styles.info}>
+          <Text style={styles.infotext}>{selectedDeck.name}</Text>
+          <View style={styles.info2}>
+            <Text style={styles.infotext2}>{item.backContent}</Text>
+          </View>
+        </View>
+      </TouchableOpacity>
     </View>
   );
 
