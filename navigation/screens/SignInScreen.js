@@ -63,7 +63,12 @@ const styles = StyleSheet.create({
     alignItems: 'center'
   },
   appname1: {
-    bottom: 0
+    bottom: 0,
+    width: 280,
+    height: 220,
+    margin: 30,
+    marginTop: 50,
+    marginBottom: 20,
   },
   tagline:{
     fontSize: 14,
