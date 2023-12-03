@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { Image, ImageBackground, SafeAreaView, ScrollView, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 import { Agenda } from 'react-native-calendars';
+import { currentUser } from '../code/creatorData';
 
 export default function ProfileScreen({ navigation }) {
   const [items, setItems] = useState({
@@ -25,11 +26,11 @@ export default function ProfileScreen({ navigation }) {
             <Image source={require('../assets/Logo.png')} style={styles.logo} resizeMode="center" />
             <View style={styles.profileInfo}>
               <View style={styles.usernamebg}>
-                <Text style={styles.Username}>@vhilly</Text>
+                <Text style={styles.Username}>{currentUser.uname}</Text>
               </View>
               <Text style={styles.uni}>University of the East</Text>
               <Text style={styles.course}>BS Computer Science</Text>
-              <TouchableOpacity style={styles.logoutbtn}>
+              <TouchableOpacity style={styles.logoutbtn} onPress={()=>navigation.navigate('SignIn')}>
                 <Text style={{ color: '#739072', fontWeight: "700", textAlign: "center", fontSize: 12 }}>Log-Out</Text>
               </TouchableOpacity>
             </View>

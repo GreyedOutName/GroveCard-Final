@@ -34,11 +34,6 @@ const App = ({ navigation }) => {
     navigation.replace("View Screen")
   };
 
-  const handleCatNamePress=(category)=>{
-    setSearchText(category);
-    navigation.navigate('Search');
-  }
-
   return (
     <ImageBackground source={require('../assets/JungleBg.gif')} style={styles.backgroundImage}>
       <ScrollView contentContainerStyle={styles.scrollContainer} showsVerticalScrollIndicator={false}>
