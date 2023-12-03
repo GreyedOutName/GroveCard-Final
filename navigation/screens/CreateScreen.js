@@ -45,14 +45,12 @@ export default function Create({ navigation }) {
       id: decks.length+1,
       category: selectedCategory,
       name: title,
-      items: 21,
       author: '@allen',
       code: subjectCode,
       course: selectedCourse,
       school: selectedSchool,
       created: 'yes',
       favorite: 'no',
-      added: 'no',
       flashcards: [],
     };
 

@@ -169,6 +169,7 @@ return (
   <Stack.Screen name={mainName} component={MainTabNavigator} />
   <Stack.Screen name={addcardName} component={AddCardScreen} />
   <Stack.Screen name={viewscreen} component={ViewScreen} />
+  <Stack.Screen name={searchName} component={SearchScreen} />
 </Stack.Navigator>
 </NavigationContainer>
 );

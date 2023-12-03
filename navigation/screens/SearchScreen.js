@@ -9,10 +9,8 @@ import CarouselCards from '../code/carouselCards';
 import { useNavigation } from '@react-navigation/native';  
 import { selectedDeck,setSelectedDeck } from '../code/data';
 
-
-
 export default function Search() {
-  const [searchText, setSearchText] = React.useState('');
+  const [searchText, setSearchText] = React.useState('HomeScreenSelect');
   const [searchResults, setSearchResults] = React.useState([]);
   const navigation = useNavigation();  
 
