@@ -46,20 +46,26 @@ const styles = StyleSheet.create({
   SearchContainer: {
     flex: 1,
     alignItems: 'center',
-    justifyContent: 'center',
+    justifyContent: 'flex-start',  // Adjusted to move content to the top
   },
   SearchBar: {
-    margin: 10,
+    marginTop: 10,  // Adjusted to add top margin
+    marginHorizontal: '10%',
     height: 50,
-    width: '80%',
-    top: -335,
+    width: '90%',
     backgroundColor: '#ece3ce',
     borderRadius: 50,
     flexDirection: 'row',
-    borderColor: '#000',
+    borderColor: '#3A4D39',
     borderWidth: 1,
-    alignItems: 'center', 
-    justifyContent: 'center'
+    alignItems: 'center',
+    shadowOffset: {
+      width: 0,
+      height: 2,
+    },
+    shadowOpacity: 0.25,
+    shadowRadius: 3.84,
+    elevation: 5,
   },
   searchIcon: {
     marginLeft: 10,
@@ -73,7 +79,7 @@ const styles = StyleSheet.create({
   closeIcon: {
     color: '#527746',
     fontSize: 30,
-  },
+  },  
   l1: {
     fontSize: 12,
     letterSpacing: 1,
@@ -84,7 +90,5 @@ const styles = StyleSheet.create({
     height: 23,
     left: 20,
     margin: 10,
-    top: -330,
-    left: -25
   },
 });

@@ -1,59 +1,51 @@
 import React, { useState } from 'react';
 import { Image, ImageBackground, SafeAreaView, ScrollView, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
-import { Calendar, Agenda} from 'react-native-calendars';
+import { Agenda } from 'react-native-calendars';
 
 export default function ProfileScreen({ navigation }) {
-  const [items,setitems]=useState({});
+  const [items, setItems] = useState({
+    '2023-12-01': [{ text: 'Test for CS' }],
+    '2023-12-02': [{ text: 'Test for Engineering' }],
+    '2023-12-03': [{ text: 'Review Flashcard 2' }],
+  });
 
-  const AddAgenda=()=>{
-    setTimeout(()=>{
-      const dates={
-      '2023-12-01': [{text:'Test for CS'}],
-      '2023-12-02': [{text:'Test for Engineering'}],
-      '2023-12-03': [{text:'Review Flashcard 2'}]
-      };
+  const renderAgendaItem = (item) => (
+    <Text style={styles.AgendaItems}>{item.text}</Text>
+  );
 
-      const newItems= {};
-      Object.keys(items).forEach(key => {
-        newItems[key] = items[key];
-      });
-      
-      setitems(dates)
-    },200)
-  }
-
-  const AgendaContent=(item)=>{
-    return(
-      <Text style={styles.AgendaItems}>{item.text}</Text>
-    )
-  }
   return (
     <ImageBackground source={require('../assets/JungleBg.gif')} style={styles.ProfileContainer}>
-      <SafeAreaView style={{ flex: 1 , paddingBottom: 100}}>
-          <View style={styles.ProfileTitleBar}>
-            {/* ... */}
-          </View>
 
-          <View style={{ alignSelf: 'center' }}>
+      <SafeAreaView style={{ flex: 1, paddingBottom: 100 }}>
+
+          <View style={styles.c1}>
             <View style={styles.profileImage}>
               <Image source={require('../assets/vhilly.jpg')} style={styles.image} resizeMode="center" />
             </View>
+            <Image source={require('../assets/Logo.png')} style={styles.logo} resizeMode="center" />
+            <View style={styles.profileInfo}>
+              <View style={styles.usernamebg}>
+                <Text style={styles.Username}>@vhilly</Text>
+              </View>
+              <Text style={styles.uni}>University of the East</Text>
+              <Text style={styles.course}>BS Computer Science</Text>
+              <TouchableOpacity style={styles.logoutbtn}>
+                <Text style={{ color: '#739072', fontWeight: "700", textAlign: "center", fontSize: 12 }}>Log-Out</Text>
+              </TouchableOpacity>
+            </View>
           </View>
 
-          <View style={styles.profileInfo}>
-            <Text style={[styles.Username, { fontWeight: 200, fontSize: 26 }]}>@vhilly</Text>
-            <Text style={[styles.Username, { fontSize: 12 }]}>Computer Science Student</Text>
-            <Text style={[styles.Username, { top: -10, fontSize: 12 }]}>University of the East</Text>
-          </View>
-
-          <View style={styles.calendarContainer}>
+          <Text style={[styles.l1]}> Calendar </Text>
+          <View style = {styles.calendarContainer}>
             <Agenda
+              style={{height: 800}}
               items={items}
-              selected='2023-12-01'
-              renderItem={AgendaContent}
-              loadItemsForMonth={AddAgenda}
+              selected="2023-12-01"
+              renderItem={renderAgendaItem}
+              loadItemsForMonth={() => { }}
             />
           </View>
+
       </SafeAreaView>
     </ImageBackground>
   );
@@ -65,18 +57,28 @@ const styles = StyleSheet.create({
         flex:1,
         backgroundColor:'#fff'
     },
-    ProfileTitleBar:{
-        flexDirection:'row',
-        justifyContent:'space-between',
-        marginTop:24,
-        marginHorizontal:16
+    c1:{
+      flexDirection: 'row',
+      alignItems: 'center',
+      paddingHorizontal: 16,
+      marginTop: 30,
+      height: 'auto'
     },
     profileImage: {
-        width: 150,
-        height: 150,
+        width: 80,
+        height: 80,
+        left: 20,
         borderRadius: 100,
         overflow: 'hidden',
-        marginTop:34,
+        borderWidth: 3,
+        borderColor: '#3A4D39',
+        position: 'absolute',
+        zIndex: 1,
+    },
+    logo:{
+      width: 80,
+      height: 80,
+      left: 60,
     },
     image: {
         flex: 1,
@@ -85,28 +87,54 @@ const styles = StyleSheet.create({
         aspectRatio:1,
     },
     profileInfo:{
-        alignSelf:'center',
         alignItems:'center',
-        marginTop:16
+        marginTop:20,
+        marginBottom: 20,
+        marginLeft: 80,
+    },
+    usernamebg:{
+      backgroundColor: "rgba(236, 227, 206, 0.8)",
+      borderRadius: 10,
+      height: 40,
+      width: 150,
+      alignItems: 'center',
+      justifyContent: 'center',
+      marginBottom: 5
     },
     Username: {
-        color: "#3A4D39",
-        fontSize: 21,
-        lineHeight: 26,
-        fontFamily: 'monospace',
-        fontWeight: 400,
+      color: '#3A4D39',
+      fontWeight: 'bold',
+      fontSize: 14,
+      fontFamily: 'monospace',
     },
-    Username: {
-        color: "#3A4D39",
-        fontSize: 21,
-        lineHeight: 26,
-        fontFamily: 'monospace',
-        fontWeight: 400,
+    course: {
+      fontSize: 10,
+      color: '#ECE3CE',
+      fontWeight: 'bold',
+      fontFamily: 'monospace',
+    },
+    uni:{
+      fontSize: 10,
+      color: '#ECE3CE',
+      fontWeight: 'bold',
+      fontFamily: 'monospace',
+    },
+    l1 :{
+      fontSize: 24,
+      fontWeight: 'bold',
+      color: '#ECE3CE',
+      marginLeft: 15,
+      marginBottom: 5,
+      marginTop: 30,
+      fontFamily: 'monospace',
+      textShadowColor: 'rgba(0, 0, 0, 0.75)',
+      textShadowOffset: {width: -1, height: 1},
+      textShadowRadius: 10
     },
     AgendaItems:{
       color: "#3A4D39",
       marginVertical: 40,
-      fontSize: 21,
+      fontSize: 16,
       lineHeight: 26,
       fontFamily: 'monospace',
     },
@@ -116,5 +144,26 @@ const styles = StyleSheet.create({
       backgroundColor: 'white',
       borderRadius: 15,
       padding: 15,
+      marginHorizontal: 30,
+      height: 800,
     },
+
+    logoutbtn: {
+      backgroundColor: '#ece3ce',
+      padding: 5,
+      borderRadius: 20,
+      marginTop: 10,
+      width: 150,
+      alignItems: 'center',
+      shadowOffset: {
+        width: 0,
+        height: 4
+        },
+      shadowRadius: 4,
+      elevation: 4,
+      shadowOpacity: 1,
+    },
+
+
+
 })

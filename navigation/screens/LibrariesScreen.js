@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
-import { FlatList, Image, ImageBackground, ScrollView, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
+import { FlatList, Image, ImageBackground, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
+import { ScrollView } from 'react-native-virtualized-view';
 
 import Flashcard from '../code/flashcards';
 import { decks } from '../code/data';

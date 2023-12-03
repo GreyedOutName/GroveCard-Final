@@ -37,8 +37,8 @@ const App = ({ navigation }) => {
       <ScrollView contentContainerStyle={styles.scrollContainer} showsVerticalScrollIndicator={false}>
         <View style={styles.container}>
 
-          <Text style={[styles.l1, { top: 10 }]}>Hello, there!</Text>
-          <Text style={[styles.l2, { top: 10 }]}>What do you want to learn today?</Text>
+          <Text style={[styles.l1, { top: 10 }]}> Hello, there!</Text>
+          <Text style={[styles.l2, { top: 10 }]}> What do you want to learn today?</Text>
 
           <View style={[styles.c2]}>
 
@@ -47,7 +47,7 @@ const App = ({ navigation }) => {
             </Text>
 
             <TouchableOpacity style={styles.c2l2} onPress={() => navigation.navigate('Create')}>
-            <Text style={{ color: '#ECE3CE', fontWeight: 'bold' }}>Create a study set now!</Text>
+            <Text style={{ color: '#ECE3CE', fontWeight: 'bold', fontFamily: 'monospace', fontSize: 11,}}>Create a study set now!</Text>
             </TouchableOpacity>
 
 
@@ -56,7 +56,7 @@ const App = ({ navigation }) => {
           </View>
 
               <View style={styles.flashcardcontainer} id='choice'>
-                <Text style={[styles.l3]} >Editor's Choice</Text>
+                <Text style={[styles.l3]} > Editor's Choice</Text>
                   <View style={[styles.carouselContainer]}>
                     <Carousel
                       layout="default"
@@ -86,7 +86,7 @@ const App = ({ navigation }) => {
               </View>
 
               <View style={styles.flashcardcontainer} id='Business and Economics'>
-                <Text style={[styles.l3]}>Business and Economics</Text>
+                <Text style={[styles.l3]}> Business and Economics</Text>
                   <View style={[styles.carouselContainer]}>
                     <Carousel
                       layout="default"
@@ -116,7 +116,7 @@ const App = ({ navigation }) => {
                 </View>
 
               <View style={styles.flashcardcontainer} id='Communications and Media'>
-                <Text style={[styles.l3]} >Communication and Media</Text>
+                <Text style={[styles.l3]} > Communication and Media</Text>
                   <View style={[styles.carouselContainer]}>
                     <Carousel
                       layout="default"
@@ -146,7 +146,7 @@ const App = ({ navigation }) => {
               </View>
 
               <View style={styles.flashcardcontainer} id='Computer Science'>
-                <Text style={[styles.l3]} >Computer Science</Text>
+                <Text style={[styles.l3]} > Computer Science</Text>
                   <View style={[styles.carouselContainer]}>
                     <Carousel
                       layout="default"
@@ -176,7 +176,7 @@ const App = ({ navigation }) => {
               </View>
 
               <View style={styles.flashcardcontainer} id='Engineering'>
-                <Text style={[styles.l3]} >Engineering</Text>
+                <Text style={[styles.l3]} > Engineering</Text>
                   <View style={[styles.carouselContainer]}>
                     <Carousel
                       layout="default"
@@ -206,7 +206,7 @@ const App = ({ navigation }) => {
               </View>
 
               <View style={styles.flashcardcontainer} id='Health Sciences'>
-                <Text style={[styles.l3]} >Health Sciences</Text>
+                <Text style={[styles.l3]} > Health Sciences</Text>
                   <View style={[styles.carouselContainer]}>
                     <Carousel
                       layout="default"
@@ -236,7 +236,7 @@ const App = ({ navigation }) => {
               </View>
 
               <View style={styles.flashcardcontainer} id='Mathematics and Statistics'>
-                <Text style={[styles.l3]} >Mathematics and Statistics</Text>
+                <Text style={[styles.l3]} > Mathematics and Statistics</Text>
                   <View style={[styles.carouselContainer]}>
                     <Carousel
                       layout="default"
@@ -266,7 +266,7 @@ const App = ({ navigation }) => {
               </View>
 
               <View style={styles.flashcardcontainer} id='Natural Sciences'>
-                <Text style={[styles.l3]} >Natural Sciences</Text>
+                <Text style={[styles.l3]} > Natural Sciences</Text>
                   <View style={[styles.carouselContainer]}>
                     <Carousel
                       layout="default"
@@ -296,7 +296,7 @@ const App = ({ navigation }) => {
               </View>
 
               <View style={styles.flashcardcontainer} id='Social Sciences'>
-                <Text style={[styles.l3]} >Social Sciences</Text>
+                <Text style={[styles.l3]} > Social Sciences</Text>
                   <View style={[styles.carouselContainer]}>
                     <Carousel
                       layout="default"
@@ -326,7 +326,7 @@ const App = ({ navigation }) => {
               </View>
 
               <View style={[styles.flashcardcontainer, {marginBottom: 80}]} id='Others'>
-                <Text style={[styles.l3]} >Others</Text>
+                <Text style={[styles.l3]} > Others</Text>
                   <View style={[styles.carouselContainer]}>
                     <Carousel
                       layout="default"
@@ -390,7 +390,8 @@ const styles = StyleSheet.create({
     marginBottom: 5,
     textShadowColor: 'rgba(0, 0, 0, 0.75)',
     textShadowOffset: {width: -1, height: 1},
-    textShadowRadius: 10
+    textShadowRadius: 10,
+    fontFamily: 'monospace',
   },
   l2: {
     fontSize: 12,
@@ -398,16 +399,19 @@ const styles = StyleSheet.create({
     color: '#ECE3CE',
     textShadowColor: 'rgba(0, 0, 0, 0.75)',
     textShadowOffset: {width: -1, height: 1},
-    textShadowRadius: 10
+    textShadowRadius: 10,
+    fontFamily: 'monospace',
   },
   l3:{
     fontSize: 16,
+    fontWeight: 'bold',
     color: '#ECE3CE',
     marginLeft: -20,
     marginBottom: 5,
     textShadowColor: 'rgba(0, 0, 0, 0.75)',
     textShadowOffset: {width: -1, height: 1},
-    textShadowRadius: 10
+    textShadowRadius: 10,
+    fontFamily: 'monospace',
   },
   c2: {
     backgroundColor: "rgba(236, 227, 206, 0.7)",
@@ -421,15 +425,16 @@ const styles = StyleSheet.create({
     width: '100%'
   },
   c2l1: {
-  	fontSize: 14,
-    letterSpacing: 0.8,
+  	fontSize: 12,
+    fontWeight: 'bold',
     lineHeight: 20,
     fontWeight: "700",
     color: "#4f6f52",
     textAlign: "left",
     alignSelf: 'center',
     width: 295,
-    height: 40
+    height: 40,
+    fontFamily: 'monospace',
   },
   c2l2: {
     backgroundColor: '#3A4D39',
@@ -438,6 +443,7 @@ const styles = StyleSheet.create({
     borderRadius: 25,
     marginTop: 10,
     alignSelf: 'flex-start',
+    
   },
   homechar: {
     width: 200,
@@ -468,7 +474,6 @@ const styles = StyleSheet.create({
     width: ITEM_WIDTH,
     height: 170, // Set height equal to width
     marginHorizontal: 8, // Adjust margin as needed
-    borderRadius: 8,
     backgroundColor: '#ECE3CE',
     shadowColor: '#000',
     shadowOffset: {
@@ -511,16 +516,19 @@ const styles = StyleSheet.create({
     padding: 10,
     top: 70,
     left: 0,
-    position: 'absolute'
+    position: 'absolute',
+    width: 200,
   },
   infotext: {
     fontSize: 20,
     fontWeight: 'bold',
     color: '#4F6F52',
+    width: 'auto',
   },
   infotext2: {
     fontSize: 10,
     color: '#4F6F52',
+    width: 'auto',
 
   },
   
