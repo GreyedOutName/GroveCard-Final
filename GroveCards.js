@@ -26,18 +26,6 @@ const Stack = createNativeStackNavigator();
 
 //searchbar
 
-const SearchBar = () => {
-  return (
-    <View style={styles.Search}>
-      <View style={styles.SearchBar}>
-        <TextInput style={{width:'85%'}} placeholder='Search'/>
-        <TouchableOpacity onPress={()=>{}}>
-
-        </TouchableOpacity>  
-      </View>
-    </View>
-  );
-};
 
 function Homepage({ navigation }) {
   const [selectedDeck, setSelectedDeck] = useState(decks[0]);
