@@ -5,7 +5,6 @@ export function setSelectedDeck(param){
 }
 
 export var decks = [
-
     {
       id: 1,
       category: 'choice',

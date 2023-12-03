@@ -7,14 +7,13 @@ import { decks } from '../code/data';
 import Flashcard from '../code/flashcards';
 import CarouselCards from '../code/carouselCards';
 import { useNavigation } from '@react-navigation/native';  
-import PreviewScreen from './PreviewScreen'; 
+import { selectedDeck,setSelectedDeck } from '../code/data';
 
 
 
 export default function Search() {
   const [searchText, setSearchText] = React.useState('');
   const [searchResults, setSearchResults] = React.useState([]);
-  const [selectedDeck, setSelectedDeck] = React.useState(null);  
   const navigation = useNavigation();  
 
   const handleClear = () => {
@@ -42,7 +41,7 @@ export default function Search() {
 
   const handleResultPress = (item) => {
     setSelectedDeck({...item});  
-    navigation.navigate('View Screen', { selectedDeck: { ...item } });  
+    navigation.navigate('View Screen');  
   };
 
   return (
@@ -78,10 +77,6 @@ export default function Search() {
           />
         </View>
       )}
-
-      {selectedDeck && (
-        <PreviewScreen route={{ params: { selectedDeck } }} navigation={navigation} />
-      )}
     </ImageBackground>
   );
 }
@@ -98,7 +93,7 @@ const styles = StyleSheet.create({
     position: 'absolute',
     top: '10%',
     left: '50%',
-    transform: [{ translateX: '-50%' }],
+    transform: [{ translateX: -50 }],
   },
   SearchBar: {
     height: 50,

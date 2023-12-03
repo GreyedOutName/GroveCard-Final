@@ -9,21 +9,17 @@ export const getWidth = Dimensions.get('window').width + 8
 export const iwidth = Math.round(getWidth*0.7)
 
 export default function PreviewScreen({ navigation }) {
-
   const [selectedCard,setSelectedCard]=React.useState();
   const [newQuestion,setNewQuestion]=React.useState();
   const [newAnswer,setNewAnswer]=React.useState();
   const [isModalVisibleFlashcard, setIsModalVisibleFlashcard] = React.useState(false);
 
-  useEffect(() => {
-    if (selectedDeck && selectedDeck.flashcards && selectedDeck.flashcards.length > 0) {
-      setSelectedCard(selectedDeck.flashcards[0]);
-    }
-  }, [selectedDeck]);
+  
 
   const handleDeleteCard=()=>{
     index=selectedDeck.flashcards.indexOf(selectedCard);
     selectedDeck.flashcards.splice(index,1);
+    alert('TEST')
   }
   const handleEditCard=()=>{
     selectedCard.frontContent=newQuestion;
