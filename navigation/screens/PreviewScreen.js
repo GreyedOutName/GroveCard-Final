@@ -181,8 +181,8 @@ export default function PreviewScreen({ navigation }) {
               <Text style={styles.buttonText2}>Delete</Text>
               </TouchableOpacity>
 
-              <TouchableOpacity style={styles.playbtn}>
-              <Text style={styles.play}>Play</Text>
+              <TouchableOpacity style={styles.playbtn} onPress={()=>navigation.navigate('Play Screen')}>
+                <Text style={styles.play}>Play</Text>
               </TouchableOpacity>
 
         </View> 
