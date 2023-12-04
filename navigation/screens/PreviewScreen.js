@@ -3,6 +3,7 @@ import { FlatList, Image, View, StyleSheet, Text, TouchableOpacity, ScrollView, 
 import { calenderContent, decks } from '../code/data';
 import { selectedDeck } from '../code/data';
 import { ITEM_WIDTH } from '../code/carouselCardItem';
+import { currentUser } from '../code/creatorData';
 
 
 export const getWidth = Dimensions.get('window').width + 8
@@ -15,17 +16,38 @@ export default function PreviewScreen({ navigation }) {
   const [isModalVisibleFlashcard, setIsModalVisibleFlashcard] = React.useState(false);
 
   const handleDeleteCard=()=>{
-    index=selectedDeck.flashcards.indexOf(selectedCard);
-    selectedDeck.flashcards.splice(index,1);
+    if(selectedDeck.author===currentUser.uname){
+      index=selectedDeck.flashcards.indexOf(selectedCard);
+      selectedDeck.flashcards.splice(index,1);
+    }
+    else{
+      alert('Cannot modify, as you are not the author of this GroveCard')
+    }
   }
   const handleEditCard=()=>{
-    selectedCard.frontContent=newQuestion;
-    selectedCard.backContent=newAnswer;
-    toggleModalFlashcard();
+      selectedCard.frontContent=newQuestion;
+      selectedCard.backContent=newAnswer;
+      toggleModalFlashcard();
+  }
+  const handleAddCard=()=>{
+    if(selectedDeck.author===currentUser.uname){
+      navigation.navigate('Add Card')
+    }
+    else{
+      alert('Cannot modify, as you are not the author of this GroveCard')
+    }
   }
   const toggleModalFlashcard = () => {
-    setIsModalVisibleFlashcard(!isModalVisibleFlashcard);
+    if(selectedDeck.author===currentUser.uname){
+      setIsModalVisibleFlashcard(!isModalVisibleFlashcard);
+    }
+    else{
+      alert('Cannot modify, as you are not the author of this GroveCard')
+    }
   };
+  const handleFavorite=()=>{
+    selectedDeck.favorite='yes';
+  }
 
   const handletemp=()=>{
     var d = new Date();
@@ -86,13 +108,13 @@ export default function PreviewScreen({ navigation }) {
           <Text style={styles.subtext}>{selectedDeck.course}</Text> 
           <Text style={styles.titletext}>{selectedDeck.name}</Text>
           <Text style={styles.subtext2}>Flashcard</Text>
-          <TouchableOpacity>
+          <TouchableOpacity onPress={()=>handleFavorite()}>
              <Text style={styles.buttonText}>Mark as Favorite</Text>
             </TouchableOpacity>
         </View>
 
         <View style={styles.alignedContainer}>
-              <TouchableOpacity style={styles.minibutton} onPress={()=>navigation.navigate('Add Card')}>
+              <TouchableOpacity style={styles.minibutton} onPress={()=>handleAddCard()}>
               <Text style={styles.buttonText2}>Add</Text>
               </TouchableOpacity>
 

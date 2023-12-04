@@ -46,7 +46,7 @@ export default function Create({ navigation }) {
       id: decks.length+1,
       category: selectedCategory,
       name: title,
-      author: '@'+currentUser.uname,
+      author: currentUser.uname,
       code: subjectCode,
       course: selectedCourse,
       school: selectedSchool,

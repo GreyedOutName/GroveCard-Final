@@ -20,10 +20,6 @@ const AddCardScreen = ({navigation}) => {
       
         selectedDeck.flashcards.push(newFlashcard)
     }
-    handletemp=()=>{
-        
-    }
-    
     return (
         <ImageBackground
             source={require('../assets/GradientBg.png')}
@@ -58,7 +54,7 @@ const AddCardScreen = ({navigation}) => {
                         <Text style={styles.create}>Create</Text>
                     </TouchableOpacity>
 
-                    <TouchableOpacity style={[styles.createbtn, styles.shadow]} onPress={()=>navigation.replace('Main')}>
+                    <TouchableOpacity style={[styles.createbtn, styles.shadow]} onPress={()=>navigation.replace('View Screen')}>
                         <Text style={styles.create}>Done</Text>
                     </TouchableOpacity>
 

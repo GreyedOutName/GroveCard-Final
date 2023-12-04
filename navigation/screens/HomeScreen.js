@@ -23,6 +23,7 @@ import Flashcard from '../code/flashcards';
 import CarouselCards from '../code/carouselCards';
 import ViewScreen from './PreviewScreen';
 import { setSearchText } from './SearchScreen';
+import { currentUser } from '../code/creatorData';
 
 
 const App = ({ navigation }) => {
@@ -92,6 +93,35 @@ const App = ({ navigation }) => {
                       layout="default"
                       ref={isCarousel}
                       data={decks.filter((deck) => deck.category === 'choice')}
+                      renderItem={({ item }) => (
+                        <TouchableOpacity onPress={() => handleDeckPress(item)}style={styles.deckContainer}>
+                            <Image style={styles.flash} source={require('../assets/flashcard.png')} />
+                            <View style={styles.info}> 
+                              <Text style={styles.infotext}>{item.name}</Text>
+                              <View style={styles.info2}>
+                                <Text style={styles.infotext2}>{item.author}</Text>
+                                <Text style={styles.infotext2}>{item.code}</Text>
+                                <Text style={styles.infotext2}>{item.course}</Text>
+                                <Text style={styles.infotext2}>{item.school}</Text>
+                                </View>
+                            </View>
+                        </TouchableOpacity>
+                      )}
+                      sliderWidth={SLIDER_WIDTH}
+                      itemWidth={ITEM_WIDTH}
+                      onSnapToItem={(index) => setIndex(index)}
+                      useScrollView={true}
+                    />
+                  </View>
+              </View>
+
+              <View style={styles.flashcardcontainer} id='added'>
+                <Text style={[styles.l3]} >Your FlashCards</Text>
+                  <View style={[styles.carouselContainer]}>
+                    <Carousel
+                      layout="default"
+                      ref={isCarousel}
+                      data={decks.filter((deck) => deck.author === currentUser.uname)}
                       renderItem={({ item }) => (
                         <TouchableOpacity onPress={() => handleDeckPress(item)}style={styles.deckContainer}>
                             <Image style={styles.flash} source={require('../assets/flashcard.png')} />

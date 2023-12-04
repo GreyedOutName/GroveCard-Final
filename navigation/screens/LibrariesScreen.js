@@ -7,6 +7,7 @@ import { decks } from '../code/data';
 import { setSelectedDeck } from '../code/data';
 import { SLIDER_WIDTH, ITEM_WIDTH } from '../code/carouselCardItem';
 import CarouselCards from '../code/carouselCards';
+import { currentUser } from '../code/creatorData';
 
 export default function LibrariesScreen({ navigation }) {
   const [filter, setFilter] = useState(''); 
@@ -14,6 +15,16 @@ export default function LibrariesScreen({ navigation }) {
     setSelectedDeck(deck);
     navigation.replace("View Screen")
   };
+  const filterhandler=()=>{
+    if(filter==='created'||filter==='favorite'){
+      let temp = decks.filter((deck) => deck[filter.toLowerCase()] === 'yes')
+      return temp;
+    }
+    else if(filter==='My GroveCards'){
+      let temp = decks.filter((deck) => deck.author === currentUser.uname)
+      return temp;
+    }
+  }
 
   const renderItem = ({ item }) => (
     <View style={styles.filterc}>
@@ -53,10 +64,16 @@ export default function LibrariesScreen({ navigation }) {
               >
                 <Text style={styles.buttonText}>Favorite</Text>
               </TouchableOpacity>
+              <TouchableOpacity
+                    style={styles.button}
+                    onPress={() => setFilter('My GroveCards')}
+                >
+                    <Text style={styles.buttonText}>My GroveCards</Text>
+                </TouchableOpacity>
             </View>
           </View>
           <FlatList style={styles.flatlist} showsVerticalScrollIndicator={false}
-            data={decks.filter((deck) => deck[filter.toLowerCase()] === 'yes')}
+            data={filterhandler()}
             renderItem={renderItem}
             />
         </View>
