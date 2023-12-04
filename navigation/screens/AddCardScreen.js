@@ -20,6 +20,9 @@ const AddCardScreen = ({navigation}) => {
       
         selectedDeck.flashcards.push(newFlashcard)
     }
+    handletemp=()=>{
+        
+    }
     
     return (
         <ImageBackground

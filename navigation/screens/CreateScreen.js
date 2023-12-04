@@ -2,6 +2,7 @@ import * as React from 'react';
 import { ImageBackground, ScrollView, StyleSheet, Text, TextInput, TouchableOpacity, View } from 'react-native';
 import {Picker} from '@react-native-picker/picker'
 import { decks } from '../code/data';
+import { currentUser } from '../code/creatorData';
 
 export default function Create({ navigation }) {
   const [title, setTitle] = React.useState('');
@@ -45,7 +46,7 @@ export default function Create({ navigation }) {
       id: decks.length+1,
       category: selectedCategory,
       name: title,
-      author: '@allen',
+      author: '@'+currentUser.uname,
       code: subjectCode,
       course: selectedCourse,
       school: selectedSchool,

@@ -764,5 +764,10 @@ export var decks = [
         { frontContent: 'Relationship between pairs of colors that cancel each other out.', backContent: 'Complementary' },
       ]
     },
-    
   ]
+
+export var calenderContent={
+  '2023-12-01': [{ text: 'Test for CS' },{ text: 'Test for CS' }],
+  '2023-12-02': [{ text: 'Test for Engineering' }],
+  '2023-12-03': [{ text: 'Review Flashcard 2' }],
+}

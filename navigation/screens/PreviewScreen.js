@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
 import { FlatList, Image, View, StyleSheet, Text, TouchableOpacity, ScrollView, Dimensions, Modal, TextInput } from 'react-native';
-import { decks } from '../code/data';
+import { calenderContent, decks } from '../code/data';
 import { selectedDeck } from '../code/data';
 import { ITEM_WIDTH } from '../code/carouselCardItem';
 
@@ -14,12 +14,9 @@ export default function PreviewScreen({ navigation }) {
   const [newAnswer,setNewAnswer]=React.useState();
   const [isModalVisibleFlashcard, setIsModalVisibleFlashcard] = React.useState(false);
 
-  
-
   const handleDeleteCard=()=>{
     index=selectedDeck.flashcards.indexOf(selectedCard);
     selectedDeck.flashcards.splice(index,1);
-    alert('TEST')
   }
   const handleEditCard=()=>{
     selectedCard.frontContent=newQuestion;
@@ -29,6 +26,32 @@ export default function PreviewScreen({ navigation }) {
   const toggleModalFlashcard = () => {
     setIsModalVisibleFlashcard(!isModalVisibleFlashcard);
   };
+
+  const handletemp=()=>{
+    var d = new Date();
+    var month = '' + (d.getMonth() + 1);
+    var day = '' + d.getDate();
+    var year = d.getFullYear();
+    if (month.length < 2) 
+          month = '0' + month;
+    if (day.length < 2) 
+          day = '0' + day;
+  
+    var formatdate=[year, month, day].join('-');
+    
+    if(Object.keys(calenderContent).includes(formatdate)){
+      let temp={text:'You completed deck '+selectedDeck.name+' at this date.'}
+      calenderContent[formatdate].push(temp);
+    }
+    else{
+      let temp={
+        [formatdate]:[{ text: 'You completed deck '+selectedDeck.name+' at this date.' }],
+      }
+  
+      Object.assign(calenderContent,temp);
+    }
+    navigation.navigate('Main');
+  }
   
 
   const renderQuestion = ({ item }) => (
@@ -123,7 +146,7 @@ export default function PreviewScreen({ navigation }) {
               <Text style={styles.buttonText2}>Play</Text>
               </TouchableOpacity>
 
-              <TouchableOpacity style={styles.minibutton} onPress={()=>navigation.navigate('Main')}>
+              <TouchableOpacity style={styles.minibutton} onPress={handletemp}>
               <Text style={styles.buttonText2}>Back</Text>
               </TouchableOpacity>
         </View> 
@@ -134,14 +157,14 @@ export default function PreviewScreen({ navigation }) {
            showsVerticalScrollIndicator={false}
            data={selectedDeck.flashcards}
            scrollEnabled={false}
-            renderItem={renderQuestion} //note: idk if there's an existing deck of cards but just replace the contents with em on 
+            renderItem={renderQuestion} 
             />
             <FlatList 
            style={styles.flatlist} 
            showsVerticalScrollIndicator={false}
            scrollEnabled={false}
            data={selectedDeck.flashcards}
-            renderItem={renderAnswer} //note: idk if there's an existing deck of cards but just replace the contents with em on 
+            renderItem={renderAnswer} 
             />
         </View>
       </ScrollView>
