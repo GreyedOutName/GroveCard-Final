@@ -1,14 +1,24 @@
 import React, { useState } from 'react';
 import { View, Text, TextInput, TouchableOpacity, StyleSheet, ImageBackground, Image } from 'react-native';
+import { setCurrentUser, users} from '../code/creatorData';
+import { imageHandler } from './ProfileScreen';
 
 const SignInScreen = ({ navigation }) => {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
 
   const handleSignIn = () => {
-    // Add your authentication logic here
-    // For simplicity, let's just navigate to the main screen for now
-    navigation.replace('Main');
+    if(username!=''&&password!=''){
+      var temp=users.filter((item)=>item.uname===username);
+      if(!temp[0]||temp[0].password!=password){
+        alert('Incorrect username or password!');
+      }
+      else{
+        navigation.replace('Main');
+        imageHandler(temp[0].uname);
+        setCurrentUser(temp[0]);
+      }
+    }
   };
 
   return (
@@ -63,7 +73,12 @@ const styles = StyleSheet.create({
     alignItems: 'center'
   },
   appname1: {
-    bottom: 0
+    bottom: 0,
+    width: 280,
+    height: 220,
+    margin: 30,
+    marginTop: 50,
+    marginBottom: 20,
   },
   tagline:{
     fontSize: 14,

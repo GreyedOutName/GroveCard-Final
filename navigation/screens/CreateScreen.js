@@ -45,14 +45,12 @@ export default function Create({ navigation }) {
       id: decks.length+1,
       category: selectedCategory,
       name: title,
-      items: 21,
       author: '@allen',
       code: subjectCode,
       course: selectedCourse,
       school: selectedSchool,
       created: 'yes',
       favorite: 'no',
-      added: 'no',
       flashcards: [],
     };
 
@@ -70,7 +68,7 @@ export default function Create({ navigation }) {
         <Text style={styles.letsGetInto1}>Let’s get into the (wood) work!</Text>
 
         <View style={styles.titlecontainer}>
-          <Text style={styles.modalTitle}>Title</Text>
+          <Text style={styles.modalTitle}> Title</Text>
           <TextInput
             style={styles.modalInput}
             placeholder="Enter title"
@@ -80,7 +78,7 @@ export default function Create({ navigation }) {
         </View>
 
         <View style={styles.titlecontainer}>
-          <Text style={styles.modalTitle}>Subject Code</Text>
+          <Text style={styles.modalTitle}> Subject Code</Text>
           <TextInput
             style={styles.modalInput}
             placeholder="Enter subject code"
@@ -90,9 +88,9 @@ export default function Create({ navigation }) {
         </View>
 
         <View style={styles.titlecontainer}>
-          <Text style={styles.modalTitle}>Course</Text>
+          <Text style={styles.modalTitle}> Course</Text>
           <Picker
-            style={styles.modalInput}
+            style={styles.pickerstyle}
             selectedValue={selectedCourse}
             onValueChange={(itemValue, itemIndex) => setSelectedCourse(itemValue)}
           >
@@ -103,9 +101,9 @@ export default function Create({ navigation }) {
         </View>
 
         <View style={styles.titlecontainer}>
-          <Text style={styles.modalTitle}>School</Text>
+          <Text style={styles.modalTitle}> School</Text>
           <Picker
-            style={styles.modalInput}
+            style={styles.pickerstyle}
             selectedValue={selectedSchool}
             onValueChange={(itemValue, itemIndex) => setSelectedSchool(itemValue)}
           >
@@ -116,9 +114,9 @@ export default function Create({ navigation }) {
         </View>
 
         <View style={styles.titlecontainer}>
-          <Text style={styles.modalTitle}>Category</Text>
+          <Text style={styles.modalTitle}> Category</Text>
           <Picker
-            style={styles.modalInput}
+            style={styles.pickerstyle}
             selectedValue={selectedCategory}
             onValueChange={(itemValue, itemIndex) => setSelectedCategory(itemValue)}
           >
@@ -129,7 +127,7 @@ export default function Create({ navigation }) {
         </View>
 
         <TouchableOpacity style={styles.c2l2} onPress={()=>AddDeck()}>
-            <Text style={{ color: '#ECE3CE' }}>Create a study set now!</Text>
+            <Text style={{ color: '#739072',fontWeight: "700",textAlign: "center"}}>Create</Text>
         </TouchableOpacity>
 
         <View>
@@ -161,23 +159,42 @@ const styles = StyleSheet.create({
     color: '#fff',
     textAlign: 'center',
     height: 33,
+    textShadowColor: 'rgba(0, 0, 0, 0.75)',
+    textShadowOffset: { height: 1},
+    textShadowRadius: 10
   },
   titlecontainer: {
     top: 20,
     padding: 10,
   },
   c2l2: {
-    backgroundColor: '#4F6F52',
+    backgroundColor: '#ece3ce',
     paddingHorizontal: 10,
     paddingVertical: 10,
-    borderRadius: 5,
+    borderRadius: 20,
     marginTop: 10,
-    alignSelf: 'flex-start',
+    width: 150,
+    alignItems: 'center',
+    alignSelf: 'flex-end',
+    marginRight: 20,
+    top: 30,
+    shadowOffset: {
+      width: 0,
+      height: 4
+      },
+    shadowRadius: 4,
+    elevation: 4,
+    shadowOpacity: 1,
   },
   modalTitle: {
-    fontSize: 20,
+    fontSize: 16,
     color: '#ECE3CE',
-    paddingBottom: 10,
+    marginLeft: -5,
+    marginBottom: 5,
+    width: 'auto',
+    textShadowColor: 'rgba(0, 0, 0, 0.75)',
+    textShadowOffset: {width: -1, height: 1},
+    textShadowRadius: 10,
   },
   modalInput: {
     height: 50,
@@ -190,6 +207,18 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     paddingHorizontal: 10,
     paddingVertical: 5,
+
+  },
+  pickerstyle: {
+    height: 50,
+    borderStyle: 'solid',
+    borderColor: '#ece3ce',
+    borderRadius: 10,
+    borderWidth: 1,
+    width: '90%',
+    paddingHorizontal: 10,
+    paddingVertical: 5,
+
   },
   additionalTitle: {
     fontSize: 20,
