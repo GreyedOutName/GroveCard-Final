@@ -47,7 +47,6 @@ export default function Search() {
       source={require('../assets/JungleBg.gif')}
       style={styles.container}
     >
-      <View style={styles.searchContainer}>
         <View style={styles.SearchBar}>
           <Icon name='search-outline' style={styles.searchIcon} />
           <TextInput
@@ -62,7 +61,7 @@ export default function Search() {
             </TouchableOpacity>
           ) : null}
         </View>
-      </View>
+
 
       {searchText === '' ? (
         <Text style={styles.l1}>Try searching your school!</Text>
@@ -82,31 +81,31 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     alignItems: 'center',
-    justifyContent: 'flex-start',
-    paddingTop: 60,
     paddingBottom: 10
   },
-  searchContainer: {
-    width: '80%',
-    position: 'absolute',
-    top: '10%',
-    left: '50%',
-    transform: [{ translateX: -50 }],
-  },
   SearchBar: {
+    marginTop: 10,  // Adjusted to add top margin
+    marginHorizontal: '10%',
     height: 50,
+    width: '90%',
     backgroundColor: '#ece3ce',
     borderRadius: 50,
     flexDirection: 'row',
-    borderColor: '#000',
+    borderColor: '#3A4D39',
     borderWidth: 1,
     alignItems: 'center',
-    justifyContent: 'center',
+    shadowOffset: {
+      width: 0,
+      height: 2,
+    },
+    shadowOpacity: 0.25,
+    shadowRadius: 3.84,
+    elevation: 5,
   },
   resultContainer: {
     flex: 1,
-    marginTop: 70, 
-    width: '80%',
+    marginTop: 5, 
+    width: '90%',
   },
   resultItem: {
     marginVertical: 10,
@@ -116,7 +115,11 @@ const styles = StyleSheet.create({
   },
   resultItemText: {
     fontSize: 16,
-    color: '#fff',
+    color: '#ece3ce',
+    fontFamily: 'monospace',
+    textShadowColor: 'rgba(0, 0, 0, 0.75)',
+    textShadowOffset: {width: -1, height: 1},
+    textShadowRadius: 10
   },
   searchIcon: {
     marginLeft: 10,
@@ -136,10 +139,14 @@ const styles = StyleSheet.create({
     letterSpacing: 1,
     fontWeight: '700',
     color: '#ece3ce',
-    textAlign: 'center',
+    textAlign: 'left',
     width: 295,
     height: 23,
-    margin: 85,
-    left: -25,
+    left: 15,
+    margin: 10,
+    fontFamily: 'monospace',
+    textShadowColor: 'rgba(0, 0, 0, 0.75)',
+    textShadowOffset: {width: -1, height: 1},
+    textShadowRadius: 10
   },
 });
