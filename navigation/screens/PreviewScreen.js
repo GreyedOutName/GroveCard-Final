@@ -1,5 +1,5 @@
-import React, { useEffect } from 'react';
-import { FlatList, Image, View, StyleSheet, Text, TouchableOpacity, ScrollView, Dimensions, Modal, TextInput } from 'react-native';
+import React, { useEffect ,useState} from 'react';
+import { FlatList, Image, View, StyleSheet, Text, TouchableOpacity, ScrollView, Dimensions, Modal, TextInput,SafeAreaView} from 'react-native';
 import { calenderContent, decks } from '../code/data';
 import { selectedDeck } from '../code/data';
 import { ITEM_WIDTH } from '../code/carouselCardItem';
@@ -10,11 +10,11 @@ export const getWidth = Dimensions.get('window').width + 8
 export const iwidth = Math.round(getWidth*0.7)
 
 export default function PreviewScreen({ navigation }) {
-  const [selectedCard,setSelectedCard]=React.useState();
-  const [newQuestion,setNewQuestion]=React.useState();
-  const [newAnswer,setNewAnswer]=React.useState();
-  const [isModalVisibleFlashcard, setIsModalVisibleFlashcard] = React.useState(false);
-  const [isFavorite, setIsFavorite] = useState(false);
+  const [selectedCard,setSelectedCard]=useState('');
+  const [newQuestion,setNewQuestion]=useState('');
+  const [newAnswer,setNewAnswer]=useState('');
+  const [isModalVisibleFlashcard, setIsModalVisibleFlashcard] = useState(false);
+  const [isFavorite, setIsFavorite] = useState(selectedDeck.favorite==='yes');
 
   const handleDeleteCard=()=>{
     if(selectedDeck.author===currentUser.uname){
@@ -105,7 +105,7 @@ export default function PreviewScreen({ navigation }) {
     return(
       <ScrollView contentContainerStyle = {styles.scrollContainer} showsVerticalScrollIndicator={false}>
         <View style={[styles.rectangleView, styles.shadow]}>
-                <TouchableOpacity style={styles.back} onPress={()=>navigation.replace('Main')}>
+                <TouchableOpacity style={styles.back} onPress={()=>handletemp()}>
                     <Image style={styles.icon} source={require("../assets/back.png")}/>
                 </TouchableOpacity>
                 <Text style={styles.l1}>Add Cards</Text>
@@ -131,7 +131,7 @@ export default function PreviewScreen({ navigation }) {
         </View>
 
         <View style={styles.alignedContainer}>
-              <TouchableOpacity style={styles.minibutton} onPress={()=>navigation.navigate('Add Card')}>
+              <TouchableOpacity style={styles.minibutton} onPress={()=>handleAddCard()}>
               <Text style={styles.buttonText2}>Add</Text>
               </TouchableOpacity>
 
@@ -214,7 +214,7 @@ const styles = StyleSheet.create({
   },
   scrollContainer:{
       backgroundColor: '#ECE3CE',
-      paddingTop: 15,
+      paddingTop: 50,
   },
   container: {
       justifyContent: 'space-evenly',
