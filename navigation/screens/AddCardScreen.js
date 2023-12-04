@@ -106,8 +106,8 @@ const styles = StyleSheet.create({
         width: 300,
         backgroundColor: "#ece3ce",
         borderRadius: 15,
-        borderWidth: 1,
-        borderColor: 'red'
+        borderWidth: 3,
+        borderColor: '#00AD7C'
     },
     l2: {
         fontSize: 20,
