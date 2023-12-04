@@ -14,6 +14,7 @@ import SearchScreen from './screens/SearchScreen';
 import SignInScreen from './screens/SignInScreen';
 import AddCardScreen from './screens/AddCardScreen';
 import ViewScreen from './screens/PreviewScreen';
+import PlayScreen from './screens/PlayScreen';
 
 
 
@@ -27,6 +28,7 @@ const signInName = "SignIn";
 const mainName = "Main";
 const addcardName = "Add Card"
 const viewscreen = "View Screen"
+const playscreen = "Play Screen"
 
 const Tab = createBottomTabNavigator();
 const Stack = createStackNavigator();
@@ -169,7 +171,7 @@ return (
   <Stack.Screen name={mainName} component={MainTabNavigator} />
   <Stack.Screen name={addcardName} component={AddCardScreen} />
   <Stack.Screen name={viewscreen} component={ViewScreen} />
-  <Stack.Screen name={searchName} component={SearchScreen} />
+  <Stack.Screen name={playscreen} component={PlayScreen} />
 </Stack.Navigator>
 </NavigationContainer>
 );
