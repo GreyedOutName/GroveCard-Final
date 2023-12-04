@@ -19,11 +19,22 @@ export const iwidth = Math.round(getWidth*0.7)
 export default function PlayScreen({navigation}){
   const[currentIndex, setCurrentIndex] = useState(0);
   const [isFlipped, setIsFlipped] = useState(false);
+  const [score,setScore]=useState(0)
 
   const flashIndex = selectedDeck.flashcards.length;
   const flipCard = () => {
     setIsFlipped(!isFlipped);
   };
+
+  const handleEnd=()=>{
+    if(score<4){
+      alert('Your score is '+score+'/5, Better luck next time!')
+    }
+    else{
+      alert('Your score is '+score+'/5, Well done!')
+    }
+    navigation.goBack();
+  }
   
 const renderQuestion = ({ item }) => ( //for question data
 
@@ -40,12 +51,18 @@ const renderQuestion = ({ item }) => ( //for question data
         </TouchableOpacity>
     </View>
   );
-
+                
   const correct = () =>{
      nextIndex = currentIndex + 1;
+     nextScore = score+1;
        if (nextIndex < flashIndex) {
           setCurrentIndex(nextIndex);
           setIsFlipped(false)
+          setScore(nextScore)
+       }
+       else{
+        setScore(nextScore)
+        handleEnd();
        }
   } 
 
@@ -54,6 +71,9 @@ const renderQuestion = ({ item }) => ( //for question data
     if (nextIndex < flashIndex) {
        setCurrentIndex(nextIndex);
        setIsFlipped(false)
+    }
+    else{
+      handleEnd();
     }
   }   
 
@@ -80,10 +100,10 @@ const renderQuestion = ({ item }) => ( //for question data
       </SafeAreaView>
       
       <View style={styles.buttonContainer}>
-          <TouchableOpacity style={styles.button1} onPress={correct}>
+          <TouchableOpacity style={styles.button1} onPress={()=>incorrect()}>
             <Text style={styles.icons}>X</Text>
           </TouchableOpacity>
-          <TouchableOpacity style={styles.button2} onPress={incorrect}>
+          <TouchableOpacity style={styles.button2} onPress={()=>correct()}>
             <Text style={styles.icons}>✔</Text>
           </TouchableOpacity>
       </View>
