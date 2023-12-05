@@ -54,7 +54,7 @@ export default function Create({ navigation }) {
       flashcards: [],
     };
 
-    decks.push(newDeck);
+    decks.unshift(newDeck);
     //setDecks([...decks, newDeck]);
     alert('Deck successfully added')
   }
@@ -168,7 +168,7 @@ const styles = StyleSheet.create({
     padding: 10,
   },
   c2l2: {
-    backgroundColor: '#ece3ce',
+    backgroundColor: '#ECE3CE', // Updated color
     paddingHorizontal: 10,
     paddingVertical: 10,
     borderRadius: 20,
@@ -180,8 +180,8 @@ const styles = StyleSheet.create({
     top: 30,
     shadowOffset: {
       width: 0,
-      height: 4
-      },
+      height: 4,
+    },
     shadowRadius: 4,
     elevation: 4,
     shadowOpacity: 1,
@@ -193,13 +193,14 @@ const styles = StyleSheet.create({
     marginBottom: 5,
     width: 'auto',
     textShadowColor: 'rgba(0, 0, 0, 0.75)',
-    textShadowOffset: {width: -1, height: 1},
+    textShadowOffset: { width: -1, height: 1 },
     textShadowRadius: 10,
   },
   modalInput: {
+    backgroundColor: '#ECE3CE', // Updated color
     height: 50,
     borderStyle: 'solid',
-    borderColor: '#ece3ce',
+    borderColor: '#ECE3CE', // Updated color
     borderRadius: 5,
     borderWidth: 1,
     width: '90%',
@@ -207,18 +208,17 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     paddingHorizontal: 10,
     paddingVertical: 5,
-
   },
   pickerstyle: {
+    backgroundColor: '#ECE3CE', // Updated color
     height: 50,
     borderStyle: 'solid',
-    borderColor: '#ece3ce',
+    borderColor: '#ECE3CE', // Updated color
     borderRadius: 10,
     borderWidth: 1,
     width: '90%',
     paddingHorizontal: 10,
     paddingVertical: 5,
-
   },
   additionalTitle: {
     fontSize: 20,

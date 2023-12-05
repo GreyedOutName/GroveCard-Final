@@ -63,7 +63,7 @@ export default function PreviewScreen({ navigation }) {
           <Text style={styles.subtext}>{selectedDeck.course}</Text> 
           <Text style={styles.titletext}>{selectedDeck.name}</Text>
           <Text style={styles.subtext2}>Flashcard</Text>
-          <TouchableOpacity>
+          <TouchableOpacity style={{ paddingTop: 10, width: 100 }}>
              <Text style={styles.buttonText}>Mark as Favorite</Text>
             </TouchableOpacity>
         </View>
@@ -160,7 +160,7 @@ const styles = StyleSheet.create({
         padding: 30,
     },
     flatlist: {
-        paddingBottom: 150
+        paddingBottom: 100,
       },
     button: {
         paddingVertical: 15,
@@ -177,7 +177,9 @@ const styles = StyleSheet.create({
     buttonText: {
       fontSize: 25,
       fontWeight: 'bold',
-      color: '#526D84',
+      color: '#white',
+      backgroundColor: 'rgba(79, 111, 82, 0.7)',
+      width: 200,
     },
     buttonText2: {
       fontSize: 15,
@@ -191,8 +193,8 @@ const styles = StyleSheet.create({
       width: iwidth,
       height: 170, // Set height equal to width
       marginHorizontal: 8, // Adjust margin as needed
-      borderRadius: 8,
-      backgroundColor: '#C9755E',
+      borderRadius: 0,
+      backgroundColor: '#52D681',
       shadowColor: '#000',
       shadowOffset: {
         width: 0,
@@ -216,12 +218,11 @@ const styles = StyleSheet.create({
       position: 'absolute'
     },
     infotext: {
-      fontSize: 16,
-      fontWeight: 'bold',
+      fontSize: 18,
       color: '#4F6F52',
     },
     infotext2: {
-      fontSize: 10,
+      fontSize: 12,
       color: '#4F6F52',
     },
     subtext: {
@@ -240,7 +241,9 @@ const styles = StyleSheet.create({
     flowContainer:{
       flexDirection: 'row', 
       alignContent: 'center',
-      paddingBottom: 10
+      paddingBottom: 10,
+      width: 400,
+      borderRadius: 0,
     },
     alignedContainer:{
       flexDirection: 'row', 

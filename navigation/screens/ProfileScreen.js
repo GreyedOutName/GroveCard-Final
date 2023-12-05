@@ -44,7 +44,7 @@ export default function ProfileScreen({ navigation }) {
   return (
     <ImageBackground source={require('../assets/JungleBg.gif')} style={styles.ProfileContainer}>
 
-      <SafeAreaView style={{ flex: 1, paddingBottom: 100 }}>
+      <SafeAreaView style={{ flex: 1, paddingBottom: 100, alignContent: 'center' }}>
 
           <View style={styles.c1}>
             <View style={styles.profileImage}>
@@ -68,7 +68,7 @@ export default function ProfileScreen({ navigation }) {
             <Agenda
               style={{height: 800}}
               items={items}
-              selected="2023-12-01"
+              selected="2023-12-07"
               renderItem={renderAgendaItem}
               loadItemsForMonth={() => { }}
             />
@@ -90,7 +90,8 @@ const styles = StyleSheet.create({
       alignItems: 'center',
       paddingHorizontal: 16,
       marginTop: 30,
-      height: 'auto'
+      height: 'auto',
+      left: 32
     },
     profileImage: {
         width: 80,
@@ -174,6 +175,8 @@ const styles = StyleSheet.create({
       padding: 15,
       marginHorizontal: 30,
       height: 800,
+      borderColor: '#00AD7C', 
+      borderWidth: 2,
     },
 
     logoutbtn: {

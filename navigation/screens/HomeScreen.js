@@ -9,6 +9,7 @@ import {
   Image,
   FlatList,
 } from 'react-native';
+import { useNavigation } from '@react-navigation/native';
 
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
@@ -22,7 +23,6 @@ import { setSelectedDeck } from '../code/data';
 import Flashcard from '../code/flashcards';
 import CarouselCards from '../code/carouselCards';
 import ViewScreen from './PreviewScreen';
-import { setSearchText } from './SearchScreen';
 
 
 const App = ({ navigation }) => {
@@ -33,6 +33,10 @@ const App = ({ navigation }) => {
     setSelectedDeck(deck);
     navigation.replace("View Screen")
   };
+
+  const handleCategoryPress = (category) => {
+    navigation.navigate('Search Screen');
+    setSearchText(category)};
 
   return (
     <ImageBackground source={require('../assets/JungleBg.gif')} style={styles.backgroundImage}>
@@ -56,37 +60,9 @@ const App = ({ navigation }) => {
             <Image style={styles.homechar} source={require('../assets/home_char.png')} />
 
           </View>
-          <View style={styles.flashcardcontainer} id='added'>
-                <Text style={[styles.l3]} >Recently Added</Text>
-                  <View style={[styles.carouselContainer]}>
-                    <Carousel
-                      layout="default"
-                      ref={isCarousel}
-                      data={decks.filter((deck) => deck.created === 'yes')}
-                      renderItem={({ item }) => (
-                        <TouchableOpacity onPress={() => handleDeckPress(item)}style={styles.deckContainer}>
-                            <Image style={styles.flash} source={require('../assets/flashcard.png')} />
-                            <View style={styles.info}> 
-                              <Text style={styles.infotext}>{item.name}</Text>
-                              <View style={styles.info2}>
-                                <Text style={styles.infotext2}>{item.author}</Text>
-                                <Text style={styles.infotext2}>{item.code}</Text>
-                                <Text style={styles.infotext2}>{item.course}</Text>
-                                <Text style={styles.infotext2}>{item.school}</Text>
-                                </View>
-                            </View>
-                        </TouchableOpacity>
-                      )}
-                      sliderWidth={SLIDER_WIDTH}
-                      itemWidth={ITEM_WIDTH}
-                      onSnapToItem={(index) => setIndex(index)}
-                      useScrollView={true}
-                    />
-                  </View>
-              </View>
 
               <View style={styles.flashcardcontainer} id='choice'>
-                <Text style={[styles.l3]} > Editor's Choice</Text>
+              <Text style={[styles.l3]}> Editor's Choice</Text>
                   <View style={[styles.carouselContainer]}>
                     <Carousel
                       layout="default"
@@ -96,7 +72,9 @@ const App = ({ navigation }) => {
                         <TouchableOpacity onPress={() => handleDeckPress(item)}style={styles.deckContainer}>
                             <Image style={styles.flash} source={require('../assets/flashcard.png')} />
                             <View style={styles.info}> 
-                              <Text style={styles.infotext}>{item.name}</Text>
+                            <Text style={[styles.infotext, { flexWrap: item.name.length > 15 ? 'wrap' : 'nowrap' },]}>
+                              {item.name}
+                            </Text>
                               <View style={styles.info2}>
                                 <Text style={styles.infotext2}>{item.author}</Text>
                                 <Text style={styles.infotext2}>{item.code}</Text>
@@ -125,7 +103,9 @@ const App = ({ navigation }) => {
                       <TouchableOpacity onPress={()=> handleDeckPress(item)}style={styles.deckContainer}>
                         <Image style={styles.flash} source={require('../assets/flashcard.png')} />
                         <View style={styles.info}> 
-                          <Text style={styles.infotext}>{item.name}</Text>
+                        <Text style={[styles.infotext, { flexWrap: item.name.length > 15 ? 'wrap' : 'nowrap' },]}>
+                          {item.name}
+                        </Text>
                           <View style={styles.info2}>
                             <Text style={styles.infotext2}>{item.author}</Text>
                             <Text style={styles.infotext2}>{item.code}</Text>
@@ -154,7 +134,9 @@ const App = ({ navigation }) => {
                       <TouchableOpacity onPress={() => handleDeckPress(item)}style={styles.deckContainer}>
                         <Image style={styles.flash} source={require('../assets/flashcard.png')} />
                         <View style={styles.info}> 
-                          <Text style={styles.infotext}>{item.name}</Text>
+                        <Text style={[styles.infotext, { flexWrap: item.name.length > 15 ? 'wrap' : 'nowrap' },]}>
+                          {item.name}
+                        </Text>
                           <View style={styles.info2}>
                             <Text style={styles.infotext2}>{item.author}</Text>
                             <Text style={styles.infotext2}>{item.code}</Text>
@@ -183,7 +165,9 @@ const App = ({ navigation }) => {
                       <TouchableOpacity onPress={() => handleDeckPress(item)}style={styles.deckContainer}>
                         <Image style={styles.flash} source={require('../assets/flashcard.png')} />
                         <View style={styles.info}> 
-                          <Text style={styles.infotext}>{item.name}</Text>
+                        <Text style={[styles.infotext, { flexWrap: item.name.length > 15 ? 'wrap' : 'nowrap' },]} numberOfLines={item.name.length > 15 ? 2 : 1}>
+                          {item.name}
+                        </Text>
                           <View style={styles.info2}>
                             <Text style={styles.infotext2}>{item.author}</Text>
                             <Text style={styles.infotext2}>{item.code}</Text>
@@ -212,7 +196,9 @@ const App = ({ navigation }) => {
                       <TouchableOpacity onPress={() => handleDeckPress(item)}style={styles.deckContainer}>
                         <Image style={styles.flash} source={require('../assets/flashcard.png')} />
                         <View style={styles.info}> 
-                          <Text style={styles.infotext}>{item.name}</Text>
+                        <Text style={[styles.infotext, { flexWrap: item.name.length > 15 ? 'wrap' : 'nowrap' },]}>
+                          {item.name}
+                        </Text>
                           <View style={styles.info2}>
                             <Text style={styles.infotext2}>{item.author}</Text>
                             <Text style={styles.infotext2}>{item.code}</Text>
@@ -241,7 +227,9 @@ const App = ({ navigation }) => {
                       <TouchableOpacity onPress={() => handleDeckPress(item)}style={styles.deckContainer}>
                         <Image style={styles.flash} source={require('../assets/flashcard.png')} />
                         <View style={styles.info}> 
-                          <Text style={styles.infotext}>{item.name}</Text>
+                        <Text style={[styles.infotext, { flexWrap: item.name.length > 15 ? 'wrap' : 'nowrap' },]}>
+                          {item.name}
+                        </Text>
                           <View style={styles.info2}>
                             <Text style={styles.infotext2}>{item.author}</Text>
                             <Text style={styles.infotext2}>{item.code}</Text>
@@ -270,7 +258,9 @@ const App = ({ navigation }) => {
                       <TouchableOpacity onPress={() => handleDeckPress(item)}style={styles.deckContainer}>
                         <Image style={styles.flash} source={require('../assets/flashcard.png')} />
                         <View style={styles.info}> 
-                          <Text style={styles.infotext}>{item.name}</Text>
+                        <Text style={[styles.infotext, { flexWrap: item.name.length > 15 ? 'wrap' : 'nowrap' },]}>
+                          {item.name}
+                        </Text>
                           <View style={styles.info2}>
                             <Text style={styles.infotext2}>{item.author}</Text>
                             <Text style={styles.infotext2}>{item.code}</Text>
@@ -299,7 +289,9 @@ const App = ({ navigation }) => {
                       <TouchableOpacity onPress={() => handleDeckPress(item)}style={styles.deckContainer}>
                         <Image style={styles.flash} source={require('../assets/flashcard.png')} />
                         <View style={styles.info}> 
-                          <Text style={styles.infotext}>{item.name}</Text>
+                        <Text style={[styles.infotext, { flexWrap: item.name.length > 15 ? 'wrap' : 'nowrap' },]}>
+                          {item.name}
+                        </Text>
                           <View style={styles.info2}>
                             <Text style={styles.infotext2}>{item.author}</Text>
                             <Text style={styles.infotext2}>{item.code}</Text>
@@ -328,7 +320,9 @@ const App = ({ navigation }) => {
                       <TouchableOpacity onPress={() => handleDeckPress(item)}style={styles.deckContainer}>
                         <Image style={styles.flash} source={require('../assets/flashcard.png')} />
                         <View style={styles.info}> 
-                          <Text style={styles.infotext}>{item.name}</Text>
+                        <Text style={[styles.infotext, { flexWrap: item.name.length > 15 ? 'wrap' : 'nowrap' },]}>
+                          {item.name}
+                        </Text>
                           <View style={styles.info2}>
                             <Text style={styles.infotext2}>{item.author}</Text>
                             <Text style={styles.infotext2}>{item.code}</Text>
@@ -357,7 +351,9 @@ const App = ({ navigation }) => {
                       <TouchableOpacity onPress={() => handleDeckPress(item)}style={styles.deckContainer}>
                         <Image style={styles.flash} source={require('../assets/flashcard.png')} />
                         <View style={styles.info}> 
-                          <Text style={styles.infotext}>{item.name}</Text>
+                        <Text style={[styles.infotext, { flexWrap: item.name.length > 15 ? 'wrap' : 'nowrap' },]}>
+                          {item.name}
+                        </Text>
                           <View style={styles.info2}>
                             <Text style={styles.infotext2}>{item.author}</Text>
                             <Text style={styles.infotext2}>{item.code}</Text>
@@ -523,7 +519,7 @@ const styles = StyleSheet.create({
     position: 'absolute',
     flex: 1,
     left: 50, 
-    alignContent: 'flex-end'
+    alignContent: 'flex-end',
   },
   info: {
     flex: 1,
