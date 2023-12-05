@@ -15,8 +15,9 @@ export default function LibrariesScreen({ navigation }) {
     setSelectedDeck(deck);
     navigation.replace("View Screen")
   };
+
   const filterhandler=()=>{
-    if(filter==='created'||filter==='favorite'){
+    if(filter==='favorite'){
       let temp = decks.filter((deck) => deck[filter.toLowerCase()] === 'yes')
       return temp;
     }
@@ -28,19 +29,21 @@ export default function LibrariesScreen({ navigation }) {
 
   const renderItem = ({ item }) => (
     <View style={styles.filterc}>
-        <TouchableOpacity onPress={() => handleDeckPress(item)}style={styles.deckContainer}>
-            <Image style={styles.flash} source={require('../assets/flashcard.png')} />
-            <View style={styles.info}> 
-                <Text style={styles.infotext}>{item.name}</Text>
-                <View style={styles.info2}>
-                    <Text style={styles.infotext2}>{item.items} items</Text>
-                    <Text style={styles.infotext2}>{item.author}</Text>
-                    <Text style={styles.infotext2}>{item.code}</Text>
-                    <Text style={styles.infotext2}>{item.course}</Text>
-                    <Text style={styles.infotext2}>{item.school}</Text>
-                </View>
-            </View>
-        </TouchableOpacity>
+      <TouchableOpacity onPress={() => handleDeckPress(item)} style={styles.deckContainer}>
+        <View style={styles.imageContainer}>
+          <Image style={styles.flash} source={require('../assets/flashcard.png')} />
+        </View>
+        <View style={styles.info}>
+          <Text style={styles.infotext}>{item.name}</Text>
+          <View style={styles.info2}>
+            <Text style={styles.infotext2}>{item.items} items</Text>
+            <Text style={styles.infotext2}>@{item.author}</Text>
+            <Text style={styles.infotext2}>{item.code}</Text>
+            <Text style={styles.infotext2}>{item.course}</Text>
+            <Text style={styles.infotext2}>{item.school}</Text>
+          </View>
+        </View>
+      </TouchableOpacity>
     </View>
   );
 
@@ -48,35 +51,31 @@ export default function LibrariesScreen({ navigation }) {
     <ImageBackground source={require('../assets/JungleBg.gif')} style={styles.backgroundImage}>
       <ScrollView contentContainerStyle={styles.scrollContainer} showsVerticalScrollIndicator={false}>
         <View>
-          <View style={styles.container}>
             <View style={styles.buttonContainer}>
-        
-                <TouchableOpacity
-                    style={styles.button}
-                    onPress={() => setFilter('created')}
-                >
-                    <Text style={styles.buttonText}>Created</Text>
-                </TouchableOpacity>
 
               <TouchableOpacity
                 style={styles.button}
                 onPress={() => setFilter('favorite')}
               >
-                <Text style={styles.buttonText}>Favorite</Text>
+                <Text style={styles.buttonText}>Favorites</Text>
               </TouchableOpacity>
+
               <TouchableOpacity
-                    style={styles.button}
+                    style={styles.button1}
                     onPress={() => setFilter('My GroveCards')}
                 >
                     <Text style={styles.buttonText}>My GroveCards</Text>
                 </TouchableOpacity>
             </View>
           </View>
+
+          <View style={styles.flcontainer}>
           <FlatList style={styles.flatlist} showsVerticalScrollIndicator={false}
             data={filterhandler()}
             renderItem={renderItem}
             />
-        </View>
+          </View>
+
       </ScrollView>
     </ImageBackground>
   );
@@ -92,11 +91,10 @@ const styles = StyleSheet.create({
         flexGrow: 1,
         backgroundColor: 'rgba(0, 0, 0, 0)', 
         alignItems: 'center',
-        justifyContent: 'center',
     },
     container: {
         flex: 1,
-        alignItems: 'flex-start',
+        alignItems: 'center',
         justifyContent: 'flex-start',
         padding: 10,
     },
@@ -104,23 +102,53 @@ const styles = StyleSheet.create({
         flexDirection: 'row',
         marginTop: 10,
         justifyContent: 'center', 
+        margin: 10
       },
-      button: {
-        backgroundColor: '#ECE3CE',
-        paddingVertical: 15,
-        paddingHorizontal: 30,
-        borderRadius: 5,
-        margin: 10,
+    button: {
+      backgroundColor: '#ECE3CE',
+      paddingVertical: 10,
+      paddingHorizontal: 30,
+      borderRadius: 16,
+      margin: 10,
+      shadowOffset: {
+        width: 0,
+        height: 2,
+      },
+      shadowOpacity: 0.25,
+      shadowRadius: 3.84,
+      elevation: 5,
+    },
+    button1: {
+      backgroundColor: '#ECE3CE',
+      paddingVertical: 10,
+      paddingHorizontal: 30,
+      borderRadius: 16,
+      margin: 10,
+      shadowOffset: {
+        width: 0,
+        height: 2,
+      },
+      shadowOpacity: 0.25,
+      shadowRadius: 3.84,
+      elevation: 5,
     },
     buttonText: {
-        fontSize: 16,
+        fontSize: 14,
         fontWeight: 'bold',
+        color: '#4F6F52',
+        fontFamily: 'monospace'
+    },
+    buttonText: {
+        fontSize: 14,
+        fontWeight: 'bold',
+        color: '#4F6F52',
+        fontFamily: 'monospace'
     },
     deckContainer: {
-        width: ITEM_WIDTH,
+        width: '100%',
         height: 170, // Set height equal to width
         marginHorizontal: 8, // Adjust margin as needed
-        borderRadius: 8,
+        borderRadius: 12,
         backgroundColor: '#ECE3CE',
         shadowColor: '#000',
         shadowOffset: {
@@ -131,13 +159,12 @@ const styles = StyleSheet.create({
         shadowRadius: 3.84,
         elevation: 5,
     },
-    flash: {
-        width: 200,
-        height: 170,
+      flash: {
+        width: '90%', // Set the width to fill the container
+        height: '100%', // Set the height to fill the container
         position: 'absolute',
-        flex: 1,
-        left: 50, 
-        alignContent: 'flex-end'
+        left: 50,
+        alignContent: 'flex-end',
       },
       info: {
         flex: 1,
@@ -150,7 +177,8 @@ const styles = StyleSheet.create({
         padding: 10,
         top: 70,
         left: 0,
-        position: 'absolute'
+        position: 'absolute',
+        width: 200,
       },
       infotext: {
         fontSize: 20,
@@ -163,9 +191,20 @@ const styles = StyleSheet.create({
       },
       filterc: {
         padding: 10,
+        alignItems: 'center',
       },
       flatlist: {
         width: 300,
-        paddingBottom: 150
-      }
+        paddingBottom: 150,
+    
+      },
+      flcontainer:{
+        alignItems: 'center'
+      },
+      imageContainer: {
+        width: '100%',
+        height: '100%',
+        borderRadius: 8, // or your desired border radius
+        overflow: 'hidden',
+      },
 });
