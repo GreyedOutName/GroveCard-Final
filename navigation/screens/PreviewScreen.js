@@ -6,6 +6,7 @@ import { ITEM_WIDTH } from '../code/carouselCardItem';
 import { currentUser } from '../code/creatorData';
 
 
+
 export const getWidth = Dimensions.get('window').width + 8
 export const iwidth = Math.round(getWidth*0.7)
 
@@ -86,7 +87,10 @@ export default function PreviewScreen({ navigation }) {
     <View style={styles.viewPadding}>
       <TouchableOpacity style={styles.deckContainer} onPress={() => setSelectedCard(item)}>
           <View style={styles.info2}>
-            <Text style={styles.infotext2}>{item.frontContent}</Text>
+            <Text style={styles.infotext2}>
+              {item.frontContent.length > 50? 
+              item.frontContent.replace(/^(.{1,50})\s/, '$1\n'): item.frontContent}
+              </Text>
           </View>
       </TouchableOpacity>
     </View>
@@ -96,7 +100,10 @@ export default function PreviewScreen({ navigation }) {
     <View style={styles.viewPadding}>
       <TouchableOpacity style={styles.deckContainer} onPress={() => setSelectedCard(item)}>
           <View style={styles.info2}>
-            <Text style={styles.infotext2}>{item.backContent}</Text>
+            <Text style={styles.infotext2}>
+            {item.backContent.length > 50? 
+            item.backContent.replace(/^(.{1,50})\s/, '$1\n') : item.backContent}
+              </Text>
           </View>
       </TouchableOpacity>
     </View>
@@ -181,9 +188,10 @@ export default function PreviewScreen({ navigation }) {
               <Text style={styles.buttonText2}>Delete</Text>
               </TouchableOpacity>
 
-              <TouchableOpacity style={styles.playbtn} onPress={()=>navigation.navigate('Play Screen')}>
-                <Text style={styles.play}>Play</Text>
+              <TouchableOpacity onPress={() => navigation.navigate('Play Screen')}>
+                <Image source={require('../assets/play.webp')} style={{ width: 40, height: 40 }} />
               </TouchableOpacity>
+
 
         </View> 
 
@@ -268,6 +276,7 @@ const styles = StyleSheet.create({
     fontSize: 15,
     fontWeight: 'bold',
     color: 'rgba(0, 173, 124, 0.65)',
+    left: -5,
   },
   viewPadding: {
     paddingBottom:10,
@@ -275,9 +284,9 @@ const styles = StyleSheet.create({
     
   }, 
   deckContainer: {
-    width: iwidth,
-    height: 170, // Set height equal to width
-    marginHorizontal: 8, // Adjust margin as needed
+    width: 190,
+    height: 170, 
+    marginHorizontal: 8, 
     borderRadius: 8,
     backgroundColor: '#00AD7C',
     shadowColor: '#000',
