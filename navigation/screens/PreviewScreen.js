@@ -1,45 +1,93 @@
-import React, { useEffect } from 'react';
-import { FlatList, Image, View, StyleSheet, Text, TouchableOpacity, ScrollView, Dimensions, Modal, TextInput } from 'react-native';
-import { decks } from '../code/data';
+import React, { useEffect ,useState} from 'react';
+import { FlatList, Image, View, StyleSheet, Text, TouchableOpacity, ScrollView, Dimensions, Modal, TextInput,SafeAreaView} from 'react-native';
+import { calenderContent, decks } from '../code/data';
 import { selectedDeck } from '../code/data';
 import { ITEM_WIDTH } from '../code/carouselCardItem';
+import { currentUser } from '../code/creatorData';
 
 
 export const getWidth = Dimensions.get('window').width + 8
 export const iwidth = Math.round(getWidth*0.7)
 
 export default function PreviewScreen({ navigation }) {
-  const [selectedCard,setSelectedCard]=React.useState();
-  const [newQuestion,setNewQuestion]=React.useState();
-  const [newAnswer,setNewAnswer]=React.useState();
-  const [isModalVisibleFlashcard, setIsModalVisibleFlashcard] = React.useState(false);
-
-  
+  const [selectedCard,setSelectedCard]=useState('');
+  const [newQuestion,setNewQuestion]=useState('');
+  const [newAnswer,setNewAnswer]=useState('');
+  const [isModalVisibleFlashcard, setIsModalVisibleFlashcard] = useState(false);
+  const [isFavorite, setIsFavorite] = useState(selectedDeck.favorite==='yes');
 
   const handleDeleteCard=()=>{
-    index=selectedDeck.flashcards.indexOf(selectedCard);
-    selectedDeck.flashcards.splice(index,1);
-    alert('TEST')
+    if(selectedDeck.author===currentUser.uname){
+      index=selectedDeck.flashcards.indexOf(selectedCard);
+      selectedDeck.flashcards.splice(index,1);
+    }
+    else{
+      alert('Cannot modify, as you are not the author of this GroveCard')
+    }
   }
   const handleEditCard=()=>{
-    selectedCard.frontContent=newQuestion;
-    selectedCard.backContent=newAnswer;
-    toggleModalFlashcard();
+      selectedCard.frontContent=newQuestion;
+      selectedCard.backContent=newAnswer;
+      toggleModalFlashcard();
+  }
+  const handleAddCard=()=>{
+    if(selectedDeck.author===currentUser.uname){
+      navigation.navigate('Add Card')
+    }
+    else{
+      alert('Cannot modify, as you are not the author of this GroveCard')
+    }
   }
   const toggleModalFlashcard = () => {
-    setIsModalVisibleFlashcard(!isModalVisibleFlashcard);
+    if(selectedDeck.author===currentUser.uname){
+      setIsModalVisibleFlashcard(!isModalVisibleFlashcard);
+    }
+    else{
+      alert('Cannot modify, as you are not the author of this GroveCard')
+    }
   };
+  const handleFavorite=()=>{
+    selectedDeck.favorite='yes';
+  }
+  const handleFavoriteToggle = () => {
+    setIsFavorite(!isFavorite);
+    handleFavorite();
+  };
+
+  //THIS WILL BE MOVED TO PLAY SCREEN
+  const handletemp=()=>{
+    var d = new Date();
+    var month = '' + (d.getMonth() + 1);
+    var day = '' + d.getDate();
+    var year = d.getFullYear();
+    if (month.length < 2) 
+          month = '0' + month;
+    if (day.length < 2) 
+          day = '0' + day;
+  
+    var formatdate=[year, month, day].join('-');
+    
+    if(Object.keys(calenderContent).includes(formatdate)){
+      let temp={text:'You completed deck '+selectedDeck.name+' at this date.'}
+      calenderContent[formatdate].push(temp);
+    }
+    else{
+      let temp={
+        [formatdate]:[{ text: 'You completed deck '+selectedDeck.name+' at this date.' }],
+      }
+  
+      Object.assign(calenderContent,temp);
+    }
+    navigation.navigate('Main');
+  }
   
 
   const renderQuestion = ({ item }) => (
     <View style={styles.viewPadding}>
       <TouchableOpacity style={styles.deckContainer} onPress={() => setSelectedCard(item)}>
-        <View style={styles.info}>
-          <Text style={styles.infotext}>{selectedDeck.name}</Text>
           <View style={styles.info2}>
             <Text style={styles.infotext2}>{item.frontContent}</Text>
           </View>
-        </View>
       </TouchableOpacity>
     </View>
   );
@@ -47,29 +95,43 @@ export default function PreviewScreen({ navigation }) {
   const renderAnswer = ({ item }) => (
     <View style={styles.viewPadding}>
       <TouchableOpacity style={styles.deckContainer} onPress={() => setSelectedCard(item)}>
-        <View style={styles.info}>
-          <Text style={styles.infotext}>{selectedDeck.name}</Text>
           <View style={styles.info2}>
             <Text style={styles.infotext2}>{item.backContent}</Text>
           </View>
-        </View>
       </TouchableOpacity>
     </View>
   );
 
     return(
       <ScrollView contentContainerStyle = {styles.scrollContainer} showsVerticalScrollIndicator={false}>
+        <View style={[styles.rectangleView, styles.shadow]}>
+                <TouchableOpacity style={styles.back} onPress={()=>handletemp()}>
+                    <Image style={styles.icon} source={require("../assets/back.png")}/>
+                </TouchableOpacity>
+                <Text style={styles.l1}>Add Cards</Text>
+        </View>
+
+        <SafeAreaView style={styles.PreviewContainer}>
+
         <View style={styles.container}>
           <Text style={styles.subtext}>{selectedDeck.course}</Text> 
           <Text style={styles.titletext}>{selectedDeck.name}</Text>
-          <Text style={styles.subtext2}>Flashcard</Text>
-          <TouchableOpacity style={{ paddingTop: 10, width: 100 }}>
-             <Text style={styles.buttonText}>Mark as Favorite</Text>
-            </TouchableOpacity>
+
+          <TouchableOpacity
+          style={styles.favoritebtn}
+          onPress={handleFavoriteToggle}>
+          <Image
+            source={require('../assets/star.png')}
+            style={[styles.logo, isFavorite && { tintColor: '#00AD7C' }]}
+          />
+          <Text style={styles.buttonText}>
+            {isFavorite ? 'Marked as Favorite' : 'Mark as Favorite'}
+          </Text>
+        </TouchableOpacity>
         </View>
 
         <View style={styles.alignedContainer}>
-              <TouchableOpacity style={styles.minibutton} onPress={()=>navigation.navigate('Add Card')}>
+              <TouchableOpacity style={styles.minibutton} onPress={()=>handleAddCard()}>
               <Text style={styles.buttonText2}>Add</Text>
               </TouchableOpacity>
 
@@ -119,13 +181,10 @@ export default function PreviewScreen({ navigation }) {
               <Text style={styles.buttonText2}>Delete</Text>
               </TouchableOpacity>
 
-              <TouchableOpacity style={styles.minibutton}>
-              <Text style={styles.buttonText2}>Play</Text>
+              <TouchableOpacity style={styles.playbtn} onPress={()=>navigation.navigate('Play Screen')}>
+                <Text style={styles.play}>Play</Text>
               </TouchableOpacity>
 
-              <TouchableOpacity style={styles.minibutton} onPress={()=>navigation.navigate('Main')}>
-              <Text style={styles.buttonText2}>Back</Text>
-              </TouchableOpacity>
         </View> 
 
         <View style = {styles.flowContainer}>
@@ -134,156 +193,245 @@ export default function PreviewScreen({ navigation }) {
            showsVerticalScrollIndicator={false}
            data={selectedDeck.flashcards}
            scrollEnabled={false}
-            renderItem={renderQuestion} //note: idk if there's an existing deck of cards but just replace the contents with em on 
+            renderItem={renderQuestion}
             />
             <FlatList 
            style={styles.flatlist} 
            showsVerticalScrollIndicator={false}
            scrollEnabled={false}
            data={selectedDeck.flashcards}
-            renderItem={renderAnswer} //note: idk if there's an existing deck of cards but just replace the contents with em on 
+            renderItem={renderAnswer} 
             />
         </View>
+        </SafeAreaView>
       </ScrollView>
-          
     );
 }
 
 const styles = StyleSheet.create({ 
-
-    scrollContainer:{
-        backgroundColor: '#ECE3CE',
-        paddingTop: 20,
-    },
-    container: {
-        justifyContent: 'space-evenly',
-        padding: 30,
-    },
-    flatlist: {
-        paddingBottom: 100,
-      },
-    button: {
-        paddingVertical: 15,
-        paddingHorizontal: 20,
-        borderRadius: 5,
-        margin: 10,
-    },
-    minibutton: {
-      paddingVertical: 15,
-      paddingHorizontal: 10,
-      borderRadius: 3,
-      margin: 3,
+  PreviewContainer:{
+      flex: 1,
   },
-    buttonText: {
-      fontSize: 25,
-      fontWeight: 'bold',
-      color: '#white',
-      backgroundColor: 'rgba(79, 111, 82, 0.7)',
-      width: 200,
+  scrollContainer:{
+      backgroundColor: '#ECE3CE',
+      paddingTop: 50,
+  },
+  container: {
+      justifyContent: 'space-evenly',
+      padding: 30,
+      marginTop: 30,
+     
+  },
+  flatlist: {
+      paddingBottom: 150
     },
-    buttonText2: {
-      fontSize: 15,
-      fontWeight: 'bold',
-      color: '#526D84',
-    },
-    viewPadding: {
-      padding: 10,
-    }, 
-    deckContainer: {
-      width: iwidth,
-      height: 170, // Set height equal to width
-      marginHorizontal: 8, // Adjust margin as needed
-      borderRadius: 0,
-      backgroundColor: '#52D681',
-      shadowColor: '#000',
-      shadowOffset: {
-        width: 0,
-        height: 2,
-      },
-      shadowOpacity: 0.25,
-      shadowRadius: 3.84,
-      elevation: 5,
-    },
-    info: {
-      flex: 1,
-      padding: 10,
-      top: 5,
-      position: 'absolute'
-    },
-    info2: {
-      flex: 1,
-      padding: 10,
-      top: 70,
-      left: 0,
-      position: 'absolute'
-    },
-    infotext: {
-      fontSize: 18,
-      color: '#4F6F52',
-    },
-    infotext2: {
-      fontSize: 12,
-      color: '#4F6F52',
-    },
-    subtext: {
-      fontSize: 20,
-      color: '#4F6F52',
-    },
-    subtext2: {
-      fontSize: 25,
-      color: '#4F6F52',
-    },
-    titletext: {
-      fontSize: 40,
-      fontWeight: 'bold',
-      color: '#4F6F52',
-    },
-    flowContainer:{
-      flexDirection: 'row', 
-      alignContent: 'center',
-      paddingBottom: 10,
-      width: 400,
-      borderRadius: 0,
-    },
-    alignedContainer:{
-      flexDirection: 'row', 
-      alignContent: 'flex-end',
-      justifyContent: 'flex-end',
-    },
-    modalContainer: {
-      flex: 1,
-      justifyContent: 'center',
-      alignItems: 'center',
-      backgroundColor: 'rgba(0, 0, 0, 0.5)',
-    },
-    modalContent: {
-      backgroundColor: 'white',
-      padding: 20,
-      borderRadius: 10,
-      width: '80%',
-    },
-    modalTitle: {
-      fontSize: 20,
-      fontWeight: 'bold',
-      marginBottom: 10,
-    },
-    modalInput: {
-      height: 40,
-      borderColor: 'gray',
-      borderWidth: 1,
-      marginBottom: 10,
-      paddingLeft: 10,
-    },
-    modalButton: {
-      backgroundColor: 'green',
-      padding: 10,
+  button: {
+      paddingVertical: 15,
+      paddingHorizontal: 20,
       borderRadius: 5,
-      marginTop: 10,
-      alignItems: 'center',
-    },
-    modalButtonText: {
-      color: 'white',
-      fontSize: 16,
-    },
-})
+      margin: 10,
+  },
+  minibutton: {
+    paddingVertical: 15,
+    paddingHorizontal: 10,
+    borderRadius: 3,
+    margin: 3,
+    top: 10,
+  },
+  playbtn: {
+    width: 100,
+    height: 50,
+    borderRadius: 16,
+    borderWidth: 5,
+    alignItems: 'center',
+    justifyContent: 'center',
+    borderColor: '#00AD7C',
 
+  },
+  play:{
+    fontSize: 16,
+    fontWeight: 'bold',
+    color: "#00ad7c",
+    textAlign: "left",
+    display: "flex",
+    alignItems: "center",
+  },
+  buttonText: {
+    fontSize: 16,
+    color: "#00ad7c",
+    textAlign: "left",
+    display: "flex",
+    alignItems: "center",
+    left: 10,
+  },
+  buttonText2: {
+    fontSize: 15,
+    fontWeight: 'bold',
+    color: 'rgba(0, 173, 124, 0.65)',
+  },
+  viewPadding: {
+    paddingBottom:10,
+  
+    
+  }, 
+  deckContainer: {
+    width: iwidth,
+    height: 170, // Set height equal to width
+    marginHorizontal: 8, // Adjust margin as needed
+    borderRadius: 8,
+    backgroundColor: '#00AD7C',
+    shadowColor: '#000',
+    justifyContent: 'center',
+    shadowOffset: {
+      width: 0,
+      height: 2,
+    },
+    shadowOpacity: 0.25,
+    shadowRadius: 3.84,
+    elevation: 5,
+  },
+  info: {
+    flex: 1,
+    padding: 10,
+    top: 5,
+    position: 'absolute',
+
+  },
+  info2: {
+    flex: 1,
+    padding: 10, 
+    width: '60%',
+    position: 'absolute',
+    justifyContent: 'center',
+    marginRight: 10,
+    marginLeft: 8,
+  },
+  infotext: {
+    fontSize: 16,
+    fontWeight: 'bold',
+    color: '#3A4D39',
+    
+  },
+  infotext2: {
+    fontSize: 14,
+    fontWeight: 'bold',
+    color: '#ECE3CE',
+    textShadowColor: 'rgba(0, 0, 0, 0.75)',
+    textShadowOffset: {width: -1, height: 1},
+    textShadowRadius: 10,
+    fontFamily: 'monospace',
+  },
+  subtext: {
+    fontSize: 16,
+    color: "#4f6f52",
+    textAlign: "left",
+    display: "flex",
+    alignItems: "center",
+    width: 'auto',
+    height: 30,
+  },
+  titletext: {
+    fontSize: 32,
+    lineHeight: 32,
+    fontWeight: "600",
+    color: "#1f271e",
+    textAlign: "left",
+    alignItems: "center",
+    width: 'auto',
+  },
+  flowContainer:{
+    flexDirection: 'row', 
+    alignContent: 'center',
+    marginTop: 20,
+    paddingBottom: 10,
+    
+    
+  },
+  alignedContainer:{
+    flexDirection: 'row', 
+    alignContent: 'flex-end',
+    justifyContent: 'flex-end',
+    alignItems: 'flex-end',
+    marginRight: 20,
+  },
+  modalContainer: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+    backgroundColor: 'rgba(0, 0, 0, 0.5)',
+  },
+  modalContent: {
+    backgroundColor: 'white',
+    padding: 20,
+    borderRadius: 10,
+    width: '80%',
+  },
+  modalTitle: {
+    fontSize: 20,
+    fontWeight: 'bold',
+    marginBottom: 10,
+  },
+  modalInput: {
+    height: 40,
+    borderColor: 'gray',
+    borderWidth: 1,
+    marginBottom: 10,
+    paddingLeft: 10,
+  },
+  modalButton: {
+    backgroundColor: 'green',
+    padding: 10,
+    borderRadius: 5,
+    marginTop: 10,
+    alignItems: 'center',
+  },
+  modalButtonText: {
+    color: 'white',
+    fontSize: 16,
+  },
+  favoritebtn:{
+    marginTop: 10,
+    flexDirection: 'row',
+    alignItems: 'center',
+    height: 'auto',
+    width: '60%',
+  },
+  logo:{
+    width: 20,
+    height: 20,
+  },
+  rectangleView: {
+    backgroundColor: "#ece3ce",
+    borderStyle: "solid",
+    borderColor: "rgba(31, 39, 30, 0)",
+    borderBottomWidth: 1,
+    width: "100%",
+    height: 90,
+    paddingTop: 40,
+    padding: 15,
+    flexDirection: 'row',
+    position: 'absolute', 
+    top: 0, 
+    zIndex: 1,
+    shadowColor: '#7F5F0',
+    shadowOffset: {
+      width: 0,
+      height: 10,
+    },
+    shadowOpacity: 0.25,
+    shadowRadius: 3.5,
+    elevation: 5,
+   },
+  back: {
+    height: 50,
+    marginRight: 20,
+  },
+  icon: {
+    height: 37,
+    width: 25,
+  },
+  l1: {
+    fontSize: 22,
+    color: '#00AD7C',
+  },
+})

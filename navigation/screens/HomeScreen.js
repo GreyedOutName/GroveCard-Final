@@ -37,6 +37,8 @@ const App = ({ navigation }) => {
   const handleCategoryPress = (category) => {
     navigation.navigate('Search Screen');
     setSearchText(category)};
+  
+  const maxLines = 3;
 
   return (
     <ImageBackground source={require('../assets/JungleBg.gif')} style={styles.backgroundImage}>
@@ -72,8 +74,10 @@ const App = ({ navigation }) => {
                         <TouchableOpacity onPress={() => handleDeckPress(item)}style={styles.deckContainer}>
                             <Image style={styles.flash} source={require('../assets/flashcard.png')} />
                             <View style={styles.info}> 
-                            <Text style={[styles.infotext, { flexWrap: item.name.length > 15 ? 'wrap' : 'nowrap' },]}>
-                              {item.name}
+                            <Text style={{ fontSize: item.name.length > 15 ? 16 : 18, fontWeight: 'bold', color: '#4F6F52', top: 5 }}>
+                              {item.name.length > 15
+                                ? item.name.replace(/^(.{1,15})\s/, '$1\n')
+                                : item.name}
                             </Text>
                               <View style={styles.info2}>
                                 <Text style={styles.infotext2}>{item.author}</Text>
@@ -103,9 +107,11 @@ const App = ({ navigation }) => {
                       <TouchableOpacity onPress={()=> handleDeckPress(item)}style={styles.deckContainer}>
                         <Image style={styles.flash} source={require('../assets/flashcard.png')} />
                         <View style={styles.info}> 
-                        <Text style={[styles.infotext, { flexWrap: item.name.length > 15 ? 'wrap' : 'nowrap' },]}>
-                          {item.name}
-                        </Text>
+                        <Text style={{ fontSize: item.name.length > 15 ? 16 : 18, fontWeight: 'bold', color: '#4F6F52', top: 5 }}>
+                              {item.name.length > 15
+                                ? item.name.replace(/^(.{1,15})\s/, '$1\n')
+                                : item.name}
+                            </Text>
                           <View style={styles.info2}>
                             <Text style={styles.infotext2}>{item.author}</Text>
                             <Text style={styles.infotext2}>{item.code}</Text>
@@ -134,9 +140,11 @@ const App = ({ navigation }) => {
                       <TouchableOpacity onPress={() => handleDeckPress(item)}style={styles.deckContainer}>
                         <Image style={styles.flash} source={require('../assets/flashcard.png')} />
                         <View style={styles.info}> 
-                        <Text style={[styles.infotext, { flexWrap: item.name.length > 15 ? 'wrap' : 'nowrap' },]}>
-                          {item.name}
-                        </Text>
+                        <Text style={{ fontSize: item.name.length > 15 ? 16 : 18, fontWeight: 'bold', color: '#4F6F52', top: 5 }}>
+                              {item.name.length > 15
+                                ? item.name.replace(/^(.{1,15})\s/, '$1\n')
+                                : item.name}
+                            </Text>
                           <View style={styles.info2}>
                             <Text style={styles.infotext2}>{item.author}</Text>
                             <Text style={styles.infotext2}>{item.code}</Text>
@@ -165,9 +173,11 @@ const App = ({ navigation }) => {
                       <TouchableOpacity onPress={() => handleDeckPress(item)}style={styles.deckContainer}>
                         <Image style={styles.flash} source={require('../assets/flashcard.png')} />
                         <View style={styles.info}> 
-                        <Text style={[styles.infotext, { flexWrap: item.name.length > 15 ? 'wrap' : 'nowrap' },]} numberOfLines={item.name.length > 15 ? 2 : 1}>
-                          {item.name}
-                        </Text>
+                        <Text style={{ fontSize: item.name.length > 15 ? 16 : 18, fontWeight: 'bold', color: '#4F6F52', top: 5 }}>
+                              {item.name.length > 15
+                                ? item.name.replace(/^(.{1,15})\s/, '$1\n')
+                                : item.name}
+                            </Text>
                           <View style={styles.info2}>
                             <Text style={styles.infotext2}>{item.author}</Text>
                             <Text style={styles.infotext2}>{item.code}</Text>
@@ -196,9 +206,11 @@ const App = ({ navigation }) => {
                       <TouchableOpacity onPress={() => handleDeckPress(item)}style={styles.deckContainer}>
                         <Image style={styles.flash} source={require('../assets/flashcard.png')} />
                         <View style={styles.info}> 
-                        <Text style={[styles.infotext, { flexWrap: item.name.length > 15 ? 'wrap' : 'nowrap' },]}>
-                          {item.name}
-                        </Text>
+                        <Text style={{ fontSize: item.name.length > 15 ? 16 : 18, fontWeight: 'bold', color: '#4F6F52', top: 5 }}>
+                              {item.name.length > 15
+                                ? item.name.replace(/^(.{1,15})\s/, '$1\n')
+                                : item.name}
+                            </Text>
                           <View style={styles.info2}>
                             <Text style={styles.infotext2}>{item.author}</Text>
                             <Text style={styles.infotext2}>{item.code}</Text>
@@ -227,9 +239,11 @@ const App = ({ navigation }) => {
                       <TouchableOpacity onPress={() => handleDeckPress(item)}style={styles.deckContainer}>
                         <Image style={styles.flash} source={require('../assets/flashcard.png')} />
                         <View style={styles.info}> 
-                        <Text style={[styles.infotext, { flexWrap: item.name.length > 15 ? 'wrap' : 'nowrap' },]}>
-                          {item.name}
-                        </Text>
+                        <Text style={{ fontSize: item.name.length > 15 ? 16 : 18, fontWeight: 'bold', color: '#4F6F52', top: 5 }}>
+                              {item.name.length > 15
+                                ? item.name.replace(/^(.{1,15})\s/, '$1\n')
+                                : item.name}
+                            </Text>
                           <View style={styles.info2}>
                             <Text style={styles.infotext2}>{item.author}</Text>
                             <Text style={styles.infotext2}>{item.code}</Text>
@@ -258,9 +272,11 @@ const App = ({ navigation }) => {
                       <TouchableOpacity onPress={() => handleDeckPress(item)}style={styles.deckContainer}>
                         <Image style={styles.flash} source={require('../assets/flashcard.png')} />
                         <View style={styles.info}> 
-                        <Text style={[styles.infotext, { flexWrap: item.name.length > 15 ? 'wrap' : 'nowrap' },]}>
-                          {item.name}
-                        </Text>
+                        <Text style={{ fontSize: item.name.length > 15 ? 16 : 18, fontWeight: 'bold', color: '#4F6F52', top: 5 }}>
+                              {item.name.length > 15
+                                ? item.name.replace(/^(.{1,15})\s/, '$1\n')
+                                : item.name}
+                            </Text>
                           <View style={styles.info2}>
                             <Text style={styles.infotext2}>{item.author}</Text>
                             <Text style={styles.infotext2}>{item.code}</Text>
@@ -289,9 +305,11 @@ const App = ({ navigation }) => {
                       <TouchableOpacity onPress={() => handleDeckPress(item)}style={styles.deckContainer}>
                         <Image style={styles.flash} source={require('../assets/flashcard.png')} />
                         <View style={styles.info}> 
-                        <Text style={[styles.infotext, { flexWrap: item.name.length > 15 ? 'wrap' : 'nowrap' },]}>
-                          {item.name}
-                        </Text>
+                        <Text style={{ fontSize: item.name.length > 15 ? 16 : 18, fontWeight: 'bold', color: '#4F6F52', top: 5 }}>
+                              {item.name.length > 15
+                                ? item.name.replace(/^(.{1,15})\s/, '$1\n')
+                                : item.name}
+                            </Text>
                           <View style={styles.info2}>
                             <Text style={styles.infotext2}>{item.author}</Text>
                             <Text style={styles.infotext2}>{item.code}</Text>
@@ -320,9 +338,11 @@ const App = ({ navigation }) => {
                       <TouchableOpacity onPress={() => handleDeckPress(item)}style={styles.deckContainer}>
                         <Image style={styles.flash} source={require('../assets/flashcard.png')} />
                         <View style={styles.info}> 
-                        <Text style={[styles.infotext, { flexWrap: item.name.length > 15 ? 'wrap' : 'nowrap' },]}>
-                          {item.name}
-                        </Text>
+                        <Text style={{ fontSize: item.name.length > 15 ? 16 : 18, fontWeight: 'bold', color: '#4F6F52', top: 5 }}>
+                              {item.name.length > 15
+                                ? item.name.replace(/^(.{1,15})\s/, '$1\n')
+                                : item.name}
+                            </Text>
                           <View style={styles.info2}>
                             <Text style={styles.infotext2}>{item.author}</Text>
                             <Text style={styles.infotext2}>{item.code}</Text>
@@ -351,9 +371,11 @@ const App = ({ navigation }) => {
                       <TouchableOpacity onPress={() => handleDeckPress(item)}style={styles.deckContainer}>
                         <Image style={styles.flash} source={require('../assets/flashcard.png')} />
                         <View style={styles.info}> 
-                        <Text style={[styles.infotext, { flexWrap: item.name.length > 15 ? 'wrap' : 'nowrap' },]}>
-                          {item.name}
-                        </Text>
+                        <Text style={{ fontSize: item.name.length > 15 ? 16 : 18, fontWeight: 'bold', color: '#4F6F52', top: 5 }}>
+                              {item.name.length > 15
+                                ? item.name.replace(/^(.{1,15})\s/, '$1\n')
+                                : item.name}
+                            </Text>
                           <View style={styles.info2}>
                             <Text style={styles.infotext2}>{item.author}</Text>
                             <Text style={styles.infotext2}>{item.code}</Text>
@@ -530,7 +552,7 @@ const styles = StyleSheet.create({
   info2: {
     flex: 1,
     padding: 10,
-    top: 70,
+    top: 80,
     left: 0,
     position: 'absolute',
     width: 200,
