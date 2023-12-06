@@ -48,7 +48,7 @@ export default function ProfileScreen({ navigation }) {
             <Image source={require('../assets/Logo.png')} style={styles.logo} resizeMode="center" />
             <View style={styles.profileInfo}>
               <View style={styles.usernamebg}>
-                <Text style={styles.Username}>{currentUser.uname}</Text>
+                <Text style={styles.Username}>@{currentUser.uname}</Text>
               </View>
               <Text style={styles.uni}>University of the East</Text>
               <Text style={styles.course}>BS Computer Science</Text>

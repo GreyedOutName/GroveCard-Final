@@ -70,7 +70,7 @@ const App = ({ navigation }) => {
                             <View style={styles.info}> 
                               <Text style={styles.infotext}>{item.name}</Text>
                               <View style={styles.info2}>
-                                <Text style={styles.infotext2}>{item.author}</Text>
+                                <Text style={styles.infotext2}>@{item.author}</Text>
                                 <Text style={styles.infotext2}>{item.code}</Text>
                                 <Text style={styles.infotext2}>{item.course}</Text>
                                 <Text style={styles.infotext2}>{item.school}</Text>
@@ -99,7 +99,7 @@ const App = ({ navigation }) => {
                             <View style={styles.info}> 
                               <Text style={styles.infotext}>{item.name}</Text>
                               <View style={styles.info2}>
-                                <Text style={styles.infotext2}>{item.author}</Text>
+                                <Text style={styles.infotext2}>@{item.author}</Text>
                                 <Text style={styles.infotext2}>{item.code}</Text>
                                 <Text style={styles.infotext2}>{item.course}</Text>
                                 <Text style={styles.infotext2}>{item.school}</Text>
@@ -128,7 +128,7 @@ const App = ({ navigation }) => {
                             <View style={styles.info}> 
                               <Text style={styles.infotext}>{item.name}</Text>
                               <View style={styles.info2}>
-                                <Text style={styles.infotext2}>{item.author}</Text>
+                                <Text style={styles.infotext2}>@{item.author}</Text>
                                 <Text style={styles.infotext2}>{item.code}</Text>
                                 <Text style={styles.infotext2}>{item.course}</Text>
                                 <Text style={styles.infotext2}>{item.school}</Text>
@@ -157,7 +157,7 @@ const App = ({ navigation }) => {
                         <View style={styles.info}> 
                           <Text style={styles.infotext}>{item.name}</Text>
                           <View style={styles.info2}>
-                            <Text style={styles.infotext2}>{item.author}</Text>
+                            <Text style={styles.infotext2}>@{item.author}</Text>
                             <Text style={styles.infotext2}>{item.code}</Text>
                             <Text style={styles.infotext2}>{item.course}</Text>
                             <Text style={styles.infotext2}>{item.school}</Text>
@@ -186,7 +186,7 @@ const App = ({ navigation }) => {
                         <View style={styles.info}> 
                           <Text style={styles.infotext}>{item.name}</Text>
                           <View style={styles.info2}>
-                            <Text style={styles.infotext2}>{item.author}</Text>
+                            <Text style={styles.infotext2}>@{item.author}</Text>
                             <Text style={styles.infotext2}>{item.code}</Text>
                             <Text style={styles.infotext2}>{item.course}</Text>
                             <Text style={styles.infotext2}>{item.school}</Text>
@@ -215,7 +215,7 @@ const App = ({ navigation }) => {
                         <View style={styles.info}> 
                           <Text style={styles.infotext}>{item.name}</Text>
                           <View style={styles.info2}>
-                            <Text style={styles.infotext2}>{item.author}</Text>
+                            <Text style={styles.infotext2}>@{item.author}</Text>
                             <Text style={styles.infotext2}>{item.code}</Text>
                             <Text style={styles.infotext2}>{item.course}</Text>
                             <Text style={styles.infotext2}>{item.school}</Text>
@@ -244,7 +244,7 @@ const App = ({ navigation }) => {
                         <View style={styles.info}> 
                           <Text style={styles.infotext}>{item.name}</Text>
                           <View style={styles.info2}>
-                            <Text style={styles.infotext2}>{item.author}</Text>
+                            <Text style={styles.infotext2}>@{item.author}</Text>
                             <Text style={styles.infotext2}>{item.code}</Text>
                             <Text style={styles.infotext2}>{item.course}</Text>
                             <Text style={styles.infotext2}>{item.school}</Text>
@@ -273,7 +273,7 @@ const App = ({ navigation }) => {
                         <View style={styles.info}> 
                           <Text style={styles.infotext}>{item.name}</Text>
                           <View style={styles.info2}>
-                            <Text style={styles.infotext2}>{item.author}</Text>
+                            <Text style={styles.infotext2}>@{item.author}</Text>
                             <Text style={styles.infotext2}>{item.code}</Text>
                             <Text style={styles.infotext2}>{item.course}</Text>
                             <Text style={styles.infotext2}>{item.school}</Text>
@@ -302,7 +302,7 @@ const App = ({ navigation }) => {
                         <View style={styles.info}> 
                           <Text style={styles.infotext}>{item.name}</Text>
                           <View style={styles.info2}>
-                            <Text style={styles.infotext2}>{item.author}</Text>
+                            <Text style={styles.infotext2}>@{item.author}</Text>
                             <Text style={styles.infotext2}>{item.code}</Text>
                             <Text style={styles.infotext2}>{item.course}</Text>
                             <Text style={styles.infotext2}>{item.school}</Text>
@@ -331,7 +331,7 @@ const App = ({ navigation }) => {
                         <View style={styles.info}> 
                           <Text style={styles.infotext}>{item.name}</Text>
                           <View style={styles.info2}>
-                            <Text style={styles.infotext2}>{item.author}</Text>
+                            <Text style={styles.infotext2}>@{item.author}</Text>
                             <Text style={styles.infotext2}>{item.code}</Text>
                             <Text style={styles.infotext2}>{item.course}</Text>
                             <Text style={styles.infotext2}>{item.school}</Text>
@@ -360,7 +360,7 @@ const App = ({ navigation }) => {
                         <View style={styles.info}> 
                           <Text style={styles.infotext}>{item.name}</Text>
                           <View style={styles.info2}>
-                            <Text style={styles.infotext2}>{item.author}</Text>
+                            <Text style={styles.infotext2}>@{item.author}</Text>
                             <Text style={styles.infotext2}>{item.code}</Text>
                             <Text style={styles.infotext2}>{item.course}</Text>
                             <Text style={styles.infotext2}>{item.school}</Text>
@@ -389,7 +389,7 @@ const App = ({ navigation }) => {
                         <View style={styles.info}> 
                           <Text style={styles.infotext}>{item.name}</Text>
                           <View style={styles.info2}>
-                            <Text style={styles.infotext2}>{item.author}</Text>
+                            <Text style={styles.infotext2}>@{item.author}</Text>
                             <Text style={styles.infotext2}>{item.code}</Text>
                             <Text style={styles.infotext2}>{item.course}</Text>
                             <Text style={styles.infotext2}>{item.school}</Text>
@@ -521,7 +521,7 @@ const styles = StyleSheet.create({
     paddingBottom: 8, // Adjust as needed
   },
   deckContainer: {
-    width: ITEM_WIDTH,
+    width: 'auto',
     height: 170, // Set height equal to width
     marginHorizontal: 8, // Adjust margin as needed
     backgroundColor: '#ECE3CE',
