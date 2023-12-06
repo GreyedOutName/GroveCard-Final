@@ -25,9 +25,16 @@ export default function Search() {
   };
 
   const filterDecks = (query) => {
-    const filteredDecks = decks.filter((deck) =>
-      deck.name.toLowerCase().includes(query.toLowerCase())
-    );
+    const filteredDecks = decks.filter((deck) => {
+      const normalizedQuery = query.toLowerCase();
+      const isNameMatch = deck.name.toLowerCase().includes(normalizedQuery);
+      const isAuthorMatch = deck.author.toLowerCase().includes(normalizedQuery);
+      const isCodeMatch = deck.code.toLowerCase().includes(normalizedQuery);
+      const isCourseMatch = deck.course.toLowerCase().includes(normalizedQuery);
+      const isSchoolMatch = deck.school.toLowerCase().includes(normalizedQuery);
+  
+      return isNameMatch || isAuthorMatch || isCodeMatch || isCourseMatch || isSchoolMatch;
+    });
     setSearchResults(filteredDecks);
   };
 

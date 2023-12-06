@@ -9,6 +9,7 @@ import {
   Image,
   FlatList,
 } from 'react-native';
+import { useNavigation } from '@react-navigation/native';
 
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
@@ -22,8 +23,6 @@ import { setSelectedDeck } from '../code/data';
 import Flashcard from '../code/flashcards';
 import CarouselCards from '../code/carouselCards';
 import ViewScreen from './PreviewScreen';
-import { setSearchText } from './SearchScreen';
-import { currentUser } from '../code/creatorData';
 
 
 const App = ({ navigation }) => {
@@ -34,6 +33,12 @@ const App = ({ navigation }) => {
     setSelectedDeck(deck);
     navigation.replace("View Screen")
   };
+
+  const handleCategoryPress = (category) => {
+    navigation.navigate('Search Screen');
+    setSearchText(category)};
+  
+  const maxLines = 3;
 
   return (
     <ImageBackground source={require('../assets/JungleBg.gif')} style={styles.backgroundImage}>
@@ -57,37 +62,9 @@ const App = ({ navigation }) => {
             <Image style={styles.homechar} source={require('../assets/home_char.png')} />
 
           </View>
-          <View style={styles.flashcardcontainer} id='added'>
-                <Text style={[styles.l3]} >Recently Added</Text>
-                  <View style={[styles.carouselContainer]}>
-                    <Carousel
-                      layout="default"
-                      ref={isCarousel}
-                      data={decks.filter((deck) => deck.created === 'yes')}
-                      renderItem={({ item }) => (
-                        <TouchableOpacity onPress={() => handleDeckPress(item)}style={styles.deckContainer}>
-                            <Image style={styles.flash} source={require('../assets/flashcard.png')} />
-                            <View style={styles.info}> 
-                              <Text style={styles.infotext}>{item.name}</Text>
-                              <View style={styles.info2}>
-                                <Text style={styles.infotext2}>@{item.author}</Text>
-                                <Text style={styles.infotext2}>{item.code}</Text>
-                                <Text style={styles.infotext2}>{item.course}</Text>
-                                <Text style={styles.infotext2}>{item.school}</Text>
-                                </View>
-                            </View>
-                        </TouchableOpacity>
-                      )}
-                      sliderWidth={SLIDER_WIDTH}
-                      itemWidth={ITEM_WIDTH}
-                      onSnapToItem={(index) => setIndex(index)}
-                      useScrollView={true}
-                    />
-                  </View>
-              </View>
 
               <View style={styles.flashcardcontainer} id='choice'>
-                <Text style={[styles.l3]} > Editor's Choice</Text>
+              <Text style={[styles.l3]}> Editor's Choice</Text>
                   <View style={[styles.carouselContainer]}>
                     <Carousel
                       layout="default"
@@ -97,38 +74,13 @@ const App = ({ navigation }) => {
                         <TouchableOpacity onPress={() => handleDeckPress(item)}style={styles.deckContainer}>
                             <Image style={styles.flash} source={require('../assets/flashcard.png')} />
                             <View style={styles.info}> 
-                              <Text style={styles.infotext}>{item.name}</Text>
+                            <Text style={{ fontSize: item.name.length > 15 ? 16 : 18, fontWeight: 'bold', color: '#4F6F52', top: 5 }}>
+                              {item.name.length > 15
+                                ? item.name.replace(/^(.{1,15})\s/, '$1\n')
+                                : item.name}
+                            </Text>
                               <View style={styles.info2}>
-                                <Text style={styles.infotext2}>@{item.author}</Text>
-                                <Text style={styles.infotext2}>{item.code}</Text>
-                                <Text style={styles.infotext2}>{item.course}</Text>
-                                <Text style={styles.infotext2}>{item.school}</Text>
-                                </View>
-                            </View>
-                        </TouchableOpacity>
-                      )}
-                      sliderWidth={SLIDER_WIDTH}
-                      itemWidth={ITEM_WIDTH}
-                      onSnapToItem={(index) => setIndex(index)}
-                      useScrollView={true}
-                    />
-                  </View>
-              </View>
-
-              <View style={styles.flashcardcontainer} id='added'>
-                <Text style={[styles.l3]} >Your FlashCards</Text>
-                  <View style={[styles.carouselContainer]}>
-                    <Carousel
-                      layout="default"
-                      ref={isCarousel}
-                      data={decks.filter((deck) => deck.author === currentUser.uname)}
-                      renderItem={({ item }) => (
-                        <TouchableOpacity onPress={() => handleDeckPress(item)}style={styles.deckContainer}>
-                            <Image style={styles.flash} source={require('../assets/flashcard.png')} />
-                            <View style={styles.info}> 
-                              <Text style={styles.infotext}>{item.name}</Text>
-                              <View style={styles.info2}>
-                                <Text style={styles.infotext2}>@{item.author}</Text>
+                                <Text style={styles.infotext2}>{item.author}</Text>
                                 <Text style={styles.infotext2}>{item.code}</Text>
                                 <Text style={styles.infotext2}>{item.course}</Text>
                                 <Text style={styles.infotext2}>{item.school}</Text>
@@ -155,9 +107,13 @@ const App = ({ navigation }) => {
                       <TouchableOpacity onPress={()=> handleDeckPress(item)}style={styles.deckContainer}>
                         <Image style={styles.flash} source={require('../assets/flashcard.png')} />
                         <View style={styles.info}> 
-                          <Text style={styles.infotext}>{item.name}</Text>
+                        <Text style={{ fontSize: item.name.length > 15 ? 16 : 18, fontWeight: 'bold', color: '#4F6F52', top: 5 }}>
+                              {item.name.length > 15
+                                ? item.name.replace(/^(.{1,15})\s/, '$1\n')
+                                : item.name}
+                            </Text>
                           <View style={styles.info2}>
-                            <Text style={styles.infotext2}>@{item.author}</Text>
+                            <Text style={styles.infotext2}>{item.author}</Text>
                             <Text style={styles.infotext2}>{item.code}</Text>
                             <Text style={styles.infotext2}>{item.course}</Text>
                             <Text style={styles.infotext2}>{item.school}</Text>
@@ -184,9 +140,13 @@ const App = ({ navigation }) => {
                       <TouchableOpacity onPress={() => handleDeckPress(item)}style={styles.deckContainer}>
                         <Image style={styles.flash} source={require('../assets/flashcard.png')} />
                         <View style={styles.info}> 
-                          <Text style={styles.infotext}>{item.name}</Text>
+                        <Text style={{ fontSize: item.name.length > 15 ? 16 : 18, fontWeight: 'bold', color: '#4F6F52', top: 5 }}>
+                              {item.name.length > 15
+                                ? item.name.replace(/^(.{1,15})\s/, '$1\n')
+                                : item.name}
+                            </Text>
                           <View style={styles.info2}>
-                            <Text style={styles.infotext2}>@{item.author}</Text>
+                            <Text style={styles.infotext2}>{item.author}</Text>
                             <Text style={styles.infotext2}>{item.code}</Text>
                             <Text style={styles.infotext2}>{item.course}</Text>
                             <Text style={styles.infotext2}>{item.school}</Text>
@@ -213,9 +173,13 @@ const App = ({ navigation }) => {
                       <TouchableOpacity onPress={() => handleDeckPress(item)}style={styles.deckContainer}>
                         <Image style={styles.flash} source={require('../assets/flashcard.png')} />
                         <View style={styles.info}> 
-                          <Text style={styles.infotext}>{item.name}</Text>
+                        <Text style={{ fontSize: item.name.length > 15 ? 16 : 18, fontWeight: 'bold', color: '#4F6F52', top: 5 }}>
+                              {item.name.length > 15
+                                ? item.name.replace(/^(.{1,15})\s/, '$1\n')
+                                : item.name}
+                            </Text>
                           <View style={styles.info2}>
-                            <Text style={styles.infotext2}>@{item.author}</Text>
+                            <Text style={styles.infotext2}>{item.author}</Text>
                             <Text style={styles.infotext2}>{item.code}</Text>
                             <Text style={styles.infotext2}>{item.course}</Text>
                             <Text style={styles.infotext2}>{item.school}</Text>
@@ -242,9 +206,13 @@ const App = ({ navigation }) => {
                       <TouchableOpacity onPress={() => handleDeckPress(item)}style={styles.deckContainer}>
                         <Image style={styles.flash} source={require('../assets/flashcard.png')} />
                         <View style={styles.info}> 
-                          <Text style={styles.infotext}>{item.name}</Text>
+                        <Text style={{ fontSize: item.name.length > 15 ? 16 : 18, fontWeight: 'bold', color: '#4F6F52', top: 5 }}>
+                              {item.name.length > 15
+                                ? item.name.replace(/^(.{1,15})\s/, '$1\n')
+                                : item.name}
+                            </Text>
                           <View style={styles.info2}>
-                            <Text style={styles.infotext2}>@{item.author}</Text>
+                            <Text style={styles.infotext2}>{item.author}</Text>
                             <Text style={styles.infotext2}>{item.code}</Text>
                             <Text style={styles.infotext2}>{item.course}</Text>
                             <Text style={styles.infotext2}>{item.school}</Text>
@@ -271,9 +239,13 @@ const App = ({ navigation }) => {
                       <TouchableOpacity onPress={() => handleDeckPress(item)}style={styles.deckContainer}>
                         <Image style={styles.flash} source={require('../assets/flashcard.png')} />
                         <View style={styles.info}> 
-                          <Text style={styles.infotext}>{item.name}</Text>
+                        <Text style={{ fontSize: item.name.length > 15 ? 16 : 18, fontWeight: 'bold', color: '#4F6F52', top: 5 }}>
+                              {item.name.length > 15
+                                ? item.name.replace(/^(.{1,15})\s/, '$1\n')
+                                : item.name}
+                            </Text>
                           <View style={styles.info2}>
-                            <Text style={styles.infotext2}>@{item.author}</Text>
+                            <Text style={styles.infotext2}>{item.author}</Text>
                             <Text style={styles.infotext2}>{item.code}</Text>
                             <Text style={styles.infotext2}>{item.course}</Text>
                             <Text style={styles.infotext2}>{item.school}</Text>
@@ -300,9 +272,13 @@ const App = ({ navigation }) => {
                       <TouchableOpacity onPress={() => handleDeckPress(item)}style={styles.deckContainer}>
                         <Image style={styles.flash} source={require('../assets/flashcard.png')} />
                         <View style={styles.info}> 
-                          <Text style={styles.infotext}>{item.name}</Text>
+                        <Text style={{ fontSize: item.name.length > 15 ? 16 : 18, fontWeight: 'bold', color: '#4F6F52', top: 5 }}>
+                              {item.name.length > 15
+                                ? item.name.replace(/^(.{1,15})\s/, '$1\n')
+                                : item.name}
+                            </Text>
                           <View style={styles.info2}>
-                            <Text style={styles.infotext2}>@{item.author}</Text>
+                            <Text style={styles.infotext2}>{item.author}</Text>
                             <Text style={styles.infotext2}>{item.code}</Text>
                             <Text style={styles.infotext2}>{item.course}</Text>
                             <Text style={styles.infotext2}>{item.school}</Text>
@@ -329,9 +305,13 @@ const App = ({ navigation }) => {
                       <TouchableOpacity onPress={() => handleDeckPress(item)}style={styles.deckContainer}>
                         <Image style={styles.flash} source={require('../assets/flashcard.png')} />
                         <View style={styles.info}> 
-                          <Text style={styles.infotext}>{item.name}</Text>
+                        <Text style={{ fontSize: item.name.length > 15 ? 16 : 18, fontWeight: 'bold', color: '#4F6F52', top: 5 }}>
+                              {item.name.length > 15
+                                ? item.name.replace(/^(.{1,15})\s/, '$1\n')
+                                : item.name}
+                            </Text>
                           <View style={styles.info2}>
-                            <Text style={styles.infotext2}>@{item.author}</Text>
+                            <Text style={styles.infotext2}>{item.author}</Text>
                             <Text style={styles.infotext2}>{item.code}</Text>
                             <Text style={styles.infotext2}>{item.course}</Text>
                             <Text style={styles.infotext2}>{item.school}</Text>
@@ -358,9 +338,13 @@ const App = ({ navigation }) => {
                       <TouchableOpacity onPress={() => handleDeckPress(item)}style={styles.deckContainer}>
                         <Image style={styles.flash} source={require('../assets/flashcard.png')} />
                         <View style={styles.info}> 
-                          <Text style={styles.infotext}>{item.name}</Text>
+                        <Text style={{ fontSize: item.name.length > 15 ? 16 : 18, fontWeight: 'bold', color: '#4F6F52', top: 5 }}>
+                              {item.name.length > 15
+                                ? item.name.replace(/^(.{1,15})\s/, '$1\n')
+                                : item.name}
+                            </Text>
                           <View style={styles.info2}>
-                            <Text style={styles.infotext2}>@{item.author}</Text>
+                            <Text style={styles.infotext2}>{item.author}</Text>
                             <Text style={styles.infotext2}>{item.code}</Text>
                             <Text style={styles.infotext2}>{item.course}</Text>
                             <Text style={styles.infotext2}>{item.school}</Text>
@@ -387,9 +371,13 @@ const App = ({ navigation }) => {
                       <TouchableOpacity onPress={() => handleDeckPress(item)}style={styles.deckContainer}>
                         <Image style={styles.flash} source={require('../assets/flashcard.png')} />
                         <View style={styles.info}> 
-                          <Text style={styles.infotext}>{item.name}</Text>
+                        <Text style={{ fontSize: item.name.length > 15 ? 16 : 18, fontWeight: 'bold', color: '#4F6F52', top: 5 }}>
+                              {item.name.length > 15
+                                ? item.name.replace(/^(.{1,15})\s/, '$1\n')
+                                : item.name}
+                            </Text>
                           <View style={styles.info2}>
-                            <Text style={styles.infotext2}>@{item.author}</Text>
+                            <Text style={styles.infotext2}>{item.author}</Text>
                             <Text style={styles.infotext2}>{item.code}</Text>
                             <Text style={styles.infotext2}>{item.course}</Text>
                             <Text style={styles.infotext2}>{item.school}</Text>
@@ -521,7 +509,7 @@ const styles = StyleSheet.create({
     paddingBottom: 8, // Adjust as needed
   },
   deckContainer: {
-    width: 'auto',
+    width: ITEM_WIDTH,
     height: 170, // Set height equal to width
     marginHorizontal: 8, // Adjust margin as needed
     backgroundColor: '#ECE3CE',
@@ -553,7 +541,7 @@ const styles = StyleSheet.create({
     position: 'absolute',
     flex: 1,
     left: 50, 
-    alignContent: 'flex-end'
+    alignContent: 'flex-end',
   },
   info: {
     flex: 1,
@@ -564,7 +552,7 @@ const styles = StyleSheet.create({
   info2: {
     flex: 1,
     padding: 10,
-    top: 70,
+    top: 80,
     left: 0,
     position: 'absolute',
     width: 200,

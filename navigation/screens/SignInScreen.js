@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { View, Text, TextInput, TouchableOpacity, StyleSheet, ImageBackground, Image } from 'react-native';
+import { View, Text, TextInput, TouchableOpacity, StyleSheet, ImageBackground, Image, KeyboardAvoidingView, Platform } from 'react-native';
 import { setCurrentUser, users} from '../code/creatorData';
 import { imageHandler } from './ProfileScreen';
 
@@ -23,34 +23,39 @@ const SignInScreen = ({ navigation }) => {
 
   return (
     <ImageBackground source={require('../assets/ForestBg.png')} style={styles.backgroundImage}> 
-      <View style={styles.container}>
+      <KeyboardAvoidingView
+       behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
+       style={styles.container}
+      >
+        <View style={styles.container}>
 
-        <View style={styles.appnamecon}>
-          <Image style={[styles.appname1]} source={require('../assets/appname.png')}/>
-          <Text style={styles.tagline}>Learn and flourish</Text>
-          <Text style={styles.description}>✓ Flashcards ✓ Tests ✓ Community</Text>
+          <View style={styles.appnamecon}>
+            <Image style={[styles.appname1]} source={require('../assets/appname.png')}/>
+            <Text style={styles.tagline}>Learn and flourish</Text>
+            <Text style={styles.description}>✓ Flashcards ✓ Tests ✓ Community</Text>
+          </View>
+
+          <Text style={styles.signinlb}>SIGN IN</Text>
+          <TextInput
+            style={styles.input}
+            placeholder="Username"
+            placeholderTextColor={'4F6F52'}
+            onChangeText={text => setUsername(text)}
+            value={username}
+          />
+          <TextInput
+            style={styles.input}
+            placeholder="Password"
+            placeholderTextColor={'4F6F52'}
+            secureTextEntry
+            onChangeText={text => setPassword(text)}
+            value={password}
+          />
+          <TouchableOpacity style={[styles.signInbutton, styles.shadow]} onPress={handleSignIn}>
+            <Text style={[styles.SignInText, { paddingBottom: 5 } ]}>Confirm</Text>
+          </TouchableOpacity>
         </View>
-
-        <Text style={styles.signinlb}>SIGN IN</Text>
-        <TextInput
-          style={styles.input}
-          placeholder="Username"
-          placeholderTextColor={'rgba(236, 227, 206, 0.5)'}
-          onChangeText={text => setUsername(text)}
-          value={username}
-        />
-        <TextInput
-          style={styles.input}
-          placeholder="Password"
-          placeholderTextColor={'rgba(236, 227, 206, 0.5)'}
-          secureTextEntry
-          onChangeText={text => setPassword(text)}
-          value={password}
-        />
-        <TouchableOpacity style={[styles.signInbutton, styles.shadow]} onPress={handleSignIn}>
-          <Text style={styles.SignInText}>Confirm</Text>
-        </TouchableOpacity>
-      </View>
+      </KeyboardAvoidingView>
     </ImageBackground>
   );
 };
@@ -124,12 +129,13 @@ const styles = StyleSheet.create({
     borderWidth: 1,
     marginBottom: 16,
     padding: 8,
-    color: '#ece3ce'
+    color: '#4F6F52',
+    backgroundColor: 'rgba(236, 227, 206, 0.75)',
   },
   signInbutton: {
     backgroundColor: '#ece3ce',
     padding: 10,
-    width: 200,
+    width: 180,
     borderRadius: 25,
   },
   SignInText: {

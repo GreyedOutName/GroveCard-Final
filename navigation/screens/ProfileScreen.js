@@ -2,7 +2,6 @@ import React, { useState } from 'react';
 import { Image, ImageBackground, SafeAreaView, ScrollView, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 import { Agenda } from 'react-native-calendars';
 import { currentUser } from '../code/creatorData';
-import { calenderContent } from '../code/data';
 
 export function imageHandler(uname){
   switch(uname){
@@ -32,6 +31,12 @@ export function imageHandler(uname){
 var imagesrc=require('../assets/angela.jpg');
 
 export default function ProfileScreen({ navigation }) {
+  const [items, setItems] = useState({
+    '2023-12-01': [{ text: 'Test for CS' }],
+    '2023-12-02': [{ text: 'Test for Engineering' }],
+    '2023-12-03': [{ text: 'Review Flashcard 2' }],
+  });
+
   const renderAgendaItem = (item) => (
     <Text style={styles.AgendaItems}>{item.text}</Text>
   );
@@ -39,7 +44,7 @@ export default function ProfileScreen({ navigation }) {
   return (
     <ImageBackground source={require('../assets/JungleBg.gif')} style={styles.ProfileContainer}>
 
-      <SafeAreaView style={{ flex: 1, paddingBottom: 100 }}>
+      <SafeAreaView style={{ flex: 1, paddingBottom: 100, alignContent: 'center' }}>
 
           <View style={styles.c1}>
             <View style={styles.profileImage}>
@@ -48,7 +53,7 @@ export default function ProfileScreen({ navigation }) {
             <Image source={require('../assets/Logo.png')} style={styles.logo} resizeMode="center" />
             <View style={styles.profileInfo}>
               <View style={styles.usernamebg}>
-                <Text style={styles.Username}>@{currentUser.uname}</Text>
+                <Text style={styles.Username}>{currentUser.uname}</Text>
               </View>
               <Text style={styles.uni}>University of the East</Text>
               <Text style={styles.course}>BS Computer Science</Text>
@@ -62,8 +67,8 @@ export default function ProfileScreen({ navigation }) {
           <View style = {styles.calendarContainer}>
             <Agenda
               style={{height: 800}}
-              items={calenderContent}
-              selected="2023-12-01"
+              items={items}
+              selected="2023-12-07"
               renderItem={renderAgendaItem}
               loadItemsForMonth={() => { }}
             />
@@ -85,7 +90,8 @@ const styles = StyleSheet.create({
       alignItems: 'center',
       paddingHorizontal: 16,
       marginTop: 30,
-      height: 'auto'
+      height: 'auto',
+      left: 32
     },
     profileImage: {
         width: 80,
@@ -169,6 +175,8 @@ const styles = StyleSheet.create({
       padding: 15,
       marginHorizontal: 30,
       height: 800,
+      borderColor: '#00AD7C', 
+      borderWidth: 2,
     },
 
     logoutbtn: {
