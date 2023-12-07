@@ -21,6 +21,12 @@ const SignInScreen = ({ navigation }) => {
     }
   };
 
+  const handleGuest=()=>{
+    var temp=users.filter((item)=>item.uname==='guest');
+    setCurrentUser(temp[0])
+    imageHandler('guest');
+    navigation.replace('Main');
+  }
   return (
     <ImageBackground source={require('../assets/ForestBg.png')} style={styles.backgroundImage}> 
       <KeyboardAvoidingView
@@ -39,14 +45,14 @@ const SignInScreen = ({ navigation }) => {
           <TextInput
             style={styles.input}
             placeholder="Username"
-            placeholderTextColor={'4F6F52'}
+            placeholderTextColor={'rgb(79, 111, 82)'}
             onChangeText={text => setUsername(text)}
             value={username}
           />
           <TextInput
             style={styles.input}
             placeholder="Password"
-            placeholderTextColor={'4F6F52'}
+            placeholderTextColor={'rgb(79, 111, 82)'}
             secureTextEntry
             onChangeText={text => setPassword(text)}
             value={password}
@@ -55,6 +61,9 @@ const SignInScreen = ({ navigation }) => {
             <Text style={[styles.SignInText, { paddingBottom: 5 } ]}>Confirm</Text>
           </TouchableOpacity>
         </View>
+        <TouchableOpacity onPress={handleGuest}>
+            <Text style={[styles.tagline, { color:'#ECE3CE'} ]}>Sign-in as guest</Text>
+          </TouchableOpacity>
       </KeyboardAvoidingView>
     </ImageBackground>
   );
@@ -129,7 +138,7 @@ const styles = StyleSheet.create({
     borderWidth: 1,
     marginBottom: 16,
     padding: 8,
-    color: '#4F6F52',
+    color: 'rgb(79, 111, 82)',
     backgroundColor: 'rgba(236, 227, 206, 0.75)',
   },
   signInbutton: {

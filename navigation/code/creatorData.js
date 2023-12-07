@@ -25,7 +25,7 @@ export var users=[
     },
     {
         uname:'guest',
-        password:'none',
+        password:null,
     }
 ]
 export var currentUser=users[0];

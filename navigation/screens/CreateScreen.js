@@ -37,11 +37,15 @@ export default function Create({ navigation }) {
     'Others'
   ];
   const AddDeck=()=>{
-    if (!title&&!subjectCode&&!selectedCourse&&!selectedSchool&&!selectedSchool) {
+    if(currentUser.uname==='guest'){
+      alert('Sorry! cannot create a deck as guest user.')
+    }
+    else{
+      if (!title&&!subjectCode&&!selectedCourse&&!selectedSchool&&!selectedSchool) {
       alert('Please enter all the required values');
       return;
-    }
-
+       }
+    
     const newDeck = {
       id: decks.length+1,
       category: selectedCategory,
@@ -58,6 +62,7 @@ export default function Create({ navigation }) {
     decks.unshift(newDeck);
     //setDecks([...decks, newDeck]);
     alert('Deck successfully added')
+    }
   }
 
   return (

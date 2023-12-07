@@ -50,7 +50,12 @@ export default function PreviewScreen({ navigation }) {
     }
   };
   const handleFavorite=()=>{
-    selectedDeck.favorite='yes';
+    if(selectedDeck.favorite==='yes'){
+      selectedDeck.favorite='no';
+    }
+    else{
+      selectedDeck.favorite='yes'
+    }
   }
   const handleFavoriteToggle = () => {
     setIsFavorite(!isFavorite);

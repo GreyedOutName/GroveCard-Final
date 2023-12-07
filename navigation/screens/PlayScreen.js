@@ -54,14 +54,18 @@ export default function PlayScreen({navigation}){
 
   const handleEnd=()=>{
     setScore(score-1);
+    
+    alerter();
+    handleCalendar();
+    navigation.goBack();
+  }
+  const alerter=()=>{
     if(score<flashIndex/2){
       alert('Your score is '+score+'/'+flashIndex+', Better luck next time!')
     }
     else{
       alert('Your score is '+score+'/'+flashIndex+', GoodJob!')
     }
-    handleCalendar();
-    navigation.goBack();
   }
   
 const renderQuestion = ({ item }) => ( //for question data
