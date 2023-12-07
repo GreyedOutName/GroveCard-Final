@@ -54,7 +54,7 @@ export default function PlayScreen({navigation}){
 
   const handleEnd=()=>{
     setScore(score-1);
-    if(score<4){
+    if(score<flashIndex/2){
       alert('Your score is '+score+'/'+flashIndex+', Better luck next time!')
     }
     else{
@@ -65,19 +65,18 @@ export default function PlayScreen({navigation}){
   }
   
 const renderQuestion = ({ item }) => ( //for question data
-
-    <View style={styles.viewPadding}>
-        <TouchableOpacity style={styles.deckContainer} onPress={flipCard}>
-            <View style={styles.body}> 
-              {isFlipped? (
-                 <Text style={styles.flashtext}>{item.frontContent}</Text>
-              ) : (
-                 <Text style={styles.flashtext}>{item.backContent}</Text>
-              )}
-                  
-            </View>
-        </TouchableOpacity>
-    </View>
+  <View style={styles.viewPadding}>
+          <TouchableOpacity style={styles.deckContainer} onPress={()=>flipCard()}>
+              <View style={styles.textcontainer}> 
+                {isFlipped? (
+                  <Text style={styles.flashtext}>{item.backContent}</Text>
+                ) : (
+                  <Text style={styles.flashtext}>{item.frontContent}</Text>
+                )}
+                    
+              </View>
+          </TouchableOpacity>
+      </View>
   );
                 
   const correct = () =>{
@@ -105,7 +104,7 @@ const renderQuestion = ({ item }) => ( //for question data
     }
   }   
 
-   return(
+  return(
     <View style={styles.Container}>
       <View style={[styles.rectangleView, styles.shadow]}>
                 <TouchableOpacity style={styles.back} onPress={()=>navigation.goBack()}>
@@ -116,8 +115,7 @@ const renderQuestion = ({ item }) => ( //for question data
 
       <SafeAreaView style={styles.body}>
            <Text style={[styles.body,styles.text]}>{currentIndex + 1}/{flashIndex}</Text>
-           <FlatList 
-            style={styles.deckContainer} 
+           <FlatList
             showsVerticalScrollIndicator={false}
             scrollEnabled={false}
             data={[selectedDeck.flashcards[currentIndex]]}
@@ -140,104 +138,130 @@ const renderQuestion = ({ item }) => ( //for question data
 }
 const styles = StyleSheet.create({ 
 
-Container:{
-  backgroundColor: '#ECE3CE',
-  height: getHeight
-},
-body:{
-  paddingTop: 70,
-  textAlign: 'center',
-  justifyContent: 'space-between',
-  alignContent:'center'
-},
-buttonContainer:{
-  paddingTop: 30,
-  flexDirection: 'row',
-  textAlign: 'center',
-  justifyContent: 'center',
-  alignContent:'center'
-},
-button1: {
-  backgroundColor: '#ECE3CE',
-  paddingVertical: 20,
-  paddingHorizontal: 70,
-  borderRadius: 5,
-  margin: 10,
-},
-button2: {
-  backgroundColor: '#52D681',
-  paddingVertical: 20,
-  paddingHorizontal: 70,
-  borderRadius: 5,
-  margin: 10,
-},
-text: {
-  fontSize: 30,
-  fontWeight:'bold',
-  color: '#4F6F52',
-  paddingBottom: 40
-},
-flashtext: {
-  alignSelf:'center',
-  fontSize: 30,
-  fontWeight:'bold',
-  color: '#4F6F52',
-  paddingBottom: 40
-},
-icons: {
-  fontSize: 25,
-  fontWeight:'bold',
-  color: '#4F6F52',
-},
-l1: {
-  fontSize: 22,
-  color: '#00AD7C',
-},
-rectangleView: {
-  backgroundColor: "#ece3ce",
-  borderStyle: "solid",
-  borderColor: "rgba(31, 39, 30, 0)",
-  borderBottomWidth: 1,
-  width: "100%",
-  height: 90,
-  paddingTop: 40,
-  padding: 15,
-  flexDirection: 'row',
-  position: 'absolute', 
-  top: 0, 
-  zIndex: 1,
-},
-icon: {
-  height: 37,
-  width: 25,
-},
-back: {
-  height: 50,
-  marginRight: 20,
-},
-deckContainer: {
-  width: iwidth,
-  height: 300, // Set height equal to width
-  borderRadius: 10,
-  alignSelf: 'center',
-  backgroundColor: '#52D681',
-  shadowColor: '#000',
-  shadowOffset: {
-    width: 0,
-    height: 2,
+  Container:{
+    backgroundColor: '#ECE3CE',
+    height: getHeight
   },
-  shadowOpacity: 0.25,
-  shadowRadius: 3.84,
-  elevation: 5,
-},
-shadow: {
-  shadowColor: '#7F5F0',
-  shadowOffset: {
-    width: 0,
-    height: 10,
+  body:{
+    paddingTop: 70,
+    textAlign: 'center',
+    justifyContent: 'space-between',
+    alignContent:'center'
   },
-  shadowOpacity: 0.25,
-  shadowRadius: 3.5,
-  elevation: 5,
-},
-})
+  buttonContainer:{
+    marginTop: 10,
+    flexDirection: 'row',
+    textAlign: 'center',
+    justifyContent: 'center',
+    alignContent:'center',
+    
+  },
+  button1: {
+    backgroundColor: '#ECE3CE',
+    borderWidth: 5,
+    borderColor: '#4F6F52',
+    paddingVertical: 20,
+    paddingHorizontal: 50,
+    borderRadius: 20,
+    margin: 10,
+    shadowColor: '#7F5F0',
+    shadowOffset: {
+      width: 0,
+      height: 10,
+    },
+    shadowOpacity: 0.25,
+    shadowRadius: 3.5,
+    elevation: 5,
+  },
+  button2: {
+    backgroundColor: '#52D681',
+    paddingVertical: 20,
+    paddingHorizontal: 50,
+    borderRadius: 20,
+    margin: 10,
+    shadowColor: '#7F5F0',
+    shadowOffset: {
+      width: 0,
+      height: 10,
+    },
+    shadowOpacity: 0.25,
+    shadowRadius: 3.5,
+    elevation: 5,
+  },
+  text: {
+    fontSize: 30,
+    fontWeight:'bold',
+    color: '#4F6F52',
+    paddingBottom: 2
+  },
+  flashtext: {
+    alignSelf:'center',
+    fontSize: 24,
+    fontWeight:'bold',
+    color: '#4F6F52',
+  },
+  icons: {
+    fontSize: 25,
+    fontWeight:'bold',
+    color: '#4F6F52',
+  },
+  l1: {
+    fontSize: 22,
+    color: '#00AD7C',
+  },
+  rectangleView: {
+    backgroundColor: "#ece3ce",
+    borderStyle: "solid",
+    borderColor: "rgba(31, 39, 30, 0)",
+    borderBottomWidth: 1,
+    width: "100%",
+    height: 90,
+    paddingTop: 40,
+    padding: 15,
+    flexDirection: 'row',
+    position: 'absolute', 
+    top: 0, 
+    zIndex: 1,
+  },
+  icon: {
+    height: 37,
+    width: 25,
+  },
+  back: {
+    height: 50,
+    marginRight: 20,
+  },
+  deckContainer: {
+    width: '90%',
+    padding: 20,
+    margin: 10,
+    height: 300,
+    borderRadius: 10,
+    alignSelf: 'center',
+    justifyContent: 'center',
+    backgroundColor: '#52D681',
+    shadowColor: '#000',
+    shadowOffset: {
+      width: 0,
+      height: 2,
+    },
+    shadowOpacity: 0.25,
+    shadowRadius: 3.84,
+    elevation: 5,
+  },
+  shadow: {
+    shadowColor: '#7F5F0',
+    shadowOffset: {
+      width: 0,
+      height: 10,
+    },
+    shadowOpacity: 0.25,
+    shadowRadius: 3.5,
+    elevation: 5,
+  },
+  textcontainer: {
+    justifyContent: 'center',
+    alignItems: 'center',
+    height: 'auto',
+  },
+  })
