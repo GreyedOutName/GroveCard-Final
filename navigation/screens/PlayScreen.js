@@ -10,6 +10,7 @@ import {
     Image
   } from 'react-native';
 import { selectedDeck } from '../code/data';
+import { calendarContent } from '../code/data';
 
 export const getHeight = Dimensions.get('window').height + 60
 export const getWidth = Dimensions.get('window').width + 100
@@ -19,20 +20,47 @@ export const iwidth = Math.round(getWidth*0.7)
 export default function PlayScreen({navigation}){
   const[currentIndex, setCurrentIndex] = useState(0);
   const [isFlipped, setIsFlipped] = useState(false);
-  const [score,setScore]=useState(0)
+  const [score,setScore]=useState(1)
 
   const flashIndex = selectedDeck.flashcards.length;
   const flipCard = () => {
     setIsFlipped(!isFlipped);
   };
 
-  const handleEnd=()=>{
-    if(score<4){
-      alert('Your score is '+score+'/5, Better luck next time!')
+  const handleCalendar=()=>{
+    var d = new Date();
+    var month = '' + (d.getMonth() + 1);
+    var day = '' + d.getDate();
+    var year = d.getFullYear();
+    if (month.length < 2) 
+          month = '0' + month;
+    if (day.length < 2) 
+          day = '0' + day;
+  
+    var formatdate=[year, month, day].join('-');
+    
+    if(Object.keys(calendarContent).includes(formatdate)){
+      let temp={text:'You completed deck '+selectedDeck.name+' at this date.'}
+      calendarContent[formatdate].push(temp);
     }
     else{
-      alert('Your score is '+score+'/5, Well done!')
+      let temp={
+        [formatdate]:[{ text: 'You completed deck '+selectedDeck.name+' at this date. '+score+'/'+flashIndex}],
+      }
+  
+      Object.assign(calendarContent,temp);
     }
+  }
+
+  const handleEnd=()=>{
+    setScore(score-1);
+    if(score<4){
+      alert('Your score is '+score+'/'+flashIndex+', Better luck next time!')
+    }
+    else{
+      alert('Your score is '+score+'/'+flashIndex+', GoodJob!')
+    }
+    handleCalendar();
     navigation.goBack();
   }
   
@@ -61,7 +89,7 @@ const renderQuestion = ({ item }) => ( //for question data
           setScore(nextScore)
        }
        else{
-        setScore(nextScore)
+        setScore(nextScore);
         handleEnd();
        }
   } 

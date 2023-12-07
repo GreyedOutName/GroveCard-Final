@@ -19,6 +19,9 @@ const AddCardScreen = ({navigation}) => {
         };
       
         selectedDeck.flashcards.push(newFlashcard)
+        alert("Card Added");
+        setQuestion('');
+        setAnswer('');
     }
     return (
         <ImageBackground
@@ -38,6 +41,7 @@ const AddCardScreen = ({navigation}) => {
                     <Text style={styles.l3}>Question</Text>
                         <TextInput
                             style={styles.input}
+                            value={question}
                             placeholder="Question"
                             placeholderTextColor={'rgba(31, 39, 30, 0.4)'}
                             onChangeText={(text) => setQuestion(text)}
@@ -45,6 +49,7 @@ const AddCardScreen = ({navigation}) => {
                     <Text style={styles.l4}>Answer</Text>
                         <TextInput
                             style={styles.input}
+                            value={answer}
                             placeholder="Answer"
                             placeholderTextColor={'rgba(31, 39, 30, 0.4)'}
                             onChangeText={(text) => setAnswer(text)}

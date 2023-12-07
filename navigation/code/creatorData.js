@@ -23,6 +23,10 @@ export var users=[
         uname:'vhilly',
         password:'pogi',
     },
+    {
+        uname:'guest',
+        password:'none',
+    }
 ]
 export var currentUser=users[0];
 export function setCurrentUser(object){

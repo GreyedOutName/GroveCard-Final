@@ -96,6 +96,39 @@ const App = ({ navigation }) => {
                   </View>
               </View>
 
+              <View style={styles.flashcardcontainer} id='choice'>
+              <Text style={[styles.l3]}>Recently Added</Text>
+                  <View style={[styles.carouselContainer]}>
+                    <Carousel
+                      layout="default"
+                      ref={isCarousel}
+                      data={decks.filter((deck) => deck.created === 'yes')}
+                      renderItem={({ item }) => (
+                        <TouchableOpacity onPress={() => handleDeckPress(item)}style={styles.deckContainer}>
+                            <Image style={styles.flash} source={require('../assets/flashcard.png')} />
+                            <View style={styles.info}> 
+                            <Text style={{ fontSize: item.name.length > 15 ? 16 : 18, fontWeight: 'bold', color: '#4F6F52', top: 5 }}>
+                              {item.name.length > 15
+                                ? item.name.replace(/^(.{1,15})\s/, '$1\n')
+                                : item.name}
+                            </Text>
+                              <View style={styles.info2}>
+                                <Text style={styles.infotext2}>{item.author}</Text>
+                                <Text style={styles.infotext2}>{item.code}</Text>
+                                <Text style={styles.infotext2}>{item.course}</Text>
+                                <Text style={styles.infotext2}>{item.school}</Text>
+                                </View>
+                            </View>
+                        </TouchableOpacity>
+                      )}
+                      sliderWidth={SLIDER_WIDTH}
+                      itemWidth={ITEM_WIDTH}
+                      onSnapToItem={(index) => setIndex(index)}
+                      useScrollView={true}
+                    />
+                  </View>
+              </View>
+
               <View style={styles.flashcardcontainer} id='Business and Economics'>
                 <Text style={[styles.l3]}> Business and Economics</Text>
                   <View style={[styles.carouselContainer]}>

@@ -766,8 +766,8 @@ export var decks = [
     },
   ]
 
-export var calenderContent={
-  '2023-12-01': [{ text: 'Test for CS' },{ text: 'Test for CS' }],
-  '2023-12-02': [{ text: 'Test for Engineering' }],
-  '2023-12-03': [{ text: 'Review Flashcard 2' }],
+export var calendarContent={
+  '2023-12-01': [{ text: 'You completed deck Mathematics 4 at this date. 5/5' }],
+  '2023-12-02': [{ text: 'You completed deck Business 1 at this date. 4/5' }],
+  '2023-12-03': [{ text: 'You completed deck Communication 2 at this date. 3/5' }],
 }

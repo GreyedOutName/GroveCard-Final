@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { Image, ImageBackground, SafeAreaView, ScrollView, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 import { Agenda } from 'react-native-calendars';
 import { currentUser } from '../code/creatorData';
+import { calendarContent } from '../code/data';
 
 export function imageHandler(uname){
   switch(uname){
@@ -23,6 +24,9 @@ export function imageHandler(uname){
     case 'vhilly':
       imagesrc=require('../assets/vhilly.jpg');
       break;
+    case 'guest':
+      imagesrc=require('../assets/profile_pick.png');
+      break;
     default:
       imagesrc=require('../assets/allen.jpg');
   }
@@ -31,11 +35,7 @@ export function imageHandler(uname){
 var imagesrc=require('../assets/angela.jpg');
 
 export default function ProfileScreen({ navigation }) {
-  const [items, setItems] = useState({
-    '2023-12-01': [{ text: 'Test for CS' }],
-    '2023-12-02': [{ text: 'Test for Engineering' }],
-    '2023-12-03': [{ text: 'Review Flashcard 2' }],
-  });
+  const [items, setItems] = useState(calendarContent);
 
   const renderAgendaItem = (item) => (
     <Text style={styles.AgendaItems}>{item.text}</Text>
@@ -68,7 +68,7 @@ export default function ProfileScreen({ navigation }) {
             <Agenda
               style={{height: 800}}
               items={items}
-              selected="2023-12-07"
+              selected="2023-12-01"
               renderItem={renderAgendaItem}
               loadItemsForMonth={() => { }}
             />

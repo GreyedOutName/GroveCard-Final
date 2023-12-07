@@ -1,6 +1,6 @@
 import React, { useEffect ,useState} from 'react';
 import { FlatList, Image, View, StyleSheet, Text, TouchableOpacity, ScrollView, Dimensions, Modal, TextInput,SafeAreaView} from 'react-native';
-import { calenderContent, decks } from '../code/data';
+import { calendarContent, decks } from '../code/data';
 import { selectedDeck } from '../code/data';
 import { ITEM_WIDTH } from '../code/carouselCardItem';
 import { currentUser } from '../code/creatorData';
@@ -40,6 +40,8 @@ export default function PreviewScreen({ navigation }) {
     }
   }
   const toggleModalFlashcard = () => {
+    setNewQuestion(selectedCard.frontContent);
+    setNewAnswer(selectedCard.backContent);
     if(selectedDeck.author===currentUser.uname){
       setIsModalVisibleFlashcard(!isModalVisibleFlashcard);
     }
@@ -54,34 +56,6 @@ export default function PreviewScreen({ navigation }) {
     setIsFavorite(!isFavorite);
     handleFavorite();
   };
-
-  //THIS WILL BE MOVED TO PLAY SCREEN
-  const handletemp=()=>{
-    var d = new Date();
-    var month = '' + (d.getMonth() + 1);
-    var day = '' + d.getDate();
-    var year = d.getFullYear();
-    if (month.length < 2) 
-          month = '0' + month;
-    if (day.length < 2) 
-          day = '0' + day;
-  
-    var formatdate=[year, month, day].join('-');
-    
-    if(Object.keys(calenderContent).includes(formatdate)){
-      let temp={text:'You completed deck '+selectedDeck.name+' at this date.'}
-      calenderContent[formatdate].push(temp);
-    }
-    else{
-      let temp={
-        [formatdate]:[{ text: 'You completed deck '+selectedDeck.name+' at this date.' }],
-      }
-  
-      Object.assign(calenderContent,temp);
-    }
-    navigation.navigate('Main');
-  }
-  
 
   const renderQuestion = ({ item }) => (
     <View style={styles.viewPadding}>
@@ -112,10 +86,10 @@ export default function PreviewScreen({ navigation }) {
     return(
       <ScrollView contentContainerStyle = {styles.scrollContainer} showsVerticalScrollIndicator={false}>
         <View style={[styles.rectangleView, styles.shadow]}>
-                <TouchableOpacity style={styles.back} onPress={()=>handletemp()}>
+                <TouchableOpacity style={styles.back} onPress={()=>navigation.navigate('Main')}>
                     <Image style={styles.icon} source={require("../assets/back.png")}/>
                 </TouchableOpacity>
-                <Text style={styles.l1}>Add Cards</Text>
+                <Text style={styles.l1}>Preview Screen</Text>
         </View>
 
         <SafeAreaView style={styles.PreviewContainer}>
